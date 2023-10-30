@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  scroll-behavior: smooth;
+}
+
+.scrollContainer {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.scrollContainer section {
+  scroll-snap-align: start;
+}
+
 /*:root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

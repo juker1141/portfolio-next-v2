@@ -45,13 +45,13 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed w-full px-6 lg:px-16 py-8 lg:py-10 flex lg:items-center lg:justify-between transition-colors duration-300 ease-in-out lg:transition-none flex-col lg:flex-row ${
+      className={`z-10 fixed w-full px-6 lg:px-16 py-8 lg:py-10 flex lg:items-center lg:justify-between transition-colors duration-300 ease-in-out lg:transition-none flex-col lg:flex-row ${
         isShowMenu ? "bg-black text-white lg:text-black lg:bg-white" : ""
       }`}
     >
       <div className="w-full lg:w-auto flex justify-between">
-        <h1>
-          <Link href="#banner">Ryu</Link>
+        <h1 className="text-2xl flex items-center">
+          <Link href="#banner">Logo</Link>
         </h1>
         <MenuBtn isShowMenu={isShowMenu} showMenu={showMenu} />
       </div>

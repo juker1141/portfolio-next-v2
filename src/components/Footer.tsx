@@ -1,4 +1,4 @@
-const Hero = () => {
+const Footer = () => {
   return (
     <section className="h-screen">
       <div>
@@ -10,4 +10,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Footer;
