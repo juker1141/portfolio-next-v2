@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   scroll-behavior: smooth;
 }
 
 .scrollContainer {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: both mandatory;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrollContainer section {
   scroll-snap-align: start;
-}
+  scroll-snap-stop: always;
+} */
 
 /*:root {
   --foreground-rgb: 0, 0, 0;
@@ -38,3 +40,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }*/
+
+.fp-slidesNav {
+  display: flex;
+  justify-content: center;
+}

@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <section className="h-screen">
+    <section className="section h-screen">
       <div>
         <h2>
           Hi! My name is <strong>lorem</strong>
