@@ -1,4 +1,4 @@
-const Hero = () => {
+const Hero = ({ fullpageApi }: { fullpageApi: any }) => {
   return (
     <div className="section">
       <div className="container mx-auto flex justify-center items-center">

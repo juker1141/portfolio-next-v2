@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Work = {
   title: string;
@@ -7,7 +8,7 @@ type Work = {
   imageUrl: string;
 };
 
-const Work = () => {
+const Work = ({ fullpageApi }: { fullpageApi: any }) => {
   const [worksList, setWorksList] = useState<Work[]>([
     {
       title: "Project1",
@@ -28,6 +29,12 @@ const Work = () => {
       imageUrl: "/images/banner_hero.webp",
     },
   ]);
+
+  useEffect(() => {
+    if (fullpageApi) {
+      fullpageApi.reBuild();
+    }
+  }, [fullpageApi]);
 
   const renderWorksList = () => {
     return worksList.map((work, index) => {

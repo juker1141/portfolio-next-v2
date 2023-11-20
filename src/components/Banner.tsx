@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const titles = ["Frontend Software Developer", "Backend Software Developer"];
 
-const Banner = () => {
+const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
   return (
     <div className="section">
       <div className="container mx-auto flex justify-center items-center">

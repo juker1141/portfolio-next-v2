@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import type { Item } from "@fullpage/react-fullpage";
 import NavBar from "@/components/NavBar";
@@ -10,14 +10,14 @@ import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
-type Component = () => JSX.Element;
+export type FullpageApi = Object;
+type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
 
 export default function Home() {
-  var slideIndex = 1,
-    sliding = false,
-    slideLinkClick = false,
-    link;
+  const [slideIndex, setSlideIndex] = useState(0);
+  const sliding = false;
   const [fullpages, setFullpages] = useState<Component[]>([
     Banner,
     Hero,
@@ -27,61 +27,40 @@ export default function Home() {
     Footer,
   ]);
 
-  function onLeave(
-    origin: Item,
-    destination: Item,
-    direction: string,
-    trigger: string
-  ): void {
-    console.log(origin, destination, direction, trigger);
-    // console.log("beforeLeave");
-    if (destination.anchor === "Work") {
-      if (direction === "up") {
-        (window as any).fullpage_api.setAllowScrolling(false, "up");
-      } else if (direction === "down") {
-        (window as any).fullpage_api.setAllowScrolling(false, "down");
-      }
-    }
-
-    if (origin.anchor === "Work") {
-      if (direction === "up") {
-        (window as any).fullpage_api.setAllowScrolling(false, "up");
-      } else if (direction === "down") {
-        (window as any).fullpage_api.setAllowScrolling(false, "down");
-      }
-    }
-  }
-
   function afterSlideLoad(
     section: Item,
     origin: Item,
     destination: Item,
     direction: string,
     trigger: string
-  ): void {
-    console.log(section, origin, destination, direction, trigger);
-    (window as any).fullpage_api.setAllowScrolling(true);
-    if (section.anchor === "Work") {
-    }
+  ) {
+    setSlideIndex(destination.index + 1);
   }
 
-  function onSlideLeave(
-    section: Item,
+  function onLeave(
     origin: Item,
     destination: Item,
     direction: string,
     trigger: string
-  ): void {
-    console.log(section, origin, destination, direction, trigger);
-  }
-
-  function afterRender(): void {
-    console.log("after");
-    (window as any).fullpage_api.setAllowScrolling(true);
+  ) {
+    // console.log("Index: " + origin.index + " Slide Index: " + slideIndexS);
+    //console.log(index, nextIndex, direction, sliding);
+    if (origin.index === 3 && !sliding) {
+      if (direction === "down" && slideIndex < 4) {
+        (window as any).fullpage_api.moveSlideRight();
+        return false;
+      } else if (direction === "up" && slideIndex > 1) {
+        (window as any).fullpage_api.moveSlideLeft();
+        return false;
+      }
+    } else if (sliding) {
+      return false;
+    }
   }
 
   return (
     <Fragment>
+      <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
       <Header />
       <NavBar />
       <ReactFullpage
@@ -98,11 +77,8 @@ export default function Home() {
           label: "",
           position: "right",
         }}
-        // beforeLeave={beforeLeave}
-        onSlideLeave={onSlideLeave}
         afterSlideLoad={afterSlideLoad}
         onLeave={onLeave}
-        afterRender={afterRender}
         controlArrows={false}
         loopHorizontal={false}
         slidesNavigation={true}
@@ -110,7 +86,7 @@ export default function Home() {
         render={(comp: any) => (
           <ReactFullpage.Wrapper>
             {fullpages.map((Component, index) => (
-              <Component key={index} />
+              <Component key={index} fullpageApi={comp.fullpageApi} />
             ))}
           </ReactFullpage.Wrapper>
         )}
