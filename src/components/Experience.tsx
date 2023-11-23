@@ -1,4 +1,4 @@
-const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
+const Experience = () => {
   return (
     <div className="section">
       <div className="container mx-auto flex justify-center items-center">

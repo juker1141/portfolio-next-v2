@@ -41,6 +41,10 @@ body {
     rgb(var(--background-start-rgb));
 }*/
 
+body {
+  background-color: #e0d9c7;
+}
+
 .fp-slidesNav {
   display: flex;
   justify-content: center;

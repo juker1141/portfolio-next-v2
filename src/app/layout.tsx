@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Amatic_SC } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const amaticSC = Amatic_SC({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-amitic-sc",
+});
 
 export const metadata: Metadata = {
   title: "Ryu | Frontend Web Developer | Backend Web Developer",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={amaticSC.variable}>{children}</body>
     </html>
   );
 }

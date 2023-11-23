@@ -7,7 +7,15 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "amatic-sc": ["var(--font-amitic-sc)"],
+        // mono: ["var(--font-roboto-mono)"],
+      },
+      backgroundImage: {
+        hello: "url('/images/hello.svg')",
+      },
+    },
   },
   plugins: [],
 };

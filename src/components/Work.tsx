@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 type Work = {
   title: string;
@@ -8,7 +8,7 @@ type Work = {
   imageUrl: string;
 };
 
-const Work = ({ fullpageApi }: { fullpageApi: any }) => {
+const Work = () => {
   const [worksList, setWorksList] = useState<Work[]>([
     {
       title: "Project1",
@@ -30,36 +30,21 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
     },
   ]);
 
-  useEffect(() => {
-    if (fullpageApi) {
-      fullpageApi.reBuild();
-    }
-  }, [fullpageApi]);
-
   const renderWorksList = () => {
     return worksList.map((work, index) => {
       return (
-        <div
-          className="slide"
-          id={`slide${index + 2}`}
-          key={index}
-          data-anchor={`slide${index + 2}`}
-        >
-          <div className="container mx-auto flex justify-center items-center">
-            <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">
-              <div className="flex flex-col justify-center items-start">
-                <h2 className="text-5xl mb-2">{work.title}</h2>
-                <p className="text-xl">{work.content}</p>
-              </div>
-              <div className="flex items-center">
-                <Image
-                  width={500}
-                  height={500}
-                  src={`${work.imageUrl}`}
-                  alt="exampleImage"
-                />
-              </div>
-            </div>
+        <div key={index}>
+          <div className="flex flex-col justify-center items-start">
+            <h2 className="text-5xl mb-2">{work.title}</h2>
+            <p className="text-xl">{work.content}</p>
+          </div>
+          <div className="flex items-center">
+            <Image
+              width={500}
+              height={500}
+              src={`${work.imageUrl}`}
+              alt="exampleImage"
+            />
           </div>
         </div>
       );
@@ -67,13 +52,10 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
   };
 
   return (
-    <div className="section">
-      <div className="slide" id="slide1" data-anchor="slide1">
-        <div className="container mx-auto flex justify-center items-center">
-          <h4>Side Projects</h4>
-        </div>
+    <section className="container mx-auto flex justify-center items-center">
+      <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative flex flex-col">
+        {renderWorksList()}
       </div>
-      {renderWorksList()}
       {/* <div className="slide" id="slide2" data-anchor="slide2">
         <div className="container mx-auto flex justify-center items-center">
           <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">
@@ -117,7 +99,7 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
           </section>
         ))}
       </div> */}
-    </div>
+    </section>
   );
 };
 
