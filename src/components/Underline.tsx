@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+
+import { useState, useEffect } from "react";
 
 const random = (from: number, to: number) =>
   Math.floor(Math.random() * (to - from) + from);
@@ -28,9 +29,17 @@ const Underline = ({
   children: React.ReactNode;
   delay: string;
 }) => {
-  const strokeWidth = random(16, 20) / 100;
-  const height = random(4, 8);
-  const path = underlinePath(height);
+  const [height, setHeight] = useState(0);
+  const [path, setPath] = useState("");
+  const [strokeWidth, setStrokeWidth] = useState(0);
+
+  useEffect(() => {
+    const height = random(4, 8);
+    const strokeWidth = random(16, 20) / 100;
+    setHeight(height);
+    setPath(underlinePath(height));
+    setStrokeWidth(strokeWidth);
+  }, [height]);
 
   return (
     <div className="pen-stroke">

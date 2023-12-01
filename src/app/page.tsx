@@ -11,14 +11,14 @@ config.autoAddCss = false;
 import ReactFullpage from "@fullpage/react-fullpage";
 import type { Item } from "@fullpage/react-fullpage";
 
-import NavBar from "@/components/NavBar";
+// import NavBar from "@/components/NavBar";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 export type FullpageApi = Object;
 type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
@@ -69,18 +69,15 @@ export default function Home() {
 
   return (
     <Fragment>
-      <Script
-        src="https://kit.fontawesome.com/d973d1ccea.js"
-        crossOrigin="anonymous"
-      />
+      <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
       <Header />
       {/* <NavBar /> */}
       <ReactFullpage
-        scrollOverflow={true}
         anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
         licenseKey={"gplv3-license"}
         navigation
+        scrollOverflow={true}
         scrollBar={false}
         responsiveWidth={1024}
         responsiveSlides={false}
@@ -93,7 +90,6 @@ export default function Home() {
           label: "",
           position: "right",
         }}
-        css3
         afterSlideLoad={afterSlideLoad}
         onLeave={onLeave}
         controlArrows={false}
