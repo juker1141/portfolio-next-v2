@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  scroll-behavior: smooth;
+}
+
+.scrollContainer {
+  scroll-snap-type: both mandatory;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollContainer section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+} */
+
+/*:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}*/
+
+body {
+  cursor: url(/images/cursor.png), auto;
+  color: theme(colors.secondary);
+  /* background-color: #e0d9c7; */
+  background-color: #f4ecdf;
+  overflow-x: hidden;
+}
+
+f4ecdf body a:hover {
+  cursor: url(/images/cursor-pointer.png), pointer;
+}
+
+body button:hover {
+  cursor: url(/images/cursor-pointer.png), pointer;
+}
+
+.fp-watermark {
+  display: none;
+}
+
+.fp-slidesNav {
+  display: flex;
+  justify-content: center;
+}
+.fp-overflow {
+  height: 100%;
+}
+
+#fp-nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  #fp-nav {
+    display: block;
+  }
+}
+
+.marker {
+  position: relative;
+  //margin: 0 40px;
+  color: #333;
+  text-decoration: none;
+  //line-height: 1em;
+}
+.marker svg {
+  position: absolute;
+  left: 0;
+  top: -50%;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+.marker path {
+  transition: stroke-dashoffset 300ms linear;
+  stroke-width: 2;
+  stroke: rgb(239 68 68);
+  fill: none;
+  stroke-linecap: round;
+}
+.marker:hover path {
+  stroke-dashoffset: 0;
+}
+
+#underline {
+  stroke-dasharray: 375;
+  stroke-dashoffset: 375;
+  animation: sign 4s ease;
+  animation-fill-mode: forwards;
+
+  fill: none;
+  stroke: #e83331;
+  stroke-miterlimit: 10;
+  mask: url(/images/mask1.png);
+}
+
+@keyframes sign {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.pen-stroke {
+  position: relative;
+  display: inline;
+}
+
+.pen-stroke svg {
+  position: absolute;
+  top: 1.2em;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.pen-stroke path {
+  fill: none;
+  stroke: #ff2727;
+
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+
+  animation: sign 2s ease;
+  animation-fill-mode: forwards;
+  stroke-width: 5;
+}
+/* .drawing {
+  animation: sign 4s ease;
+} */
