@@ -72,6 +72,7 @@ export default function Home() {
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
       <Header />
+      <Tomato />
       {/* <NavBar /> */}
       <ReactFullpage
         anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}

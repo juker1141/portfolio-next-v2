@@ -30,7 +30,7 @@ const Contact = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <div className="section">
+    <div className="section relative">
       <Image
         className="absolute top-36 -left-20"
         src="/images/potato4.svg"
@@ -45,7 +45,7 @@ const Contact = () => {
         height={250}
         alt="potato5"
       />
-      <div className="container h-screen mx-auto flex justify-center items-center relative overflow-hidden">
+      <div className="container min-h-screen mx-auto flex justify-center items-center relative overflow-hidden">
         <Image
           className="absolute -top-20 left-52 -rotate-3"
           src="/images/potato3.svg"
@@ -115,9 +115,28 @@ const Contact = () => {
                 />
                 <button
                   type="submit"
-                  className="font-bold font-amatic-sc w-1/2 mt-10"
+                  className="font-bold font-amatic-sc w-1/2 mt-10 flex justify-center items-center relative group"
                 >
-                  Submit
+                  {/* <Image
+                    className="absolute -top-8 -left-12 invisible group-hover:visible brightness-90 rotate-90"
+                    src="/images/element/e-24.svg"
+                    width={70}
+                    height={70}
+                    alt="e-24"
+                  /> */}
+                  <div className="relative">
+                    Submit
+                    <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-10 transition-all">
+                      Submit
+                    </div>
+                  </div>
+                  <Image
+                    className="absolute -top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 brightness-90 z-0 transition-all"
+                    src="/images/element/e-24.svg"
+                    width={240}
+                    height={240}
+                    alt="e-24"
+                  />
                 </button>
               </div>
             </form>

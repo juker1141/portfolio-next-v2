@@ -3,7 +3,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="section bg-secondary">
-      <div className="container h-full mx-auto flex justify-center items-center">
+      <div className="container h-screen mx-auto flex justify-center items-center">
         <div className="flex items-center">
           <div>
             <Image

@@ -3,9 +3,9 @@ import Image from "next/image";
 const About = () => {
   return (
     <div className="section">
-      <div className="container h-full mx-auto flex justify-center items-center">
+      <div className="container h-screen mx-auto flex justify-center items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 relative">
             <Image
               src="/images/banner_hero.webp"
               width={400}
@@ -13,8 +13,15 @@ const About = () => {
               className="rounded-full border-8 border-secondary"
               alt="Hero"
             />
+            <Image
+              width={120}
+              height={120}
+              className="absolute -top-8 -right-12"
+              src="images/element/e-9.svg"
+              alt="e-9"
+            />
           </div>
-          <div className="lg:col-span-3 flex flex-col justify-center">
+          <div className="lg:col-span-3 flex flex-col justify-center relative">
             <h2 className="text-8xl font-bold mb-4 font-amatic-sc">About Me</h2>
             <span className="text-lg mb-4 font-light">
               Frontend Developer / Backend Developer
@@ -25,6 +32,13 @@ const About = () => {
               frameworks and have developed a complete website useing{" "}
               <strong>Express and MongoDB</strong>.
             </p>
+            <Image
+              width={120}
+              height={120}
+              className="absolute -bottom-16 right-0"
+              src="images/element/e-8.svg"
+              alt="e-8"
+            />
           </div>
           {/* <div className="flex flex-col justify-center">
             <div className="w-full flex justify-start">
