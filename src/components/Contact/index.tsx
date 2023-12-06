@@ -143,7 +143,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="bg-secondary">
+      {/* <div className="bg-secondary">
         <div className="container p-6 h-full mx-auto flex justify-center items-center">
           <div className="w-full flex justify-between items-center">
             <Image
@@ -164,7 +164,6 @@ const Contact = () => {
                   className="flex items-center m-2"
                 >
                   <FontAwesomeIcon icon={faLinkedin} color="white" size="2xl" />
-                  {/* <i className="fab fa-linkedin text-3xl"></i> */}
                 </a>
               </li>
               <li className="mr-2">
@@ -179,7 +178,6 @@ const Contact = () => {
                     color="white"
                     size="2xl"
                   />
-                  {/* <i className="fab fa-github-square text-3xl"></i> */}
                 </a>
               </li>
               <li>
@@ -192,13 +190,12 @@ const Contact = () => {
                     color="white"
                     size="2xl"
                   />
-                  {/* <i className="fas fa-envelope-square text-3xl"></i> */}
                 </a>
               </li>
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

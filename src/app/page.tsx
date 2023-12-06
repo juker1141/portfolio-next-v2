@@ -18,7 +18,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 export type FullpageApi = Object;
 type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
@@ -32,7 +32,6 @@ export default function Home() {
     Experience,
     Work,
     Contact,
-    // Footer,
   ]);
 
   function afterSlideLoad(
@@ -72,7 +71,7 @@ export default function Home() {
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
       <Header />
-      <Tomato />
+      {/* <Tomato /> */}
       {/* <NavBar /> */}
       <ReactFullpage
         anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
@@ -105,6 +104,7 @@ export default function Home() {
           </ReactFullpage.Wrapper>
         )}
       />
+      <Footer />
     </Fragment>
   );
 }
