@@ -7,7 +7,7 @@ const About = () => {
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
           <div className="lg:col-span-2 relative">
             <Image
-              src="/images/banner_hero.webp"
+              src="/images/hero.webp"
               width={400}
               height={400}
               className="rounded-full border-8 border-secondary"

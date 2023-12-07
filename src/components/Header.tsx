@@ -7,12 +7,18 @@ import MenuList from "@/components/MenuList";
 
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(false);
   const [isShowMenuBtn, setIsShowMenuBtn] = useState(false);
   const [isHomeSection, setIsHomeSection] = useState(false);
 
   useEffect(() => {
     const hideMenu = () => {
       setIsShowMenu(false);
+    };
+
+    const checkIsWide = () => {
+      const isWide = window.innerWidth > 1024;
+      setIsWideScreen(isWide);
     };
 
     const checkHash = () => {
@@ -30,13 +36,20 @@ const Header = () => {
       }
     };
 
+    checkIsWide();
     checkHash();
 
-    addEventListener("resize", hideMenu);
+    addEventListener("resize", () => {
+      hideMenu();
+      checkIsWide();
+    });
     addEventListener("hashchange", checkHash);
 
     return () => {
-      removeEventListener("resize", hideMenu);
+      removeEventListener("resize", () => {
+        hideMenu();
+        checkIsWide();
+      });
       removeEventListener("hashchange", checkHash);
     };
   }, []);
@@ -50,23 +63,19 @@ const Header = () => {
   return (
     <header
       className={`z-10 fixed w-full px-6 lg:px-16 py-8 lg:py-10 flex lg:items-center lg:justify-between transition-colors duration-300 ease-in-out lg:transition-none flex-col lg:flex-row ${
-        isShowMenu
-          ? "bg-black text-white lg:bg-transparent lg:text-secondary"
-          : ""
+        isShowMenu ? "text-white lg:text-secondary" : ""
       }`}
     >
       <div
         className={`w-full ${
           isShowMenuBtn ? "lg:w-full" : "lg:w-auto"
-        } flex items-center justify-between`}
+        } flex items-center justify-between z-10`}
       >
         <h1 className="text-2xl flex items-center">
           {/* <Link href="#banner">Logo</Link> */}
           <Link href="#Home">
             <Image
-              className={`${
-                isShowMenu ? "hidden lg:block" : "block"
-              } stroke-white`}
+              className={`${isShowMenu ? "hidden lg:block" : "block"}`}
               src="/images/logo.svg"
               alt="logo"
               width="60"
@@ -88,19 +97,22 @@ const Header = () => {
         />
       </div>
       <nav
-        className={`${
+        className={`
+        z-[1] fixed lg:relative top-0 left-0 w-screen lg:w-auto px-6 pt-[135px] lg:p-0
+        ${
           isShowMenu
-            ? "visible opacity-100 lg:opacity-100"
-            : "invisible lg:visible opacity-0 lg:opacity-100"
+            ? "visible opacity-100 bg-black lg:bg-transparent"
+            : "invisible lg:visible opacity-0"
         } ${
-          !isShowMenuBtn
-            ? "lg:flex lg:text-5xl"
-            : isShowMenu
-            ? "lg:flex lg:text-5xl"
-            : "lg:hidden"
-        } transition-opacity duration-300 ease-in-out  h-screen lg:h-auto font-amatic-sc font-bold`}
+          !isShowMenuBtn || isShowMenu ? "lg:flex" : "lg:hidden"
+        } flex text-5xl lg:text-5xl h-screen lg:opacity-100 transition-opacity duration-300 ease-in-out lg:h-auto font-amatic-sc font-bold`}
       >
-        <MenuList isShowMenuBtn={isShowMenuBtn} />
+        <MenuList
+          isShowMenuBtn={isShowMenuBtn}
+          isWideScreen={isWideScreen}
+          setIsShowMenu={setIsShowMenu}
+          // isShowMenu={isShowMenu}
+        />
       </nav>
     </header>
   );

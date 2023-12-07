@@ -23,6 +23,9 @@ const config: Config = {
         hello: "url('/images/hello2.svg')",
         menu: "url('/images/menu.svg')",
       },
+      transitionProperty: {
+        height: "height",
+      },
       keyframes: {
         fix: {
           "0%": { transform: "translateY(0)" },

@@ -32,7 +32,7 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
             <Image
               width={128}
               height={128}
-              className="absolute top-12 right-12"
+              className="absolute top-12 right-12 hidden lg:block"
               src="images/element/e-1.svg"
               alt="e-1"
             />
@@ -52,7 +52,7 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
             <Image
               width={48}
               height={48}
-              className="absolute bottom-16 left-1/2"
+              className="absolute bottom-16 left-1/2 hidden lg:block"
               src="images/element/e-3.svg"
               alt="e-3"
             />
@@ -61,16 +61,23 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
             <Image
               width={64}
               height={64}
-              className="absolute bottom-36 -left-12"
+              className="absolute bottom-36 -left-12 hidden lg:block"
               src="images/element/banner-e-1.svg"
               alt="banner-e-1"
             />
             <Image
               width={1600}
               height={800}
-              className="lg:mt-16"
+              className="lg:mt-16 hidden lg:block"
               src="/images/banner-main.svg"
-              alt="exampleImage"
+              alt="banner-main"
+            />
+            <Image
+              width={1600}
+              height={800}
+              className="lg:mt-16 block lg:hidden"
+              src="/images/banner-main-mobile.svg"
+              alt="banner-main-mobile"
             />
           </div>
         </div>

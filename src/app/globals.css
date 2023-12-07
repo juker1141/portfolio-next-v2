@@ -57,6 +57,18 @@ body button:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
 }
 
+.menu {
+  opacity: 0;
+  visibility: hidden;
+  height: 100vh;
+  transition: opacity 1s, visibility 1s;
+}
+.menu.open {
+  opacity: 1;
+  visibility: visible;
+  color: white;
+}
+
 .fp-watermark {
   display: none;
 }
@@ -81,12 +93,10 @@ body button:hover {
 
 .marker {
   position: relative;
-  //margin: 0 40px;
-  color: #333;
+  /* color: #333; */
   text-decoration: none;
-  //line-height: 1em;
 }
-.marker svg {
+.marker .circle {
   position: absolute;
   left: 0;
   top: -50%;
@@ -97,14 +107,14 @@ body button:hover {
   margin-right: auto;
   pointer-events: none;
 }
-.marker path {
+.marker .circle path {
   transition: stroke-dashoffset 300ms linear;
   stroke-width: 2;
-  stroke: rgb(239 68 68);
+  stroke: #ef4444;
   fill: none;
   stroke-linecap: round;
 }
-.marker:hover path {
+.marker:hover .circle path {
   stroke-dashoffset: 0;
 }
 

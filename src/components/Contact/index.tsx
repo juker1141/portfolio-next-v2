@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
+// import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type Inputs = {
   name: string;
@@ -32,14 +32,14 @@ const Contact = () => {
   return (
     <div className="section relative">
       <Image
-        className="absolute top-36 -left-20"
+        className="absolute top-36 -left-20 hidden lg:block"
         src="/images/potato4.svg"
         width={200}
         height={200}
         alt="potato4"
       />
       <Image
-        className="absolute top-1/2 -translate-y-1/2 -right-24 -rotate-3"
+        className="absolute top-1/2 -translate-y-1/2 -right-24 -rotate-3 hidden lg:block"
         src="/images/potato5.svg"
         width={250}
         height={250}
@@ -47,7 +47,7 @@ const Contact = () => {
       />
       <div className="container min-h-screen mx-auto flex justify-center items-center relative overflow-hidden">
         <Image
-          className="absolute -top-20 left-52 -rotate-3"
+          className="absolute -top-20 left-52 -rotate-3 hidden lg:block"
           src="/images/potato3.svg"
           width={150}
           height={150}
@@ -107,7 +107,7 @@ const Contact = () => {
 
               <div className="w-full relative flex justify-end">
                 <Image
-                  className="absolute -bottom-20 -left-16"
+                  className="absolute -bottom-20 -left-16 hidden lg:block"
                   src="/images/potato1.svg"
                   width={250}
                   height={250}
@@ -117,13 +117,6 @@ const Contact = () => {
                   type="submit"
                   className="font-bold font-amatic-sc w-1/2 mt-10 flex justify-center items-center relative group"
                 >
-                  {/* <Image
-                    className="absolute -top-8 -left-12 invisible group-hover:visible brightness-90 rotate-90"
-                    src="/images/element/e-24.svg"
-                    width={70}
-                    height={70}
-                    alt="e-24"
-                  /> */}
                   <div className="relative">
                     Submit
                     <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-10 transition-all">
