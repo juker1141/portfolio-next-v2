@@ -3,9 +3,9 @@ import Image from "next/image";
 const About = () => {
   return (
     <div className="section">
-      <div className="container h-screen mx-auto flex justify-center items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
-          <div className="lg:col-span-2 relative">
+      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
+          <div className="lg:col-span-2 relative px-12 lg:px-0">
             <Image
               src="/images/hero.webp"
               width={400}
@@ -16,7 +16,7 @@ const About = () => {
             <Image
               width={120}
               height={120}
-              className="absolute -top-8 -right-12"
+              className="absolute top-0 right-2 lg:-top-8 lg:-right-12"
               src="images/element/e-9.svg"
               alt="e-9"
             />
@@ -35,7 +35,7 @@ const About = () => {
             <Image
               width={120}
               height={120}
-              className="absolute -bottom-16 right-0"
+              className="absolute -bottom-24 lg:-bottom-16 right-0"
               src="images/element/e-8.svg"
               alt="e-8"
             />

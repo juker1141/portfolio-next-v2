@@ -3,20 +3,20 @@ import Image from "next/image";
 const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
   return (
     <div className="section experience">
-      <div className="container h-screen mx-auto flex justify-center items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
+      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
           <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
-            <div className="relative">
+            <div className="relative px-12 lg:px-0">
               <Image
-                width={430}
-                height={430}
+                width={400}
+                height={400}
                 src="images/ex-main.svg"
                 alt="ex-main"
               />
               <Image
                 width={100}
                 height={100}
-                className="absolute bottom-1 -left-12 animate-breath"
+                className="absolute bottom-1 -left-12 animate-breath hidden lg:block"
                 src="images/ex-main-wind.svg"
                 alt="ex-main-wind"
               />
@@ -24,7 +24,7 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
             <Image
               width={120}
               height={120}
-              className="absolute -top-8 -right-0 dutation-500 animate-fix-0.7 delay-500"
+              className="absolute -top-8 -right-0 dutation-500 lg:animate-fix-0.7 delay-500"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
@@ -39,7 +39,7 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
               <Image
                 width={120}
                 height={120}
-                className="absolute top-20 right-20 cloud duration-300 animate-fix-0.9"
+                className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9"
                 src="images/element/e-9.svg"
                 alt="e-9-cloud"
               />

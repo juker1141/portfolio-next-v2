@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect, Fragment } from "react";
+import useCheckIsWide from "@/hooks/useCheckIsWide";
 import WorkImage from "@/components/Work/WorkImage";
 
 type ElementType = "sushi" | "drink" | "cactus";
@@ -13,6 +14,7 @@ type Work = {
 };
 
 const Work = ({ fullpageApi }: { fullpageApi: any }) => {
+  const isWideScreen = useCheckIsWide();
   const [worksList, setWorksList] = useState<Work[]>([
     {
       title: "Project1",
@@ -187,51 +189,57 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
 
   return (
     <div className="section">
-      <div className="slide" id="workId1" data-anchor="workBanner">
-        <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
-          <Image
-            width={200}
-            height={200}
-            className="absolute bottom-24 left-12"
-            src="images/sp-main.svg"
-            alt="sp-main"
-          />
-          <Image
-            width={20}
-            height={20}
-            className="absolute top-72 left-72"
-            src="images/element/e-13.svg"
-            alt="e-13"
-          />
-          <Image
-            width={30}
-            height={30}
-            className="absolute top-24 right-52"
-            src="images/element/e-14.svg"
-            alt="e-14"
-          />
-          <Image
-            width={15}
-            height={15}
-            className="absolute top-32 right-48"
-            src="images/element/e-13.svg"
-            alt="e-13"
-          />
-          <h4 className="font-amatic-sc font-bold text-8xl mb-6">
-            Side Projects
-          </h4>
-          <p className="w-full lg:w-1/2 text-lg text-center">
-            I frequently dedicate my spare time to researching new technologies
-            or engaging in practical exercises.
-            <br /> For additional information, you can visit{" "}
-            <a className="font-bold" href="http://google.com">
-              My Github
-            </a>
-            .
-          </p>
-        </div>
-      </div>
-      {renderWorksList()}
+      {isWideScreen ? (
+        <Fragment>
+          <div className="slide" id="workId1" data-anchor="workBanner">
+            <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
+              <Image
+                width={200}
+                height={200}
+                className="absolute bottom-24 left-12"
+                src="images/sp-main.svg"
+                alt="sp-main"
+              />
+              <Image
+                width={20}
+                height={20}
+                className="absolute top-72 left-72"
+                src="images/element/e-13.svg"
+                alt="e-13"
+              />
+              <Image
+                width={30}
+                height={30}
+                className="absolute top-24 right-52"
+                src="images/element/e-14.svg"
+                alt="e-14"
+              />
+              <Image
+                width={15}
+                height={15}
+                className="absolute top-32 right-48"
+                src="images/element/e-13.svg"
+                alt="e-13"
+              />
+              <h4 className="font-amatic-sc font-bold text-8xl mb-6">
+                Side Projects
+              </h4>
+              <p className="w-full lg:w-1/2 text-lg text-center">
+                I frequently dedicate my spare time to researching new
+                technologies or engaging in practical exercises.
+                <br /> For additional information, you can visit{" "}
+                <a className="font-bold" href="http://google.com">
+                  My Github
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+          {renderWorksList()}
+        </Fragment>
+      ) : (
+        <div></div>
+      )}
       {/* <div className="slide" id="slide2" data-anchor="slide2">
         <div className="container mx-auto flex justify-center items-center">
           <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">

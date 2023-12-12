@@ -2,23 +2,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import useCheckIsWide from "@/hooks/useCheckIsWide";
 import MenuBtn from "@/components/MenuBtn";
 import MenuList from "@/components/MenuList";
 
 const Header = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
-  const [isWideScreen, setIsWideScreen] = useState(false);
+  const isWideScreen = useCheckIsWide();
+  // const [isWideScreen, setIsWideScreen] = useState(false);
   const [isShowMenuBtn, setIsShowMenuBtn] = useState(false);
   const [isHomeSection, setIsHomeSection] = useState(false);
 
   useEffect(() => {
     const hideMenu = () => {
       setIsShowMenu(false);
-    };
-
-    const checkIsWide = () => {
-      const isWide = window.innerWidth > 1024;
-      setIsWideScreen(isWide);
     };
 
     const checkHash = () => {
@@ -36,19 +33,16 @@ const Header = () => {
       }
     };
 
-    checkIsWide();
     checkHash();
 
     addEventListener("resize", () => {
       hideMenu();
-      checkIsWide();
     });
     addEventListener("hashchange", checkHash);
 
     return () => {
       removeEventListener("resize", () => {
         hideMenu();
-        checkIsWide();
       });
       removeEventListener("hashchange", checkHash);
     };

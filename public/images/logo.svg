@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1"
-	 id="svg1" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" sodipodi:docname="89.eps"
+	 id="svg1" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" sodipodi:docname="89.eps"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 105.3 125.1"
 	 style="enable-background:new 0 0 105.3 125.1;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#543C1A;}
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F4ECDF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#543C1A;}
 </style>
 <sodipodi:namedview  bordercolor="#999999" borderopacity="1" id="namedview1" inkscape:deskcolor="#d1d1d1" inkscape:pagecheckerboard="0" inkscape:pageopacity="0" inkscape:showpageshadow="2" pagecolor="#ffffff">
 	</sodipodi:namedview>
 <g id="g1" transform="translate(-672,-229)" inkscape:groupmode="layer" inkscape:label="1">
-	<path id="path88-4" inkscape:export-filename="path88-4.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96" class="st0" d="
+	<path class="st0" d="M772,330.1c-5-7.2-7.8-12.8-12.7-18.8c-4.6-5.7-8.7-10.8-12.2-16.1c7.6-2.6,15-4.8,18.8-10.5
+		c9.9-15.1,2.6-38.9-8.7-48.4c-14.4-12.1-42.5-5.1-65-7c-4.5,5.2-15.8,6.7-18.3,14c-1.1,3.2-1.1,8.3-1.3,11.8
+		c-1.6,23.9,0.8,52.9,1.7,76.8c0.3,6.6-1.5,13.7,2.6,18.8c10,1.3,20.8-0.4,29.2,0c5.1-3.9,9.5-8.6,14.8-12.2c0-3.3-1.6-9,0.4-11.3
+		c6.5,7.4,11.7,15.9,14.8,26.6c3.3,1.1,6.7-0.2,10.5-0.4c5.4-0.3,11.7,1.4,16.1,0.4c3-0.6,5.3-4.3,7.4-6.1c2.8-2.4,6.7-3.8,7-7
+		C777.6,337.4,774.3,333.5,772,330.1z M729.7,278.7c-3.8,1.4-9,0.7-12.6-0.4c-1.4-4.7-2.4-9.9-2.2-16.1
+		C724.5,258.9,734.2,269,729.7,278.7z"/>
+	
+		<path id="path88-4_00000025417683288931126260000005294584141095333771_" inkscape:export-filename="path88-4.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96" class="st1" d="
 		M738.4,272.1c1.8-2.5,3.3-5.4,7-6.1c0.1,1.6-0.1,2.8-0.4,3.9C742.1,268.7,741.1,271.9,738.4,272.1L738.4,272.1z M743.6,260.3
 		c1,4.4-4.2,6.2-7.8,7.4C737.6,264.5,739.8,261.6,743.6,260.3z M741.4,257.3c-2.6,2.5-4.8,5.4-9.1,6.1
 		C734,260.4,738.8,253.8,741.4,257.3z M736.7,253.3c-0.4,2.7-2.9,3.2-4.8,4.4C732.5,255.5,733.9,252.1,736.7,253.3L736.7,253.3z

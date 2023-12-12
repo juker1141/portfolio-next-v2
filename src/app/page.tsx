@@ -19,6 +19,7 @@ import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import GoTopBtn from "@/components/GoTopBtn";
 
 export type FullpageApi = Object;
 type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
@@ -104,6 +105,7 @@ export default function Home() {
           </ReactFullpage.Wrapper>
         )}
       />
+      <GoTopBtn />
       <Footer />
     </Fragment>
   );

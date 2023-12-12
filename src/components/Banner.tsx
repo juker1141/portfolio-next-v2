@@ -6,7 +6,7 @@ const titles = ["Frontend Software Developer", "Backend Software Developer"];
 const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
   return (
     <div className="section">
-      <div className="container h-screen mx-auto flex justify-center items-center">
+      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
         <div className="pt-36 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">
           <div className="flex flex-col justify-center items-start relative">
             {/* <h2 className="text-5xl mb-2">
