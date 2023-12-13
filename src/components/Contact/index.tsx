@@ -1,4 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { useCallback, useState } from "react";
+
+import axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm, SubmitHandler } from "react-hook-form";
 // import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 // import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
@@ -7,10 +13,29 @@ import { useForm, SubmitHandler } from "react-hook-form";
 type Inputs = {
   name: string;
   email: string;
-  content: string;
+  message: string;
 };
 
 const Contact = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [notification, setNotification] = useState("");
+
+  // Create an event handler so you can call the verification on button click event or form submit
+  const handleReCaptchaVerify = useCallback(
+    async (data: any) => {
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+
+      const token = await executeRecaptcha("yourAction");
+      console.log(token);
+      submitEnquiryForm(token, data);
+      // Do whatever you want with the token
+    },
+    [executeRecaptcha]
+  );
+
   // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
   //   // (window as any).grecaptcha.ready(function () {
@@ -27,7 +52,35 @@ const Contact = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    handleReCaptchaVerify(data);
+  };
+
+  const submitEnquiryForm = (gReCaptchaToken: string, data: any) => {
+    async function goAsync() {
+      const response = await axios({
+        method: "post",
+        url: "/api/contactFormSubmit",
+        data: {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          gRecaptchaToken: gReCaptchaToken,
+        },
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response?.data?.success === true) {
+        setNotification(`Success with score: ${response?.data?.score}`);
+      } else {
+        setNotification(`Failure with score: ${response?.data?.score}`);
+      }
+    }
+    goAsync().then(() => {}); // suppress typescript error
+  };
 
   return (
     <div className="section relative">
@@ -93,16 +146,16 @@ const Contact = () => {
               </div>
 
               <div className="w-full flex flex-col">
-                <label htmlFor="content" className="font-bold">
-                  Content
+                <label htmlFor="message" className="font-bold">
+                  Message
                 </label>
                 <textarea
                   rows={5}
-                  id="content"
+                  id="message"
                   className="resize-none px-2 focus-visible:outline-none"
-                  {...register("content", { required: true, maxLength: 200 })}
+                  {...register("message", { required: true, maxLength: 200 })}
                 />
-                {errors.content && <span>Content field is required</span>}
+                {errors.message && <span>Message field is required</span>}
               </div>
 
               <div className="w-full relative flex justify-end">

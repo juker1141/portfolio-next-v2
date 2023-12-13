@@ -1,6 +1,7 @@
 "use client";
 import Script from "next/script";
 import { Fragment, useState } from "react";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -25,6 +26,8 @@ export type FullpageApi = Object;
 type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
 
 export default function Home() {
+  const recaptchaKey: string | undefined =
+    process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const [slideIndex, setSlideIndex] = useState(0);
   const sliding = false;
   const [fullpages, setFullpages] = useState<Component[]>([
@@ -70,43 +73,44 @@ export default function Home() {
   return (
     <Fragment>
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
-      <Script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></Script>
-      <Header />
-      {/* <Tomato /> */}
-      {/* <NavBar /> */}
-      <ReactFullpage
-        anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
-        licenseKey={"gplv3-license"}
-        navigation
-        scrollOverflow={true}
-        scrollBar={false}
-        responsiveWidth={1024}
-        responsiveSlides={false}
-        // pluginWrapper={pluginWrapper}
-        // onLeave={onLeave}
-        // scrollHorizontally={true}
-        // sectionsColor={sectionsColor}
-        credits={{
-          enabled: true,
-          label: "",
-          position: "right",
-        }}
-        afterSlideLoad={afterSlideLoad}
-        onLeave={onLeave}
-        controlArrows={false}
-        loopHorizontal={false}
-        slidesNavigation={true}
-        slidesNavPosition={"bottom"}
-        render={(comp: any) => (
-          <ReactFullpage.Wrapper>
-            {fullpages.map((Component, index) => (
-              <Component key={index} fullpageApi={comp.fullpageApi} />
-            ))}
-          </ReactFullpage.Wrapper>
-        )}
-      />
-      <GoTopBtn />
-      <Footer />
+      <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}>
+        <Header />
+        {/* <Tomato /> */}
+        {/* <NavBar /> */}
+        <ReactFullpage
+          anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
+          licenseKey={"gplv3-license"}
+          navigation
+          scrollOverflow={true}
+          scrollBar={false}
+          responsiveWidth={1024}
+          responsiveSlides={false}
+          // pluginWrapper={pluginWrapper}
+          // onLeave={onLeave}
+          // scrollHorizontally={true}
+          // sectionsColor={sectionsColor}
+          credits={{
+            enabled: true,
+            label: "",
+            position: "right",
+          }}
+          afterSlideLoad={afterSlideLoad}
+          onLeave={onLeave}
+          controlArrows={false}
+          loopHorizontal={false}
+          slidesNavigation={true}
+          slidesNavPosition={"bottom"}
+          render={(comp: any) => (
+            <ReactFullpage.Wrapper>
+              {fullpages.map((Component, index) => (
+                <Component key={index} fullpageApi={comp.fullpageApi} />
+              ))}
+            </ReactFullpage.Wrapper>
+          )}
+        />
+        <GoTopBtn />
+        <Footer />
+      </GoogleReCaptchaProvider>
     </Fragment>
   );
 }
