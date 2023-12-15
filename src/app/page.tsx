@@ -73,7 +73,15 @@ export default function Home() {
   return (
     <Fragment>
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
-      <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}>
+      <GoogleReCaptchaProvider
+        reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
+        container={{
+          element: "reCaptchaEl",
+          parameters: {
+            badge: "bottomleft",
+          },
+        }}
+      >
         <Header />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
@@ -109,7 +117,7 @@ export default function Home() {
           )}
         />
         <GoTopBtn />
-        <Footer />
+        {/* <Footer /> */}
       </GoogleReCaptchaProvider>
     </Fragment>
   );
