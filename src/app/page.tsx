@@ -65,7 +65,10 @@ export default function Home() {
   ) {
     // console.log((window as any).fullpage_api.getActiveSection());
     // console.log("Index: " + origin.index + " Slide Index: " + slideIndexS);
-    //console.log(index, nextIndex, direction, sliding);
+    // console.log(origin, destination, direction, sliding);
+    if (origin.anchor === "Work" && destination.anchor === "Home") {
+      return true;
+    }
     if (origin.index === 3 && !sliding) {
       if (direction === "down" && slideIndex < 4) {
         (window as any).fullpage_api.moveSlideRight();

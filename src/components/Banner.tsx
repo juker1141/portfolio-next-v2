@@ -12,8 +12,8 @@ const Banner = ({
 }) => {
   return (
     <div className="section">
-      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
-        <div className="pt-36 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">
+      <div className="container h-screen mx-auto flex justify-center items-center">
+        <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
           <div className="flex flex-col justify-center items-start relative">
             {/* <h2 className="text-5xl mb-2">
             {/* <span className="bg-hello bg-center bg-no-repeat bg-contain text-9xl text-transparent mr-3">
@@ -42,7 +42,7 @@ const Banner = ({
               src="images/element/e-1.svg"
               alt="e-1"
             />
-            <h4 className="font-titan-one text-5xl mb-6">
+            <h4 className="font-titan-one text-5xl mb-4 md:mb-6">
               <div className="mb-4">
                 <Underline delay={"0s"}>Frontend</Underline> And
               </div>

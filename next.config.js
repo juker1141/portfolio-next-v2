@@ -3,7 +3,7 @@
 const path = require("path");
 
 const nextConfig = {
-  // reactStrictMode: false,
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {

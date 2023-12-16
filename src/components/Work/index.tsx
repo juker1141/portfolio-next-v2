@@ -9,6 +9,7 @@ type Work = {
   title: string;
   content: string;
   imageUrl: string;
+  imagePosition: string;
   elementType: ElementType;
 };
 
@@ -25,6 +26,7 @@ const Work = ({
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
       imageUrl: "/works/maskMap_1.jpg",
+      imagePosition: "bg-left",
       elementType: "sushi",
     },
     {
@@ -32,6 +34,7 @@ const Work = ({
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
       imageUrl: "/works/music_1.jpg",
+      imagePosition: "bg-center",
       elementType: "drink",
     },
     {
@@ -39,6 +42,7 @@ const Work = ({
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
       imageUrl: "/works/stores_1.jpg",
+      imagePosition: "bg-center",
       elementType: "cactus",
     },
   ]);
@@ -177,10 +181,10 @@ const Work = ({
                 <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
                 <p className="text-xl">{work.content}</p>
               </div>
-              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-6 lg:px-0">
+              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
                 <WorkImage
                   imageUrl={work.imageUrl}
-                  imageAlt={`work-${index}`}
+                  imagePosition={work.imagePosition}
                 />
                 {isWideScreen && renderWorkElement(work.elementType)}
               </div>

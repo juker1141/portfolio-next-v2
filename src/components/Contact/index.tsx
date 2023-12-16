@@ -104,7 +104,7 @@ const Contact = ({
         height={250}
         alt="potato5"
       />
-      <div className="container min-h-screen mx-auto flex justify-center items-center relative overflow-hidden">
+      <div className="container min-h-screen mx-auto flex justify-center items-center relative lg:overflow-hidden">
         <Image
           className="absolute -top-20 left-52 -rotate-3 hidden lg:block"
           src="/images/potato3.svg"
@@ -112,7 +112,7 @@ const Contact = ({
           height={150}
           alt="potato3"
         />
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-0 mt-12 lg:mb-0">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-0 md:mt-12 lg:mb-0">
           <div className="lg:col-span-2 flex flex-col items-center justify-center">
             <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
               Get in Touch
