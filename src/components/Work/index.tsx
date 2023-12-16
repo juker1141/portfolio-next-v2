@@ -16,11 +16,9 @@ type Work = {
 const Work = ({
   fullpageApi,
   isWideScreen,
-  isIpadScreen,
 }: {
   fullpageApi: any;
   isWideScreen: boolean;
-  isIpadScreen: boolean;
 }) => {
   const [worksList, setWorksList] = useState<Work[]>([
     {
@@ -49,56 +47,29 @@ const Work = ({
     },
   ]);
 
-  // useEffect(() => {
-  //   if (fullpageApi) {
-  //     fullpageApi.reBuild();
-  //   }
-  // }, [fullpageApi]);
-
   const renderWorkElement = (type: ElementType) => {
     switch (type) {
       case "sushi":
         return (
           <Fragment>
-            {/* <Image
-              width={100}
-              height={100}
-              className="absolute top-12 left-20"
-              src="images/element/e-9.svg"
-              alt="e-9"
-            />
-            <Image
-              width={40}
-              height={40}
-              className="absolute bottom-24 right-12"
-              src="images/element/e-6.svg"
-              alt="e-6"
-            />
-            <Image
-              width={40}
-              height={40}
-              className="absolute bottom-0 right-6 origin-bottom -rotate-12"
-              src="images/element/e-5.svg"
-              alt="e-5"
-            /> */}
             <Image
               width={100}
               height={100}
-              className="absolute top-12 left-20"
+              className="absolute top-12 lg:left-0 xl:left-20"
               src="images/element/e-9.svg"
               alt="e-9"
             />
             <Image
               width={70}
               height={70}
-              className="absolute -top-0 right-24"
+              className="absolute -top-0 lg:right-6 xl:right-24"
               src="images/element/e-9.svg"
               alt="e-9"
             />
             <Image
               width={200}
               height={200}
-              className="absolute -bottom-0 right-16"
+              className="absolute -bottom-0 right-0 xl:right-16"
               src="images/element/e-22.svg"
               alt="e-22"
             />
@@ -110,21 +81,21 @@ const Work = ({
             <Image
               width={160}
               height={160}
-              className="absolute -bottom-8 left-12"
+              className="absolute -bottom-8 left-0 xl:left-12"
               src="images/element/e-23.svg"
               alt="e-23"
             />
             <Image
               width={60}
               height={60}
-              className="absolute -top-10 left-12 rotate-90"
+              className="absolute -top-10 lg:-left-8 xl:left-12 rotate-90"
               src="images/element/e-17.svg"
               alt="e-17"
             />
             <Image
               width={30}
               height={30}
-              className="absolute bottom-10 right-36 rotate-45"
+              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45"
               src="images/element/e-18.svg"
               alt="e-18"
             />
@@ -136,28 +107,28 @@ const Work = ({
             <Image
               width={40}
               height={40}
-              className="absolute -top-12 left-0 -rotate-12"
+              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12"
               src="images/element/e-6.svg"
               alt="e-6"
             />
             <Image
               width={30}
               height={30}
-              className="absolute -top-0 left-12"
+              className="absolute -top-0 lg:left-0 xl:left-12"
               src="images/element/e-5.svg"
               alt="e-5"
             />
             <Image
               width={100}
               height={100}
-              className="absolute bottom-6 right-36"
+              className="absolute bottom-6 lg:right-6 xl:right-36 2xl:right-48"
               src="images/element/e-21.svg"
               alt="e-21"
             />
             <Image
               width={40}
               height={40}
-              className="absolute bottom-24 right-16 rotate-12"
+              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12"
               src="images/element/e-5.svg"
               alt="e-5"
             />
@@ -188,7 +159,7 @@ const Work = ({
                   imageUrl={work.imageUrl}
                   imagePosition={work.imagePosition}
                 />
-                {isWideScreen && renderWorkElement(work.elementType)}
+                {renderWorkElement(work.elementType)}
               </div>
             </div>
           </div>
@@ -201,10 +172,10 @@ const Work = ({
     <div className="section">
       <Fragment>
         <div className="slide" id="workId1" data-anchor="workBanner">
-          <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
+          <div className="container h-screen mx-auto flex flex-col justify-center items-center relative px-8 lg:px-0">
             <Image
-              width={isIpadScreen ? 250 : isWideScreen ? 200 : 150}
-              height={isIpadScreen ? 250 : isWideScreen ? 200 : 150}
+              width={isWideScreen ? 200 : 150}
+              height={isWideScreen ? 200 : 150}
               className="absolute bottom-24 left-6 lg:left-12"
               src="images/sp-main.svg"
               alt="sp-main"
@@ -212,7 +183,7 @@ const Work = ({
             <Image
               width={20}
               height={20}
-              className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:left-72"
+              className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36"
               src="images/element/e-13.svg"
               alt="e-13"
             />
