@@ -1,16 +1,22 @@
 import Image from "next/image";
 
-const About = () => {
+const About = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => {
   return (
     <div className="section">
-      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
+      <div className="container h-screen mx-auto flex justify-center items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
           <div className="lg:col-span-2 relative px-12 lg:px-0">
             <Image
               src="/images/hero.webp"
               width={400}
               height={400}
-              className="rounded-full border-8 border-secondary"
+              className="rounded-full border-8 border-primary"
               alt="Hero"
             />
             <Image
@@ -35,7 +41,7 @@ const About = () => {
             <Image
               width={120}
               height={120}
-              className="absolute -bottom-24 lg:-bottom-16 right-0"
+              className="absolute hidden lg:block -bottom-24 lg:-bottom-16 right-0"
               src="images/element/e-8.svg"
               alt="e-8"
             />

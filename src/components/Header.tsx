@@ -11,7 +11,6 @@ const Header = () => {
   const isWideScreen = useCheckIsWide();
   // const [isWideScreen, setIsWideScreen] = useState(false);
   const [isShowMenuBtn, setIsShowMenuBtn] = useState(false);
-  const [isHomeSection, setIsHomeSection] = useState(false);
 
   useEffect(() => {
     const hideMenu = () => {
@@ -54,10 +53,15 @@ const Header = () => {
     setIsShowMenu(!isShowMenu);
   };
 
+  const goTopSection: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    e.preventDefault();
+    (window as any).fullpage_api.moveTo("Home");
+  };
+
   return (
     <header
       className={`z-10 fixed w-full px-6 lg:px-16 py-8 lg:py-10 flex lg:items-center lg:justify-between transition-colors duration-300 ease-in-out lg:transition-none flex-col lg:flex-row ${
-        isShowMenu ? "text-white lg:text-secondary" : ""
+        isShowMenu ? "text-white lg:text-primary" : ""
       }`}
     >
       <div
@@ -65,9 +69,9 @@ const Header = () => {
           isShowMenuBtn ? "lg:w-full" : "lg:w-auto"
         } flex items-center justify-between z-10`}
       >
-        <h1 className="text-2xl flex items-center">
+        <h1 className=" flex items-center w-12 h-12 lg:w-16 lg:h-16">
           {/* <Link href="#banner">Logo</Link> */}
-          <Link href="#Home">
+          <a href="/" onClick={goTopSection}>
             <Image
               className={`${isShowMenu ? "hidden lg:block" : "block"}`}
               src="/images/logo.svg"
@@ -82,7 +86,7 @@ const Header = () => {
               width="60"
               height="60"
             />
-          </Link>
+          </a>
         </h1>
         <MenuBtn
           isShowMenuBtn={isShowMenuBtn}

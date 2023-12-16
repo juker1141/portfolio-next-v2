@@ -1,12 +1,18 @@
 import Image from "next/image";
 
-const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
+const Experience = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => {
   return (
     <div className="section experience">
-      <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
+      <div className="container h-screen mx-auto flex justify-center items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-0">
           <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
-            <div className="relative px-12 lg:px-0">
+            <div className="relative px-8 lg:px-0 hidden lg:block">
               <Image
                 width={400}
                 height={400}
@@ -24,14 +30,14 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
             <Image
               width={120}
               height={120}
-              className="absolute -top-8 -right-0 dutation-500 lg:animate-fix-0.7 delay-500"
+              className="absolute hidden lg:block -top-8 -right-0 dutation-500 lg:animate-fix-0.7 delay-500"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
             <ul className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5">
-              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-secondary"></li>
-              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-secondary"></li>
-              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-secondary"></li>
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
             </ul>
           </div>
           <div className="lg:col-span-3 flex flex-col">
@@ -39,17 +45,29 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
               <Image
                 width={120}
                 height={120}
-                className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9"
+                className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9 hidden lg:block"
                 src="images/element/e-9.svg"
                 alt="e-9-cloud"
               />
-              <h4 className="text-8xl font-amatic-sc font-bold mb-6">
+
+              <Image
+                width={80}
+                height={80}
+                className="absolute lg:hidden top-16 right-0"
+                src="images/element/e-8.svg"
+                alt="e-8"
+              />
+              <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
                 Experience
               </h4>
-              <p className="text-lg font-light">Oct 2021 - Present</p>
-              <h3 className="text-2xl font-bold mb-2">Frontend Developer</h3>
-              <span className="flex justify-end mb-2">RealTime Ltd.</span>
-              <p className="text-lg mb-10">
+              <p className="lg:text-lg font-light">Oct 2021 - Present</p>
+              <h3 className="text-xl lg:text-2xl font-bold mb-2">
+                Frontend Developer
+              </h3>
+              <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
+                RealTime Ltd.
+              </span>
+              <p className="text-sm lg:text-lg mb-10">
                 Responsible for layout and JavaScript. I participated in two
                 Next.js & Web3 blockchain projects, two backstage management
                 system by Vue.js and a real-time chat robot with a backstage
@@ -63,12 +81,14 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
             </div>
 
             <div className="flex flex-col">
-              <p className="text-lg font-light">Oct 2022 - Present</p>
-              <h3 className="text-2xl font-bold mb-2">
+              <p className="lg:text-lg font-light">Oct 2022 - Present</p>
+              <h3 className="text-xl lg:text-2xl font-bold mb-2">
                 Frontend & Backend Developer
               </h3>
-              <span className="flex justify-end mb-2">RealTime Ltd.</span>
-              <p className="text-lg">
+              <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
+                RealTime Ltd.
+              </span>
+              <p className="text-sm lg:text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
                 sunt maiores iusto! Itaque, nam odit doloremque perspiciatis
                 ducimus officia repellendus aliquam neque mollitia libero rerum

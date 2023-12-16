@@ -16,7 +16,13 @@ type Inputs = {
   message: string;
 };
 
-const Contact = () => {
+const Contact = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [notification, setNotification] = useState("");
 
@@ -85,7 +91,7 @@ const Contact = () => {
   return (
     <div className="section relative">
       <Image
-        className="absolute top-36 -left-20 hidden lg:block"
+        className="absolute top-40 -left-20 hidden lg:block"
         src="/images/potato4.svg"
         width={200}
         height={200}
@@ -106,13 +112,16 @@ const Contact = () => {
           height={150}
           alt="potato3"
         />
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
-          <div className="lg:col-span-2 flex flex-col items-center justify-between">
-            <h4 className="font-amatic-sc font-bold text-8xl">Get in Touch</h4>
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-0 mt-12 lg:mb-0">
+          <div className="lg:col-span-2 flex flex-col items-center justify-center">
+            <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
+              Get in Touch
+            </h4>
             <Image
               src="/images/contact-main2.svg"
               width={400}
               height={400}
+              className="hidden lg:block"
               alt="contact-main"
             />
           </div>
@@ -127,22 +136,30 @@ const Contact = () => {
                 </label>
                 <input
                   id="name"
-                  className="px-2"
+                  className={`px-2 ${errors.name && "error"}`}
                   {...register("name", { required: true, maxLength: 30 })}
                 />
-                {errors.name && <span>Name field is required</span>}
+                {errors.name && (
+                  <span className="text-xl lg:text-2xl font-bold text-rose-500">
+                    Name field is required
+                  </span>
+                )}
               </div>
 
-              <div className="w-full flex flex-col">
+              <div className="w-full flex flex-col relative">
                 <label htmlFor="email" className="font-bold">
                   Email
                 </label>
                 <input
                   id="email"
-                  className="px-2"
+                  className={`px-2 ${errors.email && "error"}`}
                   {...register("email", { required: true })}
                 />
-                {errors.email && <span>Email field is required</span>}
+                {errors.email && (
+                  <span className="text-xl lg:text-2xl font-bold text-rose-500">
+                    Email field is required
+                  </span>
+                )}
               </div>
 
               <div className="w-full flex flex-col">
@@ -150,12 +167,18 @@ const Contact = () => {
                   Message
                 </label>
                 <textarea
-                  rows={5}
+                  rows={isWideScreen ? 5 : 3}
                   id="message"
-                  className="resize-none px-2 focus-visible:outline-none"
+                  className={`resize-none px-2 focus-visible:outline-none  ${
+                    errors.message && "error"
+                  }`}
                   {...register("message", { required: true, maxLength: 200 })}
                 />
-                {errors.message && <span>Message field is required</span>}
+                {errors.message && (
+                  <span className="text-xl lg:text-2xl font-bold text-rose-500">
+                    Message field is required
+                  </span>
+                )}
               </div>
 
               <div className="w-full relative flex justify-end">
@@ -166,22 +189,29 @@ const Contact = () => {
                   height={250}
                   alt="potato1"
                 />
+                <Image
+                  src="/images/contact-main2.svg"
+                  width={200}
+                  height={200}
+                  className="absolute -bottom-20 -left-6 z-10 lg:hidden"
+                  alt="contact-main"
+                />
                 <button
                   type="submit"
-                  className="font-bold font-amatic-sc w-1/2 mt-10 flex justify-center items-center relative group"
+                  className="font-bold font-amatic-sc w-1/2 mt-4 lg:mt-10 flex justify-center items-center relative group"
                 >
                   <div className="relative">
                     Submit
-                    <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-10 transition-all">
+                    <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-30 lg:z-10 transition-all">
                       Submit
                     </div>
                   </div>
                   <Image
-                    className="absolute -top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 brightness-90 z-0 transition-all"
+                    className="absolute top-30 lg:-top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 brightness-90 transition-all scale-[2] lg:scale-100 z-20 lg:z-0"
                     src="/images/element/e-24.svg"
                     width={240}
                     height={240}
-                    alt="e-24"
+                    alt="e-24-tomato-onclick"
                   />
                 </button>
               </div>
@@ -189,7 +219,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {/* <div className="bg-secondary">
+      {/* <div className="bg-primary">
         <div className="container p-6 h-full mx-auto flex justify-center items-center">
           <div className="w-full flex justify-between items-center">
             <Image

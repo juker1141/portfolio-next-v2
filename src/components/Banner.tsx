@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Underline from "@/components/Underline";
 
-const titles = ["Frontend Software Developer", "Backend Software Developer"];
+// const titles = ["Frontend Software Developer", "Backend Software Developer"];
 
-const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
+const Banner = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => {
   return (
     <div className="section">
       <div className="container h-auto lg:h-screen mx-auto flex justify-center items-center">

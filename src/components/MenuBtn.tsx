@@ -17,12 +17,12 @@ const MenuBtn = ({
       } flex-col items-center justify-between z-30`}
       type="button"
     >
-      <div className=" font-amatic-sc font-bold flex flex-col text-8xl leading-4">
+      <div className=" font-amatic-sc font-bold flex flex-col text-7xl lg:text-8xl leading-3 lg:leading-4">
         <span
           className={`origin-center transition-all ease-in-out duration-200 ${
             isShowMenu
-              ? "text-white lg:text-secondary rotate-45 translate-y-3.5 translate-x-1"
-              : "text-secondary"
+              ? "text-white lg:text-primary rotate-45 translate-y-2 lg:translate-y-3.5 translate-x-1"
+              : "text-primary"
           }`}
         >
           —
@@ -35,8 +35,8 @@ const MenuBtn = ({
         <span
           className={`origin-center transition-all ease-in-out duration-200 ${
             isShowMenu
-              ? "text-white lg:text-secondary -rotate-45 -translate-y-1"
-              : "text-secondary"
+              ? "text-white lg:text-primary -rotate-45 -translate-y-1"
+              : "text-primary"
           }`}
         >
           —

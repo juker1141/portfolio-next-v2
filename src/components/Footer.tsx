@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="block lg:hidden section bg-secondary">
+    <div className="block lg:hidden section bg-primary">
       <div className="container mx-auto flex justify-center items-center">
         <div className="flex items-center">
           <div>

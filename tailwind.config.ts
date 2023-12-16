@@ -9,8 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#f2b84d",
-        secondary: "#543c1a",
+        primary: "#543c1a",
       },
       fontFamily: {
         "amatic-sc": ["var(--font-amitic-sc)"],

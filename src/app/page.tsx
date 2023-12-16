@@ -12,6 +12,8 @@ config.autoAddCss = false;
 import ReactFullpage from "@fullpage/react-fullpage";
 import type { Item } from "@fullpage/react-fullpage";
 
+import useCheckIsWide from "@/hooks/useCheckIsWide";
+
 // import NavBar from "@/components/NavBar";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
@@ -23,9 +25,16 @@ import Footer from "@/components/Footer";
 import GoTopBtn from "@/components/GoTopBtn";
 
 export type FullpageApi = Object;
-type Component = ({ fullpageApi }: { fullpageApi: any }) => JSX.Element;
+type Component = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => JSX.Element;
 
 export default function Home() {
+  const isWideScreen = useCheckIsWide();
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const [slideIndex, setSlideIndex] = useState(0);
@@ -91,10 +100,8 @@ export default function Home() {
           navigation
           scrollOverflow={true}
           scrollBar={false}
-          responsiveWidth={1024}
-          responsiveSlides={false}
+          // responsiveWidth={1024}
           // pluginWrapper={pluginWrapper}
-          // onLeave={onLeave}
           // scrollHorizontally={true}
           // sectionsColor={sectionsColor}
           credits={{
@@ -111,7 +118,11 @@ export default function Home() {
           render={(comp: any) => (
             <ReactFullpage.Wrapper>
               {fullpages.map((Component, index) => (
-                <Component key={index} fullpageApi={comp.fullpageApi} />
+                <Component
+                  key={index}
+                  fullpageApi={comp.fullpageApi}
+                  isWideScreen={isWideScreen}
+                />
               ))}
             </ReactFullpage.Wrapper>
           )}

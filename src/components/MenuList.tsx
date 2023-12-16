@@ -67,7 +67,7 @@ const MenuList = ({
       })}
       <li
         className={`my-2 ${
-          isShowMenuBtn ? "lg:block text-secondary" : "lg:hidden"
+          isShowMenuBtn ? "lg:block text-primary" : "lg:hidden"
         }`}
       >
         <ul className="flex justify-center items-center mb-6 lg:mb-0 px-0 lg:px-2">

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect, Fragment } from "react";
-import useCheckIsWide from "@/hooks/useCheckIsWide";
+import { useState, Fragment } from "react";
 import WorkImage from "@/components/Work/WorkImage";
 
 type ElementType = "sushi" | "drink" | "cactus";
@@ -13,8 +12,13 @@ type Work = {
   elementType: ElementType;
 };
 
-const Work = ({ fullpageApi }: { fullpageApi: any }) => {
-  const isWideScreen = useCheckIsWide();
+const Work = ({
+  fullpageApi,
+  isWideScreen,
+}: {
+  fullpageApi: any;
+  isWideScreen: boolean;
+}) => {
   const [worksList, setWorksList] = useState<Work[]>([
     {
       title: "Project1",
@@ -168,17 +172,17 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
           data-anchor={`${index + 2}`}
         >
           <div className="container h-screen mx-auto flex justify-center items-center">
-            <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
-              <div className="lg:col-span-2 flex flex-col justify-center items-start">
-                <h2 className="text-5xl mb-2">{work.title}</h2>
+            <div className="px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
+              <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
+                <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
                 <p className="text-xl">{work.content}</p>
               </div>
-              <div className="lg:col-span-3 w-full flex justify-center items-center relative">
+              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-6 lg:px-0">
                 <WorkImage
                   imageUrl={work.imageUrl}
                   imageAlt={`work-${index}`}
                 />
-                {renderWorkElement(work.elementType)}
+                {isWideScreen && renderWorkElement(work.elementType)}
               </div>
             </div>
           </div>
@@ -189,7 +193,54 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
 
   return (
     <div className="section">
-      {isWideScreen ? (
+      <Fragment>
+        <div className="slide" id="workId1" data-anchor="workBanner">
+          <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
+            <Image
+              width={isWideScreen ? 200 : 150}
+              height={isWideScreen ? 200 : 150}
+              className="absolute bottom-24 left-6 lg:left-12"
+              src="images/sp-main.svg"
+              alt="sp-main"
+            />
+            <Image
+              width={20}
+              height={20}
+              className="absolute top-60 lg:top-72 right-10 lg:left-72"
+              src="images/element/e-13.svg"
+              alt="e-13"
+            />
+            <Image
+              width={30}
+              height={30}
+              className="absolute top-32 lg:top-24 left-10 lg:right-52"
+              src="images/element/e-14.svg"
+              alt="e-14"
+            />
+            <Image
+              width={15}
+              height={15}
+              className="absolute top-40 lg:top-32 left-16 lg:right-48"
+              src="images/element/e-13.svg"
+              alt="e-13"
+            />
+            <h4 className="font-amatic-sc font-bold text-8xl mb-6">
+              Side Projects
+            </h4>
+            <p className="w-full lg:w-1/2 text-lg text-center">
+              I frequently dedicate my spare time to researching new
+              technologies or engaging in practical exercises.
+              <br /> For additional information, you can visit{" "}
+              <a className="font-bold" href="http://google.com">
+                My Github
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+        {renderWorksList()}
+      </Fragment>
+      {/* {isWideScreen ? (
         <Fragment>
           <div className="slide" id="workId1" data-anchor="workBanner">
             <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
@@ -239,7 +290,7 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
         </Fragment>
       ) : (
         <div></div>
-      )}
+      )} */}
       {/* <div className="slide" id="slide2" data-anchor="slide2">
         <div className="container mx-auto flex justify-center items-center">
           <div className="pt-52 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10">
