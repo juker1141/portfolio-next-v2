@@ -13,7 +13,7 @@ const Banner = ({
   return (
     <div className="section">
       <div className="container h-screen mx-auto flex justify-center items-center">
-        <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
+        <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
           <div className="flex flex-col justify-center items-start relative">
             {/* <h2 className="text-5xl mb-2">
             {/* <span className="bg-hello bg-center bg-no-repeat bg-contain text-9xl text-transparent mr-3">
@@ -38,7 +38,7 @@ const Banner = ({
             <Image
               width={128}
               height={128}
-              className="absolute top-12 right-12 hidden lg:block"
+              className="absolute top-0 xl:top-12 -right-6 xl:right-12 hidden lg:block z-[-10]"
               src="images/element/e-1.svg"
               alt="e-1"
             />
@@ -58,7 +58,7 @@ const Banner = ({
             <Image
               width={48}
               height={48}
-              className="absolute bottom-16 left-1/2 hidden lg:block"
+              className="absolute bottom-16 right-20 xl:left-1/2 hidden lg:block z-[-10]"
               src="images/element/e-3.svg"
               alt="e-3"
             />
@@ -67,7 +67,7 @@ const Banner = ({
             <Image
               width={64}
               height={64}
-              className="absolute bottom-36 -left-12 hidden lg:block"
+              className="absolute bottom-20 xl:bottom-36 -left-12 hidden lg:block"
               src="images/element/banner-e-1.svg"
               alt="banner-e-1"
             />
