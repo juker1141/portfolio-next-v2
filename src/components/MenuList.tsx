@@ -66,7 +66,7 @@ const MenuList = ({
         );
       })}
       <li
-        className={`my-2 ${
+        className={`mb-2 pt-6 ${
           isShowMenuBtn ? "lg:block text-primary" : "lg:hidden"
         }`}
       >

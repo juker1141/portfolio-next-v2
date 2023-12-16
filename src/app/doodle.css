@@ -141,7 +141,7 @@
 
 .doodle textarea,
 .doodle input {
-  background-color: unset;
+  /* background-color: unset; */
   font-family: var(--font-roboto);
   font-size: 0.75em;
   color: theme(colors.primary);
@@ -149,7 +149,7 @@
 
 .doodle button,
 .doodle select {
-  background-color: unset;
+  /* background-color: unset; */
   font-family: var(--font-amitic-sc);
   color: theme(colors.primary);
 }

@@ -28,13 +28,15 @@ export type FullpageApi = Object;
 type Component = ({
   fullpageApi,
   isWideScreen,
+  isIpadScreen,
 }: {
   fullpageApi: any;
   isWideScreen: boolean;
+  isIpadScreen: boolean;
 }) => JSX.Element;
 
 export default function Home() {
-  const isWideScreen = useCheckIsWide();
+  const { isWideScreen, isIpadScreen } = useCheckIsWide();
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const [slideIndex, setSlideIndex] = useState(0);
@@ -94,7 +96,7 @@ export default function Home() {
           },
         }}
       >
-        <Header />
+        <Header isWideScreen={isWideScreen} />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
         <ReactFullpage
@@ -125,6 +127,7 @@ export default function Home() {
                   key={index}
                   fullpageApi={comp.fullpageApi}
                   isWideScreen={isWideScreen}
+                  isIpadScreen={isIpadScreen}
                 />
               ))}
             </ReactFullpage.Wrapper>

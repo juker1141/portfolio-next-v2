@@ -11,7 +11,7 @@ const About = ({
     <div className="section">
       <div className="container h-screen mx-auto flex justify-center items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
-          <div className="lg:col-span-2 relative px-12 lg:px-0">
+          <div className="lg:col-span-2 relative px-12 lg:px-8 xl:px-0 flex justify-center items-center">
             <Image
               src="/images/hero.webp"
               width={400}
@@ -27,7 +27,7 @@ const About = ({
               alt="e-9"
             />
           </div>
-          <div className="lg:col-span-3 flex flex-col justify-center relative">
+          <div className="lg:col-span-3 flex flex-col justify-center relative lg:pr-16 xl:pr-0">
             <h2 className="text-8xl font-bold mb-4 font-amatic-sc">About Me</h2>
             <span className="text-lg mb-4 font-light">
               Frontend Developer / Backend Developer

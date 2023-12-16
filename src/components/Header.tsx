@@ -6,9 +6,8 @@ import useCheckIsWide from "@/hooks/useCheckIsWide";
 import MenuBtn from "@/components/MenuBtn";
 import MenuList from "@/components/MenuList";
 
-const Header = () => {
+const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
-  const isWideScreen = useCheckIsWide();
   // const [isWideScreen, setIsWideScreen] = useState(false);
   const [isShowMenuBtn, setIsShowMenuBtn] = useState(false);
 
@@ -99,7 +98,7 @@ const Header = () => {
         z-[1] fixed lg:relative top-0 left-0 w-screen lg:w-auto px-6 pt-[135px] lg:p-0
         ${
           isShowMenu
-            ? "visible opacity-100 bg-black lg:bg-transparent"
+            ? "visible opacity-100 bg-secondary lg:bg-transparent"
             : "invisible lg:visible opacity-0"
         } ${
           !isShowMenuBtn || isShowMenu ? "lg:flex" : "lg:hidden"

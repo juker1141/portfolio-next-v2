@@ -16,9 +16,11 @@ type Work = {
 const Work = ({
   fullpageApi,
   isWideScreen,
+  isIpadScreen,
 }: {
   fullpageApi: any;
   isWideScreen: boolean;
+  isIpadScreen: boolean;
 }) => {
   const [worksList, setWorksList] = useState<Work[]>([
     {
@@ -176,7 +178,7 @@ const Work = ({
           data-anchor={`${index + 2}`}
         >
           <div className="container h-screen mx-auto flex justify-center items-center">
-            <div className="px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
+            <div className="px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10 lg:px-8 xl:px-0">
               <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
                 <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
                 <p className="text-xl">{work.content}</p>
@@ -201,8 +203,8 @@ const Work = ({
         <div className="slide" id="workId1" data-anchor="workBanner">
           <div className="container h-screen mx-auto flex flex-col justify-center items-center relative">
             <Image
-              width={isWideScreen ? 200 : 150}
-              height={isWideScreen ? 200 : 150}
+              width={isIpadScreen ? 250 : isWideScreen ? 200 : 150}
+              height={isIpadScreen ? 250 : isWideScreen ? 200 : 150}
               className="absolute bottom-24 left-6 lg:left-12"
               src="images/sp-main.svg"
               alt="sp-main"
@@ -210,21 +212,21 @@ const Work = ({
             <Image
               width={20}
               height={20}
-              className="absolute top-60 lg:top-72 right-10 lg:left-72"
+              className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:left-72"
               src="images/element/e-13.svg"
               alt="e-13"
             />
             <Image
               width={30}
               height={30}
-              className="absolute top-32 lg:top-24 left-10 lg:right-52"
+              className="absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52"
               src="images/element/e-14.svg"
               alt="e-14"
             />
             <Image
               width={15}
               height={15}
-              className="absolute top-40 lg:top-32 left-16 lg:right-48"
+              className="absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48"
               src="images/element/e-13.svg"
               alt="e-13"
             />

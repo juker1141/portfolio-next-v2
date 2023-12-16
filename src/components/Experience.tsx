@@ -10,7 +10,7 @@ const Experience = ({
   return (
     <div className="section experience">
       <div className="container h-screen mx-auto flex justify-center items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-0">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
           <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
             <div className="relative px-8 lg:px-0 hidden lg:block">
               <Image
@@ -40,7 +40,7 @@ const Experience = ({
               <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
             </ul>
           </div>
-          <div className="lg:col-span-3 flex flex-col">
+          <div className="lg:col-span-3 flex flex-col lg:pr-16 xl:pr-0">
             <div className="flex flex-col relative">
               <Image
                 width={120}

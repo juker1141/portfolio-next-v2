@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#543c1a",
+        secondary: "#121212",
+        beige: "#f4ecdf",
       },
       fontFamily: {
         "amatic-sc": ["var(--font-amitic-sc)"],

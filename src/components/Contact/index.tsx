@@ -106,13 +106,13 @@ const Contact = ({
       />
       <div className="container min-h-screen mx-auto flex justify-center items-center relative lg:overflow-hidden">
         <Image
-          className="absolute -top-20 left-52 -rotate-3 hidden lg:block"
+          className="absolute -top-20 left-52 -rotate-3 hidden xl:block"
           src="/images/potato3.svg"
           width={150}
           height={150}
           alt="potato3"
         />
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-0 md:mt-12 lg:mb-0">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-8 xl:px-0 md:mt-12 lg:mb-0">
           <div className="lg:col-span-2 flex flex-col items-center justify-center">
             <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
               Get in Touch
@@ -136,7 +136,7 @@ const Contact = ({
                 </label>
                 <input
                   id="name"
-                  className={`px-2 ${errors.name && "error"}`}
+                  className={`px-2 bg-beige ${errors.name && "error"}`}
                   {...register("name", { required: true, maxLength: 30 })}
                 />
                 {errors.name && (
@@ -152,7 +152,7 @@ const Contact = ({
                 </label>
                 <input
                   id="email"
-                  className={`px-2 ${errors.email && "error"}`}
+                  className={`px-2 bg-beige ${errors.email && "error"}`}
                   {...register("email", { required: true })}
                 />
                 {errors.email && (
@@ -169,7 +169,7 @@ const Contact = ({
                 <textarea
                   rows={isWideScreen ? 5 : 3}
                   id="message"
-                  className={`resize-none px-2 focus-visible:outline-none  ${
+                  className={`resize-none bg-beige px-2 focus-visible:outline-none  ${
                     errors.message && "error"
                   }`}
                   {...register("message", { required: true, maxLength: 200 })}
@@ -194,7 +194,7 @@ const Contact = ({
                   width={200}
                   height={200}
                   className="absolute -bottom-20 -left-6 z-10 lg:hidden"
-                  alt="contact-main"
+                  alt="contact-main-mobile"
                 />
                 <button
                   type="submit"
