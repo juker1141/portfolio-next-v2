@@ -59,7 +59,6 @@ const Marker: React.FC<MarkerProps> = ({ children, type }) => {
         const rect = markerRef.current.getBoundingClientRect();
         let width = rect.width;
         let height = 2 * rect.height;
-        console.log(width, height);
 
         if (type === "icon") {
           width = rect.width * 2.5;
