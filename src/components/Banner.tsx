@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import Underline from "@/components/Underline";
-import Rellax from "rellax";
 
 // const titles = ["Frontend Software Developer", "Backend Software Developer"];
 
@@ -16,7 +14,7 @@ const Banner = ({
 }) => {
   return (
     <div className="section">
-      <div className="container h-screen mx-auto flex justify-center items-center">
+      <div className="container h-screen mx-auto flex justify-center items-center overflow-y-hidden">
         <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
           <div className="flex flex-col justify-center items-start relative">
             {/* <h2 className="text-5xl mb-2">
@@ -42,12 +40,15 @@ const Banner = ({
             <Image
               width={128}
               height={128}
-              className="absolute top-0 xl:top-12 -right-6 xl:right-12 hidden lg:block z-[-10] rellax-el"
+              className="absolute top-0 xl:top-12 -right-6 xl:right-12 hidden lg:block z-[-10] "
               data-rellax-speed="-5"
               src="images/element/e-1.svg"
               alt="e-1"
             />
-            <h4 className="font-titan-one text-5xl mb-4 md:mb-6">
+            <h4
+              className="font-titan-one text-5xl mb-4 md:mb-6"
+              data-aos="fade-right"
+            >
               <div className="mb-4">
                 <Underline delay={"0s"}>Frontend</Underline> And
               </div>
@@ -55,7 +56,11 @@ const Banner = ({
                 <Underline delay={"500ms"}>Backend</Underline> Developer
               </div>
             </h4>
-            <p className="text-xl lg:w-2/3">
+            <p
+              className="text-xl lg:w-2/3"
+              data-aos="fade-right"
+              data-aos-delay="300"
+            >
               I love programming and turning ideas into reality. Curious about
               every detail of computer science. Try different ways to solve the
               problem when facing challenges.
@@ -69,7 +74,7 @@ const Banner = ({
               alt="e-3"
             />
           </div>
-          <div className="flex items-center relative">
+          <div className="flex items-center relative" data-aos="zoom-in-down">
             <Image
               width={64}
               height={64}

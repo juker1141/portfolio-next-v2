@@ -18,6 +18,9 @@ const Experience = ({
                 height={400}
                 src="images/ex-main.svg"
                 alt="ex-main"
+                data-aos="fade-right"
+                data-aos-delay="300"
+                data-aos-easing="ease-in-out-back"
               />
               <Image
                 width={100}
@@ -25,38 +28,53 @@ const Experience = ({
                 className="absolute bottom-1 -left-12 animate-breath hidden lg:block"
                 src="images/ex-main-wind.svg"
                 alt="ex-main-wind"
+                data-aos="fade-right"
+                data-aos-delay="1000"
               />
             </div>
             <Image
               width={120}
               height={120}
-              className="absolute hidden lg:block -top-8 -right-0 dutation-500 lg:animate-fix-0.7 delay-500"
+              data-rellax-speed="4"
+              data-rellax-percentage="0.5"
+              className="absolute hidden lg:block -top-8 -right-0 dutation-500 lg:animate-fix-0.7 rellax-el"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
-            <ul className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5">
+            <ul
+              data-aos="fade-right"
+              data-aos-delay="1000"
+              className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5"
+            >
               <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
               <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
               <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
             </ul>
           </div>
-          <div className="lg:col-span-3 flex flex-col lg:pr-16 xl:pr-0">
-            <div className="flex flex-col relative">
-              <Image
-                width={120}
-                height={120}
-                className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9 hidden lg:block"
-                src="images/element/e-9.svg"
-                alt="e-9-cloud"
-              />
-
-              <Image
-                width={80}
-                height={80}
-                className="absolute lg:hidden top-16 right-0"
-                src="images/element/e-8.svg"
-                alt="e-8"
-              />
+          <div className="lg:col-span-3 flex flex-col lg:pr-16 xl:pr-0 relative">
+            <Image
+              width={120}
+              height={120}
+              data-rellax-speed="-5"
+              data-rellax-percentage="0.5"
+              className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9 hidden lg:block rellax-el"
+              src="images/element/e-9.svg"
+              alt="e-9-cloud"
+            />
+            <Image
+              width={80}
+              height={80}
+              data-rellax-speed="4"
+              data-rellax-percentage="0.5"
+              className="absolute lg:hidden top-16 right-0 rellax-el"
+              src="images/element/e-8.svg"
+              alt="e-8-c"
+            />
+            <div
+              className="flex flex-col relative"
+              data-aos="fade-right"
+              data-aos-delay="500"
+            >
               <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
                 Experience
               </h4>
@@ -80,7 +98,11 @@ const Experience = ({
               </p>
             </div>
 
-            <div className="flex flex-col">
+            <div
+              className="flex flex-col"
+              data-aos="fade-right"
+              data-aos-delay="700"
+            >
               <p className="lg:text-lg font-light">Oct 2022 - Present</p>
               <h3 className="text-xl lg:text-2xl font-bold mb-2">
                 Frontend & Backend Developer

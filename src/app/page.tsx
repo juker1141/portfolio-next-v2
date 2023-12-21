@@ -2,6 +2,7 @@
 import Script from "next/script";
 import { Fragment, useState, useEffect } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import AOS from "aos";
 import Rellax from "rellax";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -15,14 +16,12 @@ import type { Item } from "@fullpage/react-fullpage";
 
 import useCheckIsWide from "@/hooks/useCheckIsWide";
 
-// import NavBar from "@/components/NavBar";
 import Header from "@/components/Header";
 import Banner from "@/components/Banner";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import GoTopBtn from "@/components/GoTopBtn";
 
 export type FullpageApi = Object;
@@ -52,6 +51,7 @@ export default function Home() {
     new Rellax(".rellax-el", {
       speed: 0,
     });
+    AOS.init();
   }, []);
 
   function afterSlideLoad(
@@ -72,7 +72,7 @@ export default function Home() {
   ) {
     // console.log((window as any).fullpage_api.getActiveSection());
     // console.log("Index: " + origin.index + " Slide Index: " + slideIndexS);
-    console.log(origin, destination, trigger);
+    // console.log(origin, destination, trigger);
     if (origin.anchor === "Work" && destination.anchor === "Home") {
       return true;
     }
@@ -94,12 +94,12 @@ export default function Home() {
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <GoogleReCaptchaProvider
         reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
-        container={{
-          element: "reCaptchaEl",
-          parameters: {
-            badge: "bottomleft",
-          },
-        }}
+        // container={{
+        //   element: "reCaptchaEl",
+        //   parameters: {
+        //     badge: "bottomleft",
+        //   },
+        // }}
       >
         <Header isWideScreen={isWideScreen} />
         {/* <Tomato /> */}
@@ -108,7 +108,7 @@ export default function Home() {
           anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
           licenseKey={"gplv3-license"}
           navigation
-          scrollOverflow={true}
+          scrollOverflow={false}
           scrollBar={true}
           // responsiveWidth={1024}
           // pluginWrapper={pluginWrapper}

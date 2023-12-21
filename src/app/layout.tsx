@@ -4,6 +4,7 @@ import { Amatic_SC, Roboto, Londrina_Solid, Titan_One } from "next/font/google";
 import "./globals.css";
 import "./doodle.css";
 import "./test.scss";
+import "aos/dist/aos.css";
 
 const amaticSC = Amatic_SC({
   weight: ["400", "700"],
