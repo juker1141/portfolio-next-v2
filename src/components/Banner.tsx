@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
 import Underline from "@/components/Underline";
+import Rellax from "rellax";
 
 // const titles = ["Frontend Software Developer", "Backend Software Developer"];
 
@@ -38,7 +42,8 @@ const Banner = ({
             <Image
               width={128}
               height={128}
-              className="absolute top-0 xl:top-12 -right-6 xl:right-12 hidden lg:block z-[-10]"
+              className="absolute top-0 xl:top-12 -right-6 xl:right-12 hidden lg:block z-[-10] rellax-el"
+              data-rellax-speed="-5"
               src="images/element/e-1.svg"
               alt="e-1"
             />
@@ -58,7 +63,8 @@ const Banner = ({
             <Image
               width={48}
               height={48}
-              className="absolute bottom-16 right-20 xl:left-1/2 hidden lg:block z-[-10]"
+              className="absolute bottom-16 right-20 xl:left-1/2 hidden lg:block z-[-10] rellax-el"
+              data-rellax-speed="8"
               src="images/element/e-3.svg"
               alt="e-3"
             />
@@ -67,21 +73,24 @@ const Banner = ({
             <Image
               width={64}
               height={64}
-              className="absolute bottom-20 xl:bottom-36 -left-12 hidden lg:block"
+              data-rellax-speed="-2"
+              className="absolute bottom-20 xl:bottom-36 -left-12 hidden lg:block rellax-el"
               src="images/element/banner-e-1.svg"
               alt="banner-e-1"
             />
             <Image
               width={1600}
               height={800}
-              className="lg:mt-16 hidden lg:block"
+              data-rellax-speed="5"
+              className="lg:mt-16 hidden lg:block rellax-el"
               src="/images/banner-main.svg"
               alt="banner-main"
             />
             <Image
               width={1600}
               height={800}
-              className="lg:mt-16 block lg:hidden"
+              data-rellax-speed="5"
+              className="lg:mt-16 block lg:hidden rellax-el"
               src="/images/banner-main-mobile.svg"
               alt="banner-main-mobile"
             />

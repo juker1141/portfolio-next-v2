@@ -1,7 +1,8 @@
 "use client";
 import Script from "next/script";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import Rellax from "rellax";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -46,6 +47,12 @@ export default function Home() {
     Work,
     Contact,
   ]);
+
+  useEffect(() => {
+    new Rellax(".rellax-el", {
+      speed: 0,
+    });
+  }, []);
 
   function afterSlideLoad(
     section: Item,
@@ -102,7 +109,7 @@ export default function Home() {
           licenseKey={"gplv3-license"}
           navigation
           scrollOverflow={true}
-          scrollBar={false}
+          scrollBar={true}
           // responsiveWidth={1024}
           // pluginWrapper={pluginWrapper}
           // scrollHorizontally={true}

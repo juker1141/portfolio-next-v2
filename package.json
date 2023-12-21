@@ -15,6 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullpage/react-fullpage": "^0.1.40",
     "@types/nodemailer": "^6.4.14",
+    "@types/rellax": "^1.7.7",
     "@types/sass": "^1.45.0",
     "axios": "^1.6.2",
     "doodle.css": "^0.0.2",
@@ -24,6 +25,7 @@
     "react-dom": "^18",
     "react-google-recaptcha-v3": "^1.10.1",
     "react-hook-form": "^7.48.2",
+    "rellax": "^1.12.1",
     "sharp": "^0.33.0"
   },
   "devDependencies": {

@@ -48,6 +48,9 @@ body {
   background-color: #f4ecdf;
   overflow: hidden;
 }
+body .section {
+  overflow-x: hidden;
+}
 
 body a:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
