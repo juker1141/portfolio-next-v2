@@ -16,7 +16,6 @@
     "@fullpage/react-fullpage": "^0.1.40",
     "@types/nodemailer": "^6.4.14",
     "@types/rellax": "^1.7.7",
-    "@types/sass": "^1.45.0",
     "aos": "^2.3.4",
     "axios": "^1.6.2",
     "doodle.css": "^0.0.2",

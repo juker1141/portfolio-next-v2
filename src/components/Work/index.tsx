@@ -121,7 +121,7 @@ const Work = ({
             <Image
               width={100}
               height={100}
-              className="absolute bottom-6 lg:right-6 xl:right-36 2xl:right-48"
+              className="absolute bottom-6 right-4 lg:right-6 xl:right-36 2xl:right-48"
               src="images/element/e-21.svg"
               alt="e-21"
             />
@@ -201,10 +201,17 @@ const Work = ({
               src="images/element/e-13.svg"
               alt="e-13"
             />
-            <h4 className="font-amatic-sc font-bold text-8xl mb-6">
+            <h4
+              data-aos="fade-up"
+              className="font-amatic-sc font-bold text-8xl mb-6"
+            >
               Side Projects
             </h4>
-            <p className="w-full lg:w-1/2 text-lg text-center">
+            <p
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="w-full lg:w-1/2 text-lg text-center"
+            >
               I frequently dedicate my spare time to researching new
               technologies or engaging in practical exercises.
               <br /> For additional information, you can visit{" "}

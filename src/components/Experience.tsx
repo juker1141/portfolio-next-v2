@@ -37,7 +37,7 @@ const Experience = ({
               height={120}
               data-rellax-speed="4"
               data-rellax-percentage="0.5"
-              className="absolute hidden lg:block -top-8 -right-0 dutation-500 lg:animate-fix-0.7 rellax-el"
+              className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
@@ -57,7 +57,7 @@ const Experience = ({
               height={120}
               data-rellax-speed="-5"
               data-rellax-percentage="0.5"
-              className="absolute top-20 right-20 cloud duration-300 lg:animate-fix-0.9 hidden lg:block rellax-el"
+              className="absolute top-10 right-20 hidden lg:block rellax-el"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
