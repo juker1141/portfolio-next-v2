@@ -4,17 +4,21 @@
 
 /* :root {
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 .scrollContainer {
-  scroll-snap-type: both mandatory;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
   overflow-y: scroll;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
 .scrollContainer section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  scroll-padding: 50px 0 0 0;
 } */
 
 /*:root {
@@ -44,13 +48,14 @@ body {
 body {
   cursor: url(/images/cursor/cursor.png), auto;
   color: theme(colors.primary);
-  /* background-color: #e0d9c7; */
   background-color: #f4ecdf;
-  overflow: hidden;
-}
-body .section {
+  scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
+/* body .section {
+  overflow-x: hidden;
+} */
 
 body a:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
@@ -60,7 +65,7 @@ body button:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
 }
 
-.fp-watermark {
+/* .fp-watermark {
   display: none;
 }
 
@@ -87,7 +92,7 @@ body button:hover {
   #fp-nav {
     display: block;
   }
-}
+} */
 
 .marker {
   position: relative;
@@ -158,6 +163,3 @@ body button:hover {
   animation-fill-mode: forwards;
   stroke-width: 5;
 }
-/* .drawing {
-  animation: sign 4s ease;
-} */

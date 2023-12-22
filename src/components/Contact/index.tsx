@@ -16,13 +16,7 @@ type Inputs = {
   message: string;
 };
 
-const Contact = ({
-  fullpageApi,
-  isWideScreen,
-}: {
-  fullpageApi: any;
-  isWideScreen: boolean;
-}) => {
+const Contact = ({ isWideScreen }: { isWideScreen: boolean }) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [notification, setNotification] = useState("");
 
@@ -89,7 +83,7 @@ const Contact = ({
   };
 
   return (
-    <div className="section relative">
+    <section id="contact" className="section relative overflow-hidden">
       <Image
         className="absolute top-40 -left-20 hidden lg:block"
         src="/images/potato4.svg"
@@ -104,7 +98,7 @@ const Contact = ({
         height={250}
         alt="potato5"
       />
-      <div className="container min-h-screen mx-auto flex justify-center items-center relative lg:overflow-hidden">
+      <div className="container min-h-screen mx-auto flex justify-center items-center relative overflow-hidden">
         <Image
           className="absolute -top-20 left-52 -rotate-3 hidden xl:block"
           src="/images/potato3.svg"
@@ -219,60 +213,7 @@ const Contact = ({
           </div>
         </div>
       </div>
-      {/* <div className="bg-primary">
-        <div className="container p-6 h-full mx-auto flex justify-center items-center">
-          <div className="w-full flex justify-between items-center">
-            <Image
-              src="/images/logo-white.svg"
-              alt="logo-footer"
-              width="60"
-              height="60"
-            />
-            <div className="flex justify-center text-lg text-white font-black">
-              Copyright © {new Date().getFullYear()}. All rights reserved.
-            </div>
-            <ul className="flex justify-center items-center mb-6 lg:mb-0">
-              <li className="mr-2">
-                <a
-                  href="https://www.linkedin.com/in/chih-lung-tu-a6807821a/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon icon={faLinkedin} color="white" size="2xl" />
-                </a>
-              </li>
-              <li className="mr-2">
-                <a
-                  href="https://github.com/juker1141"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon
-                    icon={faGithubSquare}
-                    color="white"
-                    size="2xl"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:juker1141@gmail.com"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon
-                    icon={faEnvelopeSquare}
-                    color="white"
-                    size="2xl"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
-    </div>
+    </section>
   );
 };
 

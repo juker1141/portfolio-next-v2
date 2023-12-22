@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto`}
+        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto scrollContainer`}
       >
         {children}
       </body>

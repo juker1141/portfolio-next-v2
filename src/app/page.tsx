@@ -25,13 +25,11 @@ import Contact from "@/components/Contact";
 import GoTopBtn from "@/components/GoTopBtn";
 
 export type FullpageApi = Object;
-type Component = ({
-  fullpageApi,
-  isWideScreen,
-}: {
-  fullpageApi: any;
-  isWideScreen: boolean;
-}) => JSX.Element;
+type Component = ({ isWideScreen }: { isWideScreen: boolean }) => JSX.Element;
+
+const Section: Component = ({ isWideScreen }) => {
+  return <div className="section">1</div>;
+};
 
 export default function Home() {
   const { isWideScreen } = useCheckIsWide();
@@ -52,6 +50,19 @@ export default function Home() {
       speed: 0,
     });
     AOS.init();
+    const aosAnimation = document.querySelectorAll("[data-aos]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0) {
+          entry.target.classList.add("aos-animate");
+        } else {
+          entry.target.classList.remove("aos-animate");
+        }
+      });
+    });
+    aosAnimation.forEach((aosObject) => {
+      observer.observe(aosObject);
+    });
   }, []);
 
   function afterSlideLoad(
@@ -104,7 +115,7 @@ export default function Home() {
         <Header isWideScreen={isWideScreen} />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
-        <ReactFullpage
+        {/* <ReactFullpage
           anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
           licenseKey={"gplv3-license"}
           navigation
@@ -130,13 +141,15 @@ export default function Home() {
               {fullpages.map((Component, index) => (
                 <Component
                   key={index}
-                  fullpageApi={comp.fullpageApi}
                   isWideScreen={isWideScreen}
                 />
               ))}
             </ReactFullpage.Wrapper>
           )}
-        />
+        /> */}
+        {fullpages.map((Component, index) => (
+          <Component key={index} isWideScreen={isWideScreen} />
+        ))}
         <GoTopBtn />
         {/* <Footer /> */}
       </GoogleReCaptchaProvider>
