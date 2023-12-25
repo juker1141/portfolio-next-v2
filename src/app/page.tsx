@@ -51,6 +51,10 @@ export default function Home() {
     new Rellax(".rellax-el", {
       speed: 0,
     });
+    new Rellax(".rellax-h-el", {
+      speed: 0,
+      horizontal: true,
+    });
     AOS.init();
   }, []);
 
@@ -101,7 +105,7 @@ export default function Home() {
         //   },
         // }}
       >
-        <Header isWideScreen={isWideScreen} />
+        {/* <Header isWideScreen={isWideScreen} /> */}
         {/* <Tomato /> */}
         {/* <NavBar /> */}
         <ReactFullpage
@@ -109,7 +113,9 @@ export default function Home() {
           licenseKey={"gplv3-license"}
           navigation
           scrollOverflow={false}
+          normalScrollElements={".work-slide"}
           scrollBar={true}
+          scrollingSpeed={1200}
           // responsiveWidth={1024}
           // pluginWrapper={pluginWrapper}
           // scrollHorizontally={true}
@@ -119,6 +125,7 @@ export default function Home() {
             label: "",
             position: "right",
           }}
+          scrollOverflowMacStyle={true}
           afterSlideLoad={afterSlideLoad}
           onLeave={onLeave}
           controlArrows={false}

@@ -72,19 +72,22 @@ const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
           {/* <Link href="#banner">Logo</Link> */}
           <a href="/" onClick={goTopSection}>
             <Image
-              className={`${isShowMenu ? "hidden lg:block" : "block"}`}
-              src="/images/logo.svg"
+              src={
+                isShowMenu && !isWideScreen
+                  ? "/images/logo-white.svg"
+                  : "/images/logo.svg"
+              }
               alt="logo"
               width="60"
               height="60"
             />
-            <Image
+            {/* <Image
               className={`${isShowMenu ? "block lg:hidden" : "hidden"}`}
               src="/images/logo-white.svg"
               alt="logo"
               width="60"
               height="60"
-            />
+            /> */}
           </a>
         </h1>
         <MenuBtn

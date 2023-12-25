@@ -48,9 +48,9 @@ body {
   background-color: #f4ecdf;
   overflow: hidden;
 }
-body .section {
+/* body .section {
   overflow-x: hidden;
-}
+} */
 
 body a:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
@@ -161,3 +161,40 @@ body button:hover {
 /* .drawing {
   animation: sign 4s ease;
 } */
+
+/* .work-slide{
+  overflow-y: hidden;
+  overflow: auto !important
+} */
+.work-slide {
+  scroll-snap-type: both mandatory;
+  /* transform: rotate(90deg) translateY(-100vh); */
+  /* -webkit-overflow-scrolling: touch; */
+}
+.work-slide li {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.wrapper-m {
+  display: flex;
+  width: 400vw;
+  transform: rotate(90deg) translateY(-100vh);
+  transform-origin: top left;
+}
+
+.container-m {
+  width: 100vh;
+  height: 100vw;
+  top: 0;
+  transform: rotate(-90deg) translateX(-100vh);
+  transform-origin: top left;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.slide-m {
+  height: 100vh;
+  width: 90vw;
+}

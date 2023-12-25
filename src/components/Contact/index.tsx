@@ -89,7 +89,7 @@ const Contact = ({
   };
 
   return (
-    <div className="section relative">
+    <div className="section relative overflow-x-hidden">
       <Image
         className="absolute top-40 -left-20 hidden lg:block"
         src="/images/potato4.svg"
