@@ -4,6 +4,7 @@ const Experience = ({ isWideScreen }: { isWideScreen: boolean }) => {
   return (
     <section
       id="experience"
+      data-anchor="Experience"
       className="container h-screen mx-auto flex justify-center items-center experience"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
@@ -33,7 +34,8 @@ const Experience = ({ isWideScreen }: { isWideScreen: boolean }) => {
             height={120}
             data-rellax-speed="4"
             data-rellax-percentage="0.5"
-            className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
+            // className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
+            className="absolute hidden lg:block -top-8 -right-0"
             src="images/element/e-9.svg"
             alt="e-9-cloud"
           />
@@ -53,7 +55,8 @@ const Experience = ({ isWideScreen }: { isWideScreen: boolean }) => {
             height={120}
             data-rellax-speed="-5"
             data-rellax-percentage="0.5"
-            className="absolute top-10 right-20 hidden lg:block rellax-el"
+            // className="absolute top-10 right-20 hidden lg:block rellax-el"
+            className="absolute top-20 right-20 hidden lg:block"
             src="images/element/e-9.svg"
             alt="e-9-cloud"
           />
@@ -62,7 +65,8 @@ const Experience = ({ isWideScreen }: { isWideScreen: boolean }) => {
             height={80}
             data-rellax-speed="4"
             data-rellax-percentage="0.5"
-            className="absolute lg:hidden top-16 right-0 rellax-el"
+            // className="absolute lg:hidden top-16 right-0 rellax-el"
+            className="absolute lg:hidden top-16 right-0"
             src="images/element/e-8.svg"
             alt="e-8-c"
           />

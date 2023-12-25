@@ -83,7 +83,11 @@ const Contact = ({ isWideScreen }: { isWideScreen: boolean }) => {
   };
 
   return (
-    <section id="contact" className="section relative overflow-hidden">
+    <section
+      id="contact"
+      data-anchor="Contact"
+      className="section relative overflow-hidden"
+    >
       <Image
         className="absolute top-40 -left-20 hidden lg:block"
         src="/images/potato4.svg"

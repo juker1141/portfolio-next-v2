@@ -4,6 +4,7 @@ const About = ({ isWideScreen }: { isWideScreen: boolean }) => {
   return (
     <section
       id="about"
+      data-anchor="About"
       className="container h-screen mx-auto flex justify-center items-center"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10 px-4 lg:px-0">
@@ -20,8 +21,9 @@ const About = ({ isWideScreen }: { isWideScreen: boolean }) => {
             height={120}
             data-rellax-speed="-5"
             data-rellax-percentage="0.5"
+            className="absolute top-0 right-2 lg:top-8 lg:-right-12"
             // className="absolute top-0 right-2 lg:-top-8 lg:-right-12 rellax-el"
-            className="absolute top-0 right-2 lg:-top-64 lg:-right-12 rellax-el"
+            // className="absolute top-0 right-2 lg:-top-64 lg:-right-12 rellax-el"
             src="images/element/e-9.svg"
             alt="e-9"
           />
@@ -51,7 +53,8 @@ const About = ({ isWideScreen }: { isWideScreen: boolean }) => {
             height={120}
             data-rellax-speed="3"
             data-rellax-percentage="0.5"
-            className="absolute hidden lg:block -bottom-24 lg:bottom-56 right-0 z-0 rellax-el"
+            // className="absolute hidden lg:block -bottom-24 lg:bottom-56 right-0 z-0 rellax-el"
+            className="absolute hidden lg:block -bottom-24 lg:-bottom-16 right-0"
             src="images/element/e-8.svg"
             alt="e-8"
           />
