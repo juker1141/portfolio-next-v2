@@ -160,7 +160,7 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
     });
   };
 
-  const detectActiveSection = (sliders: HTMLCollectionOf<HTMLElement>) => {
+  const detectActiveSlider = (sliders: HTMLCollectionOf<HTMLElement>) => {
     let currentSectionSlide = null;
 
     for (let i = 0; i < sliders.length; i++) {
@@ -191,7 +191,7 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
         console.log("scrolling up");
       }
       lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
-      detectActiveSection(sliders);
+      detectActiveSlider(sliders);
     };
 
     const handlewheelScroll = (event: any) => {
@@ -217,10 +217,15 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
 
   return (
     <section
+      id="work"
       data-anchor="Work"
       className="section relative overflow-hidden h-screen"
     >
-      <div ref={slidersScrollRef} className="container-m disabled-scrollbar">
+      <div
+        ref={slidersScrollRef}
+        id="work-scrollbar"
+        className="container-m disabled-scrollbar"
+      >
         <ul ref={slidersRef} className="wrapper-m">
           {Array.from(Array(4).keys()).map((n) => (
             <li

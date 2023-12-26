@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import useCheckIsWide from "@/hooks/useCheckIsWide";
@@ -21,7 +20,7 @@ const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
       console.log(currentHash);
       // const isWideScreen = window.innerWidth > 1024;
       // if (!isWideScreen) return;
-      if (currentHash === "#Home" || currentHash === "") {
+      if (currentHash === "#Banner" || currentHash === "") {
         // 在這裡執行你想要的操作
         setIsShowMenu(false);
         setIsShowMenuBtn(false);
@@ -69,7 +68,6 @@ const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
         } flex items-center justify-between z-10`}
       >
         <h1 className=" flex items-center w-12 h-12 lg:w-16 lg:h-16">
-          {/* <Link href="#banner">Logo</Link> */}
           <a href="/" onClick={goTopSection}>
             <Image
               className={`${isShowMenu ? "hidden lg:block" : "block"}`}
