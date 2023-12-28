@@ -30,12 +30,14 @@ type MenuListProps = {
   isShowMenuBtn: boolean;
   isWideScreen: boolean;
   setIsShowMenu: Function;
+  goSectionScroll: (target: string) => void;
 };
 
 const MenuList = ({
   isShowMenuBtn,
   isWideScreen,
   setIsShowMenu,
+  goSectionScroll,
 }: MenuListProps) => {
   useEffect(() => {});
 
@@ -57,7 +59,7 @@ const MenuList = ({
       {NavData.map((nav, index) => {
         return (
           <li key={index} className="my-2">
-            <a onClick={(e) => moveToSection(e, nav.href)}>
+            <a onClick={(e) => goSectionScroll(nav.href)}>
               <Marker type="text">
                 <span className="px-4 py-2">{nav.title}</span>
               </Marker>

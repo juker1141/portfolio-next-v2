@@ -10,9 +10,13 @@ import type { ScrollData } from "@/util/scroll";
 const Header = ({
   isWideScreen,
   scrollData,
+  goTopScroll,
+  goSectionScroll,
 }: {
   isWideScreen: boolean;
   scrollData: ScrollData;
+  goTopScroll: () => void;
+  goSectionScroll: (target: string) => void;
 }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   // const [isWideScreen, setIsWideScreen] = useState(false);
@@ -60,7 +64,7 @@ const Header = ({
 
   const goTopSection: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
-    (window as any).fullpage_api.moveTo("Home");
+    goTopScroll();
   };
 
   return (
@@ -113,6 +117,7 @@ const Header = ({
           isShowMenuBtn={isShowMenuBtn}
           isWideScreen={isWideScreen}
           setIsShowMenu={setIsShowMenu}
+          goSectionScroll={goSectionScroll}
           // isShowMenu={isShowMenu}
         />
       </nav>

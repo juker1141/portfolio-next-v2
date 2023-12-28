@@ -2,14 +2,14 @@
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 
-const GoTopBtn = () => {
+const GoTopBtn = ({ goTopScroll }: { goTopScroll: () => void }) => {
   const [isShowBtn, setIsShowBtn] = useState(false);
 
   useEffect(() => {
     const checkHash = () => {
       const currentHash = window.location.hash;
 
-      if (currentHash === "#Home" || currentHash === "") {
+      if (currentHash === "#Banner" || currentHash === "") {
         // 在這裡執行你想要的操作
         setIsShowBtn(false);
         // console.log("現在的錨點值是 #Banner", currentHash);
@@ -28,7 +28,8 @@ const GoTopBtn = () => {
   }, []);
   const goTopSection: React.MouseEventHandler<HTMLImageElement> = (e) => {
     e.preventDefault();
-    (window as any).fullpage_api.moveTo("Home");
+    // (window as any).fullpage_api.moveTo("Home");
+    goTopScroll();
   };
 
   return (

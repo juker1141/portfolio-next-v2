@@ -36,10 +36,17 @@ export default function Home() {
   ]);
 
   const fullpagesString = fullpages.map((page: Component) => page.name);
-  const { sectionRefs, sliderRefs, slidersScrollRef, scrollData } =
-    useSmoothScroller(fullpages, fullpagesString);
+  const {
+    sectionRefs,
+    sliderRefs,
+    slidersScrollRef,
+    scrollData,
+    goTopScroll,
+    goSectionScroll,
+  } = useSmoothScroller(fullpages, fullpagesString);
 
   const { isWideScreen } = useCheckIsWide();
+
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
@@ -49,7 +56,6 @@ export default function Home() {
       speed: 0,
     });
     AOS.init();
-    console.log(sectionRefs.current, sliderRefs.current);
     const aosAnimation = document.querySelectorAll("[data-aos]");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -78,7 +84,12 @@ export default function Home() {
         //   },
         // }}
       >
-        <Header isWideScreen={isWideScreen} scrollData={scrollData} />
+        <Header
+          isWideScreen={isWideScreen}
+          scrollData={scrollData}
+          goTopScroll={goTopScroll}
+          goSectionScroll={goSectionScroll}
+        />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
         {/* <ReactFullpage
@@ -122,7 +133,7 @@ export default function Home() {
             isWideScreen={isWideScreen}
           />
         ))}
-        <GoTopBtn />
+        <GoTopBtn goTopScroll={goTopScroll} />
         {/* <Footer /> */}
       </GoogleReCaptchaProvider>
     </Fragment>

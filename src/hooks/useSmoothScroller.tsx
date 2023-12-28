@@ -19,48 +19,129 @@ const useSmoothScroller = (
   const slidersScrollRef = useRef<HTMLDivElement>(null);
 
   const isTriggered = useRef(false);
+  const isIniting = useRef(false);
 
   const [scrollData, setScrollData] = useState<ScrollData>({
     section: "Banner",
     slider: 0,
   });
 
-  useEffect(() => {
-    // console.log("data is change", scrollData);
-  }, [scrollData]);
+  const goTopScroll = () => {
+    const bannerEl = sectionRefs.current[0];
 
-  function smoothScroll(target: HTMLElement, direction: number, offset = 0) {
-    const elemIndex = fullpages.findIndex(
-      (el: Component) => el.name === scrollData.section
-    );
-    const rect = sectionRefs.current[elemIndex + 1].getBoundingClientRect();
-    let targetPosition = Math.floor(rect.top + self.pageYOffset + offset);
-    target.scrollTo({
-      top: direction,
+    setScrollData((prevData) => ({
+      slider: 0,
+      section: fullpagesString[0],
+    }));
+
+    const slidersScrollEl = slidersScrollRef.current;
+
+    bannerEl.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
+    setTimeout(() => {
+      slidersScrollEl?.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 1000);
+  };
 
-    return new Promise<void>((resolve, reject) => {
-      const failed = setTimeout(() => {
-        reject();
-      }, 2000);
+  const goSectionScroll = (target: string) => {
+    const bannerEl = sectionRefs.current[0];
+    const targetIndex = fullpages.findIndex(
+      (page: Component) => target.toLowerCase() === page.name.toLowerCase()
+    );
+    const targetEl = sectionRefs.current[targetIndex];
 
-      const scrollHandler = () => {
-        if (self.pageYOffset === targetPosition) {
-          window.removeEventListener("scroll", scrollHandler);
-          clearTimeout(failed);
-          resolve();
+    setScrollData((prevData) => ({
+      slider: 0,
+      section: fullpagesString[targetIndex],
+    }));
+
+    const slidersScrollEl = slidersScrollRef.current;
+
+    targetEl.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    setTimeout(() => {
+      slidersScrollEl?.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 1000);
+  };
+
+  const detecthashLocation = async (
+    sliderRefs: React.MutableRefObject<HTMLLIElement[]>
+  ) => {
+    if (window.location.hash) {
+      let hash = window.location.hash;
+
+      // 將 hash 拆分成陣列，以"/"作為分隔符
+      const hashParts: string[] = hash.split("/");
+
+      const hashEl = document.querySelector(
+        hashParts[0].toLowerCase()
+      ) as HTMLElement;
+
+      if (hashEl) {
+        if (hashParts[0] === "#Work") {
+          // 做 #Work 的處理
+          console.log("Handling #Work");
+
+          hashEl.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          // await scrollToTop(body, hashEl.offsetTop);
+          // 如果有附加參數，例如 #Work/1
+          if (hashParts.length > 1 && sliderRefs.current) {
+            const sliderIndex = parseInt(hashParts[1], 10);
+
+            setScrollData((prevData) => ({
+              slider: sliderIndex - 1,
+              section: hashParts[0].replace("#", ""),
+            }));
+            sliderRefs.current[sliderIndex - 1].scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        } else {
+          setScrollData((prevData) => ({
+            ...prevData,
+            section: hashParts[0].replace("#", ""),
+          }));
+          hashEl.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
-      };
-      if (self.pageYOffset === targetPosition) {
-        clearTimeout(failed);
-        resolve();
-      } else {
-        window.addEventListener("scroll", scrollHandler);
-        sectionRefs.current[elemIndex + 1].getBoundingClientRect();
+
+        isIniting.current = false;
       }
-    });
-  }
+    }
+  };
+
+  useEffect(() => {
+    isIniting.current = true;
+    detecthashLocation(sliderRefs);
+  }, []);
+
+  useEffect(() => {
+    // TODO:要在用戶刷新後判斷切換的位置
+    console.log("data is change", scrollData);
+
+    if (!isIniting.current) {
+      const isWorkSection = scrollData.section === "Work";
+      window.location.hash = `#${scrollData.section}${
+        isWorkSection ? `/${scrollData.slider + 1}` : ``
+      }`;
+    }
+  }, [scrollData]);
 
   const scrollToTop = async (target: HTMLElement, direction: number) => {
     await new Promise((resolve: any) => {
@@ -68,7 +149,7 @@ const useSmoothScroller = (
         top: direction,
         behavior: "smooth",
       });
-      // target.focus({ preventScroll: true });
+
       setTimeout(() => {
         isTriggered.current = false;
         resolve();
@@ -85,7 +166,6 @@ const useSmoothScroller = (
         (el: Component) => el.name === scrollData.section
       );
       const rect = sectionRefs.current[elemIndex].getBoundingClientRect();
-      console.log(rect.top);
 
       if (
         rect.bottom - window.innerHeight <= 10 &&
@@ -93,8 +173,7 @@ const useSmoothScroller = (
         delta > 0 &&
         scrollData.section !== "Work"
       ) {
-        // the desired place
-        // console.log("is bottom");
+        // is near bottom
         e.preventDefault();
 
         if (!isTriggered.current) {
@@ -103,14 +182,12 @@ const useSmoothScroller = (
           await scrollToTop(body, delta);
         }
       } else if (
-        rect.top >= -30 &&
-        elemIndex !== 0 &&
-        delta < 0 &&
-        scrollData.section !== "Work"
+        rect.top >= -10 && // 距離
+        elemIndex !== 0 && // 第一張投影片不能往上
+        delta < 0 && // 方向往下
+        scrollData.section !== "Work" // 除了 Work 以外
       ) {
-        // rect.top <=
-        //   (window.innerHeight || document.documentElement.clientHeight) / 2;
-        console.log("is top");
+        // is near top
         e.preventDefault();
         if (!isTriggered.current) {
           isTriggered.current = true;
@@ -120,15 +197,10 @@ const useSmoothScroller = (
       } else if (
         sectionRefs.current[elemIndex].offsetHeight === window.innerHeight
       ) {
+        // 內容撐滿螢幕高
         e.preventDefault();
         isTriggered.current = false;
-      } else {
-        console.log("trigger");
       }
-      // let hash = window.location.hash;
-
-      // 將 hash 拆分成陣列，以"/"作為分隔符
-      // const hashParts: string[] = hash.split("/");
     },
     [fullpages, scrollData.section]
   );
@@ -140,24 +212,21 @@ const useSmoothScroller = (
 
       const delta = e.deltaY;
 
-      console.log(isTriggered.current);
       if (!isTriggered.current) {
         isTriggered.current = true;
-        console.log(scrollData, delta);
         if (
           scrollData.section === "Work" &&
           scrollData.slider === sliderRefs.current.length - 1 &&
           delta > 0
         ) {
-          // 去下層
-          console.log("triggerrrr");
+          // 離開 - 去下一張投影片
           await scrollToTop(document.body, delta);
         } else if (
           scrollData.section === "Work" &&
           scrollData.slider === 0 &&
           delta < 0
         ) {
-          // 去上層
+          // 離開 - 去上一張投影片
           await scrollToTop(document.body, delta);
         } else if (slidersScrollEl) {
           await scrollToTop(slidersScrollEl, delta);
@@ -184,8 +253,7 @@ const useSmoothScroller = (
 
   useEffect(() => {
     const body = document.body;
-    // TODO:要在用戶刷新後判斷切換的位置
-    // detecthashLocation(body);
+
     const handleScroll = () => {
       const activeSection = detectActiveSection(sectionRefs.current);
       if (typeof activeSection === "string") {
@@ -202,11 +270,9 @@ const useSmoothScroller = (
 
     const slidersScrollEl = slidersScrollRef.current;
     const sliderHandleScroll = () => {
-      // detectActiveSlider("Work");
       const activeSlider = detectActiveSlider(sliderRefs.current);
-      console.log(activeSlider);
+
       if (typeof activeSlider === "string") {
-        console.log(parseInt(activeSlider, 10));
         setScrollData((prevData) => ({
           ...prevData,
           slider: parseInt(activeSlider, 10),
@@ -229,6 +295,8 @@ const useSmoothScroller = (
     sliderRefs,
     slidersScrollRef,
     scrollData,
+    goTopScroll,
+    goSectionScroll,
   };
 };
 
