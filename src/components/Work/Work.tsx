@@ -5,6 +5,8 @@ import WorkImage from "@/components/Work/WorkImage";
 
 import { ComponentProps } from "@/util/types";
 
+import styles from "./styles.module.css";
+
 type ElementType = "sushi" | "drink" | "cactus";
 
 type Work = {
@@ -144,77 +146,31 @@ const Work = ({
   const renderWorksList = () => {
     return worksList.map((work, index) => {
       return (
-        <div
-          key={index}
-          className="container h-screen mx-auto flex justify-center items-center"
+        <li
+          ref={(el: any) => (sliderRefs.current[index + 1] = el)}
+          key={index + 1}
+          data-slide={index + 1}
+          className={styles.slider}
         >
-          <div className="px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
-            <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
-              <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
-              <p className="text-xl">{work.content}</p>
-            </div>
-            <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
-              <WorkImage
-                imageUrl={work.imageUrl}
-                imagePosition={work.imagePosition}
-              />
-              {renderWorkElement(work.elementType)}
+          <div className="container h-screen mx-auto flex justify-center items-center">
+            <div className="px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
+              <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
+                <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
+                <p className="text-xl">{work.content}</p>
+              </div>
+              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
+                <WorkImage
+                  imageUrl={work.imageUrl}
+                  imagePosition={work.imagePosition}
+                />
+                {renderWorkElement(work.elementType)}
+              </div>
             </div>
           </div>
-        </div>
+        </li>
       );
     });
   };
-
-  const detectActiveSlider = (sliders: HTMLCollectionOf<HTMLElement>) => {
-    let currentSectionSlide = null;
-
-    for (let i = 0; i < sliders.length; i++) {
-      var rect = sliders[i].getBoundingClientRect();
-
-      if (rect.top === 0 && rect.left === 0) {
-        currentSectionSlide = sliders[i].dataset.slide;
-      }
-    }
-
-    // 更新URL中的hash
-    if (currentSectionSlide) {
-      window.location.hash = `#Work/${currentSectionSlide}`;
-    }
-  };
-
-  useEffect(() => {
-    // const sliders = slidersRef.current.getElementsByTagName("li");
-    // const slider = slidersScrollRef.current;
-    // detectActiveSlider(sliders);
-    // const handleScroll = () => {
-    //   // const scrollTopPosition = slider.scrollTop;
-    //   // if (scrollTopPosition > lastScrollTop) {
-    //   //   // console.log("scrolling down");
-    //   // } else if (scrollTopPosition < lastScrollTop) {
-    //   //   // console.log("scrolling up");
-    //   // }
-    //   // lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
-    //   // detectActiveSlider(sliders);
-    // };
-    // const handlewheelScroll = (event: any) => {
-    //   event.preventDefault();
-    //   const delta = event.deltaY;
-    //   if (window.location.hash.indexOf("Work") !== -1) {
-    //     slider.scrollBy({
-    //       top: delta,
-    //       behavior: "smooth",
-    //     });
-    //   }
-    // };
-    // slider.addEventListener("scroll", handleScroll, {
-    //   passive: false,
-    // });
-    // slider.addEventListener("wheel", handlewheelScroll, { passive: false });
-    // return () => {
-    //   slider.removeEventListener("scroll", handleScroll);
-    // };
-  }, [window.location.hash]);
 
   return (
     <section
@@ -226,19 +182,67 @@ const Work = ({
       <div
         ref={slidersScrollRef}
         id="work-scrollbar"
-        className="container-m disabled-scrollbar"
+        className={styles.sliderContainer}
       >
-        <ul ref={slidersRef} className="wrapper-m">
-          {Array.from(Array(4).keys()).map((n, i) => (
-            <li
-              ref={(el: any) => (sliderRefs.current[i] = el)}
-              key={n}
-              data-slide={n}
-              className="slide-m flex items-center justify-center"
-            >
-              {n + 1}
-            </li>
-          ))}
+        <ul ref={slidersRef} className={styles.sliderWrapper}>
+          <li
+            ref={(el: any) => (sliderRefs.current[0] = el)}
+            data-slide="0"
+            className={styles.slider}
+          >
+            <div className="container h-screen mx-auto flex justify-center items-center relative overflow-x-hidden">
+              <Image
+                width={isWideScreen ? 200 : 150}
+                height={isWideScreen ? 200 : 150}
+                className="absolute bottom-24 left-6 lg:left-12"
+                src="images/sp-main.svg"
+                alt="sp-main"
+              />
+              <Image
+                width={20}
+                height={20}
+                className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36"
+                src="images/element/e-13.svg"
+                alt="e-13"
+              />
+              <Image
+                width={30}
+                height={30}
+                className="absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52"
+                src="images/element/e-14.svg"
+                alt="e-14"
+              />
+              <Image
+                width={15}
+                height={15}
+                className="absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48"
+                src="images/element/e-13.svg"
+                alt="e-13"
+              />
+              <div className="flex flex-col items-center justify-center">
+                <h4
+                  data-aos="fade-up"
+                  className="font-amatic-sc font-bold text-8xl mb-6"
+                >
+                  Side Projects
+                </h4>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                  className="w-full lg:w-1/2 text-lg text-center"
+                >
+                  I frequently dedicate my spare time to researching new
+                  technologies or engaging in practical exercises.
+                  <br /> For additional information, you can visit{" "}
+                  <a className="font-bold" href="http://google.com">
+                    My Github
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </li>
+          {renderWorksList()}
         </ul>
       </div>
     </section>

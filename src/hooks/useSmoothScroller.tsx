@@ -49,12 +49,11 @@ const useSmoothScroller = (
   };
 
   const goSectionScroll = (target: string) => {
-    const bannerEl = sectionRefs.current[0];
     const targetIndex = fullpages.findIndex(
       (page: Component) => target.toLowerCase() === page.name.toLowerCase()
     );
     const targetEl = sectionRefs.current[targetIndex];
-
+    console.log(fullpagesString[targetIndex]);
     setScrollData((prevData) => ({
       slider: 0,
       section: fullpagesString[targetIndex],
@@ -77,6 +76,7 @@ const useSmoothScroller = (
   const detecthashLocation = async (
     sliderRefs: React.MutableRefObject<HTMLLIElement[]>
   ) => {
+    console.log("sadadadadsda");
     if (window.location.hash) {
       let hash = window.location.hash;
 

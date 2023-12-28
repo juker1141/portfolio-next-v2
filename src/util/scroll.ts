@@ -101,7 +101,7 @@ export const detectActiveSlider = (sliders: HTMLLIElement[]) => {
     var rect = sliders[i].getBoundingClientRect();
 
     console.log(rect.top, rect.left);
-    if (rect.top <= 0 && rect.left <= 10) {
+    if (rect.top <= 1 && rect.left <= 10) {
       currentSectionSlide = sliders[i].dataset.slide;
     }
   }

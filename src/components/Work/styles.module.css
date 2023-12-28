@@ -1,0 +1,33 @@
+.sliderContainer {
+  width: 100vh;
+  height: 100vw;
+  transform: rotate(-90deg) translateX(-100vh);
+  transform-origin: top left;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-snap-type: both mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sliderContainer::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.sliderWrapper {
+  display: flex;
+  width: fit-content;
+  transform: rotate(90deg) translateY(-100vh);
+  transform-origin: top left;
+}
+
+.slider {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
