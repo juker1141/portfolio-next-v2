@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState, Fragment, useEffect, useRef } from "react";
 import WorkImage from "@/components/Work/WorkImage";
 
+import { ComponentProps } from "@/util/types";
+
 type ElementType = "sushi" | "drink" | "cactus";
 
 type Work = {
@@ -13,8 +15,12 @@ type Work = {
   elementType: ElementType;
 };
 
-const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
-  const slidersScrollRef = useRef<any>();
+const Work = ({
+  isWideScreen,
+  sectionRefs,
+  slidersScrollRef,
+  sliderRefs,
+}: ComponentProps) => {
   const slidersRef = useRef<any>();
   const [worksList, setWorksList] = useState<Work[]>([
     {
@@ -170,7 +176,7 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
         currentSectionSlide = sliders[i].dataset.slide;
       }
     }
-    // console.log(currentSectionSlide);
+
     // 更新URL中的hash
     if (currentSectionSlide) {
       window.location.hash = `#Work/${currentSectionSlide}`;
@@ -178,48 +184,44 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
   };
 
   useEffect(() => {
-    const sliders = slidersRef.current.getElementsByTagName("li");
-    const slider = slidersScrollRef.current;
-    let lastScrollTop = slider.scrollTop;
-
-    const handleScroll = (e: any) => {
-      const scrollTopPosition = slider.scrollTop;
-
-      if (scrollTopPosition > lastScrollTop) {
-        console.log("scrolling down");
-      } else if (scrollTopPosition < lastScrollTop) {
-        console.log("scrolling up");
-      }
-      lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
-      detectActiveSlider(sliders);
-    };
-
-    const handlewheelScroll = (event: any) => {
-      event.preventDefault();
-      const delta = event.deltaY;
-
-      if (window.location.hash.indexOf("Work") !== -1) {
-        slider.scrollBy({
-          top: delta,
-          behavior: "smooth",
-        });
-      }
-    };
-    slider.addEventListener("scroll", handleScroll, {
-      passive: false,
-    });
-    slider.addEventListener("wheel", handlewheelScroll, { passive: false });
-
-    return () => {
-      slider.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    // const sliders = slidersRef.current.getElementsByTagName("li");
+    // const slider = slidersScrollRef.current;
+    // detectActiveSlider(sliders);
+    // const handleScroll = () => {
+    //   // const scrollTopPosition = slider.scrollTop;
+    //   // if (scrollTopPosition > lastScrollTop) {
+    //   //   // console.log("scrolling down");
+    //   // } else if (scrollTopPosition < lastScrollTop) {
+    //   //   // console.log("scrolling up");
+    //   // }
+    //   // lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
+    //   // detectActiveSlider(sliders);
+    // };
+    // const handlewheelScroll = (event: any) => {
+    //   event.preventDefault();
+    //   const delta = event.deltaY;
+    //   if (window.location.hash.indexOf("Work") !== -1) {
+    //     slider.scrollBy({
+    //       top: delta,
+    //       behavior: "smooth",
+    //     });
+    //   }
+    // };
+    // slider.addEventListener("scroll", handleScroll, {
+    //   passive: false,
+    // });
+    // slider.addEventListener("wheel", handlewheelScroll, { passive: false });
+    // return () => {
+    //   slider.removeEventListener("scroll", handleScroll);
+    // };
+  }, [window.location.hash]);
 
   return (
     <section
+      ref={sectionRefs}
       id="work"
       data-anchor="Work"
-      className="section relative overflow-hidden h-screen"
+      className="section relative overflow-hidden min-h-screen"
     >
       <div
         ref={slidersScrollRef}
@@ -227,10 +229,11 @@ const Work = ({ isWideScreen }: { isWideScreen: boolean }) => {
         className="container-m disabled-scrollbar"
       >
         <ul ref={slidersRef} className="wrapper-m">
-          {Array.from(Array(4).keys()).map((n) => (
+          {Array.from(Array(4).keys()).map((n, i) => (
             <li
+              ref={(el: any) => (sliderRefs.current[i] = el)}
               key={n}
-              data-slide={n + 1}
+              data-slide={n}
               className="slide-m flex items-center justify-center"
             >
               {n + 1}

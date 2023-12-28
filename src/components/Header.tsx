@@ -5,7 +5,15 @@ import useCheckIsWide from "@/hooks/useCheckIsWide";
 import MenuBtn from "@/components/MenuBtn";
 import MenuList from "@/components/MenuList";
 
-const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
+import type { ScrollData } from "@/util/scroll";
+
+const Header = ({
+  isWideScreen,
+  scrollData,
+}: {
+  isWideScreen: boolean;
+  scrollData: ScrollData;
+}) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   // const [isWideScreen, setIsWideScreen] = useState(false);
   const [isShowMenuBtn, setIsShowMenuBtn] = useState(false);
@@ -16,10 +24,9 @@ const Header = ({ isWideScreen }: { isWideScreen: boolean }) => {
     };
 
     const checkHash = () => {
-      const currentHash = window.location.hash;
-      console.log(currentHash);
       // const isWideScreen = window.innerWidth > 1024;
       // if (!isWideScreen) return;
+      const currentHash = window.location.hash;
       if (currentHash === "#Banner" || currentHash === "") {
         // 在這裡執行你想要的操作
         setIsShowMenu(false);

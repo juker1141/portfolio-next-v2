@@ -7,15 +7,15 @@
   overflow: hidden;
 }
 
-.scrollContainer {
+.scroll-container {
   height: 100vh;
-  scroll-snap-type: y mandatory;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
-.scrollContainer section {
+.scroll-container section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   scroll-padding: 50px 0 0 0;
@@ -180,7 +180,7 @@ body button:hover {
   display: flex;
   /* width: 400vw; */
   width: fit-content;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   transform: rotate(90deg) translateY(-100vh);
   transform-origin: top left;
 }

@@ -6,9 +6,8 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm, SubmitHandler } from "react-hook-form";
-// import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
-// import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { ComponentProps } from "@/util/types";
 
 type Inputs = {
   name: string;
@@ -16,7 +15,7 @@ type Inputs = {
   message: string;
 };
 
-const Contact = ({ isWideScreen }: { isWideScreen: boolean }) => {
+const Contact = ({ isWideScreen, sectionRefs }: ComponentProps) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [notification, setNotification] = useState("");
 
@@ -84,6 +83,7 @@ const Contact = ({ isWideScreen }: { isWideScreen: boolean }) => {
 
   return (
     <section
+      ref={sectionRefs}
       id="contact"
       data-anchor="Contact"
       className="section relative overflow-hidden"

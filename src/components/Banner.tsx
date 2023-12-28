@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+
 import Underline from "@/components/Underline";
 
-// const titles = ["Frontend Software Developer", "Backend Software Developer"];
+import { ComponentProps } from "@/util/types";
 
-const Banner = ({ isWideScreen }: { isWideScreen: boolean }) => {
+const Banner = ({ isWideScreen, sectionRefs }: ComponentProps) => {
   return (
     <section
+      ref={sectionRefs}
       id="banner"
       data-anchor="Banner"
-      className="container h-screen mx-auto flex justify-center items-center"
+      className="container min-h-screen mx-auto flex justify-center items-center"
     >
       <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
         <div className="flex flex-col justify-center items-start relative">

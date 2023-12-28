@@ -1,11 +1,14 @@
 import Image from "next/image";
 
-const Experience = ({ isWideScreen }: { isWideScreen: boolean }) => {
+import { ComponentProps } from "@/util/types";
+
+const Experience = ({ isWideScreen, sectionRefs }: ComponentProps) => {
   return (
     <section
+      ref={sectionRefs}
       id="experience"
       data-anchor="Experience"
-      className="container h-screen mx-auto flex justify-center items-center experience"
+      className="container min-h-screen mx-auto flex justify-center items-center experience"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
         <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">

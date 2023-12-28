@@ -1,6 +1,6 @@
 "use client";
 import Script from "next/script";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import AOS from "aos";
 import Rellax from "rellax";
@@ -22,15 +22,11 @@ import Work from "@/components/Work/Work";
 import Contact from "@/components/Contact/Contact";
 import GoTopBtn from "@/components/GoTopBtn";
 
+import { Component } from "@/util/types";
+
 export type FullpageApi = Object;
-type Component = ({ isWideScreen }: { isWideScreen: boolean }) => JSX.Element;
 
 export default function Home() {
-  useSmoothScroller();
-  const { isWideScreen } = useCheckIsWide();
-  const recaptchaKey: string | undefined =
-    process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
   const [fullpages, setFullpages] = useState<Component[]>([
     Banner,
     About,
@@ -39,12 +35,21 @@ export default function Home() {
     Contact,
   ]);
 
+  const fullpagesString = fullpages.map((page: Component) => page.name);
+  const { sectionRefs, sliderRefs, slidersScrollRef, scrollData } =
+    useSmoothScroller(fullpages, fullpagesString);
+
+  const { isWideScreen } = useCheckIsWide();
+  const recaptchaKey: string | undefined =
+    process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
   useEffect(() => {
     new Rellax(".rellax-el", {
       wrapper: "body",
       speed: 0,
     });
     AOS.init();
+    console.log(sectionRefs.current, sliderRefs.current);
     const aosAnimation = document.querySelectorAll("[data-aos]");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -65,6 +70,7 @@ export default function Home() {
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <GoogleReCaptchaProvider
         reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
+        // TODO: 正式版需要設定我不是機器人標章位置
         // container={{
         //   element: "reCaptchaEl",
         //   parameters: {
@@ -72,7 +78,7 @@ export default function Home() {
         //   },
         // }}
       >
-        <Header isWideScreen={isWideScreen} />
+        <Header isWideScreen={isWideScreen} scrollData={scrollData} />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
         {/* <ReactFullpage
@@ -108,7 +114,13 @@ export default function Home() {
           )}
         /> */}
         {fullpages.map((Component, index) => (
-          <Component key={index} isWideScreen={isWideScreen} />
+          <Component
+            sectionRefs={(el: HTMLElement) => (sectionRefs.current[index] = el)}
+            sliderRefs={sliderRefs}
+            slidersScrollRef={slidersScrollRef}
+            key={index}
+            isWideScreen={isWideScreen}
+          />
         ))}
         <GoTopBtn />
         {/* <Footer /> */}
