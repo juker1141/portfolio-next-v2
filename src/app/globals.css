@@ -18,7 +18,7 @@
 .scroll-container section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  scroll-padding: 50px 0 0 0;
+  /* scroll-padding: 50px 0 0 0; */
 }
 
 /*:root {

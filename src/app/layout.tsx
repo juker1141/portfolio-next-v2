@@ -5,6 +5,7 @@ import "./globals.css";
 import "./doodle.css";
 import "./experience.css";
 import "aos/dist/aos.css";
+import "animate.css/animate.compat.css";
 
 const amaticSC = Amatic_SC({
   weight: ["400", "700"],

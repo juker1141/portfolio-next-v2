@@ -55,6 +55,11 @@ export default function Home() {
       wrapper: "body",
       speed: 0,
     });
+    new Rellax(".rellax-h-el", {
+      wrapper: "body",
+      speed: 0,
+      horizontal: true,
+    });
     AOS.init();
     const aosAnimation = document.querySelectorAll("[data-aos]");
     const observer = new IntersectionObserver((entries) => {

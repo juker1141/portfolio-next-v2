@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ScrollAnimation from "react-animate-on-scroll";
 
 import { ComponentProps } from "@/util/types";
 
@@ -12,45 +13,60 @@ const Experience = ({ isWideScreen, sectionRefs }: ComponentProps) => {
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
         <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
-          <div className="relative px-8 lg:px-0 hidden lg:block">
-            <Image
-              width={400}
-              height={400}
-              src="images/ex-main.svg"
-              alt="ex-main"
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-easing="ease-in-out-back"
-            />
-            <Image
-              width={100}
-              height={100}
-              className="absolute bottom-1 -left-12 animate-breath hidden lg:block"
-              src="images/ex-main-wind.svg"
-              alt="ex-main-wind"
-              data-aos="fade-right"
-              data-aos-delay="1000"
-            />
-          </div>
           <Image
             width={120}
             height={120}
-            data-rellax-speed="4"
-            data-rellax-percentage="0.5"
-            // className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
-            className="absolute hidden lg:block -top-8 -right-0"
+            data-rellax-speed="5"
+            data-rellax-min-y="0"
+            // data-rellax-percentage="-.5"
+            data-rellax-vertical-scroll-axis="x"
+            className="absolute hidden lg:block -top-8 left-[700px] rellax-h-el"
             src="images/element/e-9.svg"
             alt="e-9-cloud"
           />
-          <ul
-            data-aos="fade-right"
-            data-aos-delay="1000"
-            className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutRight"
+            scrollableParentSelector="body"
           >
-            <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-            <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-            <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-          </ul>
+            <div
+              data-rellax-speed="-8"
+              data-rellax-percentage="1.4"
+              // data-rellax-min="-120"
+              data-rellax-min-y="0"
+              data-rellax-min-x="-300"
+              data-rellax-vertical-scroll-axis="x"
+              className="relative"
+            >
+              <div className="relative px-8 lg:px-0 hidden lg:block">
+                <Image
+                  width={400}
+                  height={400}
+                  src="images/ex-main.svg"
+                  alt="ex-main"
+                  data-aos="fade-right"
+                  data-aos-delay="300"
+                  data-aos-easing="ease-in-out-back"
+                />
+                <Image
+                  width={100}
+                  height={100}
+                  className="absolute bottom-1 -left-12 animate-breath hidden lg:block "
+                  src="images/ex-main-wind.svg"
+                  alt="ex-main-wind"
+                />
+              </div>
+              <ul
+                data-aos="fade-right"
+                data-aos-delay="1000"
+                className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5"
+              >
+                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+              </ul>
+            </div>
+          </ScrollAnimation>
         </div>
         <div className="lg:col-span-3 flex flex-col lg:pr-16 xl:pr-0 relative">
           <Image
@@ -73,33 +89,39 @@ const Experience = ({ isWideScreen, sectionRefs }: ComponentProps) => {
             src="images/element/e-8.svg"
             alt="e-8-c"
           />
-          <div
-            className="flex flex-col relative"
-            data-aos="fade-right"
-            data-aos-delay="500"
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutRight"
+            scrollableParentSelector="body"
           >
-            <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
-              Experience
-            </h4>
-            <p className="lg:text-lg font-light">Oct 2021 - Present</p>
-            <h3 className="text-xl lg:text-2xl font-bold mb-2">
-              Frontend Developer
-            </h3>
-            <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
-              RealTime Ltd.
-            </span>
-            <p className="text-sm lg:text-lg mb-10">
-              Responsible for layout and JavaScript. I participated in two
-              Next.js & Web3 blockchain projects, two backstage management
-              system by Vue.js and a real-time chat robot with a backstage page
-              by React.js.
-              {/* <br />
+            <div
+              className="flex flex-col relative"
+              // data-aos="fade-right"
+              // data-aos-delay="500"
+            >
+              <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
+                Experience
+              </h4>
+              <p className="lg:text-lg font-light">Oct 2021 - Present</p>
+              <h3 className="text-xl lg:text-2xl font-bold mb-2">
+                Frontend Developer
+              </h3>
+              <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
+                RealTime Ltd.
+              </span>
+              <p className="text-sm lg:text-lg mb-10">
+                Responsible for layout and JavaScript. I participated in two
+                Next.js & Web3 blockchain projects, two backstage management
+                system by Vue.js and a real-time chat robot with a backstage
+                page by React.js.
+                {/* <br />
                 <br />I usually play a leader in how to develop the project and
                 discuss with developers to solve the problem. Also, I introduced
                 Functional Programming, TypeScript, and Unit Test to improve
                 development flow, reduce bugs and maintain costs. */}
-            </p>
-          </div>
+              </p>
+            </div>
+          </ScrollAnimation>
 
           <div
             className="flex flex-col"

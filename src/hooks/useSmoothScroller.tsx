@@ -53,7 +53,7 @@ const useSmoothScroller = (
       (page: Component) => target.toLowerCase() === page.name.toLowerCase()
     );
     const targetEl = sectionRefs.current[targetIndex];
-    console.log(fullpagesString[targetIndex]);
+
     setScrollData((prevData) => ({
       slider: 0,
       section: fullpagesString[targetIndex],
@@ -76,7 +76,6 @@ const useSmoothScroller = (
   const detecthashLocation = async (
     sliderRefs: React.MutableRefObject<HTMLLIElement[]>
   ) => {
-    console.log("sadadadadsda");
     if (window.location.hash) {
       let hash = window.location.hash;
 
@@ -133,7 +132,7 @@ const useSmoothScroller = (
 
   useEffect(() => {
     // TODO:要在用戶刷新後判斷切換的位置
-    console.log("data is change", scrollData);
+    // console.log("data is change", scrollData);
 
     if (!isIniting.current) {
       const isWorkSection = scrollData.section === "Work";
@@ -153,7 +152,7 @@ const useSmoothScroller = (
       setTimeout(() => {
         isTriggered.current = false;
         resolve();
-      }, 1200); // 這裡可以根據需要調整等待的時間，或者使用其他方式來確保Promise結束
+      }, 1500); // 這裡可以根據需要調整等待的時間，或者使用其他方式來確保Promise結束
     });
   };
 

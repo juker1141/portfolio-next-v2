@@ -50,10 +50,10 @@ export const isLastSilder = (hash: string, section: string) => {
     hash.indexOf(`#${section}/${sliders.length}`) !== -1 &&
     hashParts[1] === sliders.length.toString()
   ) {
-    console.log(
-      `#${section}/${sliders.length}`,
-      hashParts[1] === sliders.length.toString()
-    );
+    // console.log(
+    //   `#${section}/${sliders.length}`,
+    //   hashParts[1] === sliders.length.toString()
+    // );
     return true;
   }
   return false;
@@ -100,12 +100,12 @@ export const detectActiveSlider = (sliders: HTMLLIElement[]) => {
   for (let i = 0; i < sliders.length; i++) {
     var rect = sliders[i].getBoundingClientRect();
 
-    console.log(rect.top, rect.left);
+    // console.log(rect.top, rect.left);
     if (rect.top <= 1 && rect.left <= 10) {
       currentSectionSlide = sliders[i].dataset.slide;
     }
   }
-  console.log(currentSectionSlide);
+  // console.log(currentSectionSlide);
 
   // 更新URL中的hash
   if (currentSectionSlide) {

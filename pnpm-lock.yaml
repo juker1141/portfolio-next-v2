@@ -26,6 +26,9 @@ dependencies:
   '@types/rellax':
     specifier: ^1.7.7
     version: 1.7.7
+  animate.css:
+    specifier: ^4.1.1
+    version: 4.1.1
   aos:
     specifier: ^2.3.4
     version: 2.3.4
@@ -41,6 +44,9 @@ dependencies:
   react:
     specifier: ^18
     version: 18.2.0
+  react-animate-on-scroll:
+    specifier: ^2.1.7
+    version: 2.1.7(classnames@2.5.0)(react@18.2.0)
   react-dom:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
@@ -73,6 +79,9 @@ devDependencies:
   '@types/react':
     specifier: 18.2.42
     version: 18.2.42
+  '@types/react-animate-on-scroll':
+    specifier: ^2.1.8
+    version: 2.1.8
   '@types/react-dom':
     specifier: ^18
     version: 18.2.18
@@ -1308,6 +1317,12 @@ packages:
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
     dev: true
 
+  /@types/react-animate-on-scroll@2.1.8:
+    resolution: {integrity: sha512-Lyd1hb1aY9T0bOUL3VE7bKuOlAv2nBziJg5piDLqW+jxzy5jCa/nIftsOpYxZ0+Sdo0wFXuI6tpLo6B0Q288IQ==}
+    dependencies:
+      '@types/react': 18.2.42
+    dev: true
+
   /@types/react-dom@18.2.18:
     resolution: {integrity: sha512-TJxDm6OfAX2KJWJdMEVTwWke5Sc/E/RlnPGvGfS0W7+6ocy2xhDVQVh/KvC2Uf7kACs+gDytdusDSdWfWkaNzw==}
     dependencies:
@@ -1464,6 +1479,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /animate.css@4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
+    dev: false
 
   /ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
@@ -1897,6 +1916,10 @@ packages:
 
   /classlist-polyfill@1.2.0:
     resolution: {integrity: sha512-GzIjNdcEtH4ieA2S8NmrSxv7DfEV5fmixQeyTmqmRmRJPGpRBaSnA2a0VrCjyT8iW8JjEdMbKzDotAJf+ajgaQ==}
+    dev: false
+
+  /classnames@2.5.0:
+    resolution: {integrity: sha512-FQuRlyKinxrb5gwJlfVASbSrDlikDJ07426TrfPsdGLvtochowmkbnSFdQGJ2aoXrSetq5KqGV9emvWpy+91xA==}
     dev: false
 
   /client-only@0.0.1:
@@ -4565,6 +4588,18 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /react-animate-on-scroll@2.1.7(classnames@2.5.0)(react@18.2.0):
+    resolution: {integrity: sha512-A4MsApouThr2YhguCQ0fq/HVOLtDMuBM1XCHxhYug8k2NfP0S4S6B7qhrVjylMCX4zFAnTa+YKz7eQG/StizFw==}
+    peerDependencies:
+      classnames: ^2.2.5
+      react: '>= 15.4.1 < 17.0.0-0'
+    dependencies:
+      classnames: 2.5.0
+      lodash.throttle: 4.1.1
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
