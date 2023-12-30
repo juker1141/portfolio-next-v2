@@ -60,6 +60,11 @@ export default function Home() {
       speed: 0,
       horizontal: true,
     });
+    new Rellax(".rellax-work-el", {
+      wrapper: "#work-scrollbar",
+      speed: 0,
+      horizontal: true,
+    });
     AOS.init();
     const aosAnimation = document.querySelectorAll("[data-aos]");
     const observer = new IntersectionObserver((entries) => {

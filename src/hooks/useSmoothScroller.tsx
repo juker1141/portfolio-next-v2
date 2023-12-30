@@ -119,10 +119,10 @@ const useSmoothScroller = (
             block: "start",
           });
         }
-
-        isIniting.current = false;
       }
     }
+
+    isIniting.current = false;
   };
 
   useEffect(() => {
@@ -131,10 +131,10 @@ const useSmoothScroller = (
   }, []);
 
   useEffect(() => {
-    // TODO:要在用戶刷新後判斷切換的位置
     // console.log("data is change", scrollData);
 
     if (!isIniting.current) {
+      console.log(2131321);
       const isWorkSection = scrollData.section === "Work";
       window.location.hash = `#${scrollData.section}${
         isWorkSection ? `/${scrollData.slider + 1}` : ``
@@ -238,12 +238,12 @@ const useSmoothScroller = (
   useEffect(() => {
     const slidersScrollEl = slidersScrollRef.current;
 
-    document.body.addEventListener("wheel", handleWheelScroll, {
-      passive: false,
-    });
-    slidersScrollEl?.addEventListener("wheel", sliderHandleWheelScroll, {
-      passive: false,
-    });
+    // document.body.addEventListener("wheel", handleWheelScroll, {
+    //   passive: false,
+    // });
+    // slidersScrollEl?.addEventListener("wheel", sliderHandleWheelScroll, {
+    //   passive: false,
+    // });
     return () => {
       document.body.removeEventListener("wheel", handleWheelScroll);
       slidersScrollEl?.removeEventListener("wheel", sliderHandleWheelScroll);

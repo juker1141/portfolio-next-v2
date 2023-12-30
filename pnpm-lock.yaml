@@ -20,6 +20,9 @@ dependencies:
   '@fullpage/react-fullpage':
     specifier: ^0.1.40
     version: 0.1.40
+  '@types/lodash':
+    specifier: ^4.14.202
+    version: 4.14.202
   '@types/nodemailer':
     specifier: ^6.4.14
     version: 6.4.14
@@ -35,6 +38,9 @@ dependencies:
   axios:
     specifier: ^1.6.2
     version: 1.6.2
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   next:
     specifier: 14.0.0
     version: 14.0.0(@babel/core@7.23.6)(react-dom@18.2.0)(react@18.2.0)
@@ -46,7 +52,10 @@ dependencies:
     version: 18.2.0
   react-animate-on-scroll:
     specifier: ^2.1.7
-    version: 2.1.7(classnames@2.5.0)(react@18.2.0)
+    version: 2.1.7(classnames@2.5.1)(react@18.2.0)
+  react-click-away-listener:
+    specifier: ^2.2.3
+    version: 2.2.3(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
@@ -1302,6 +1311,10 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
+  /@types/lodash@4.14.202:
+    resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
+    dev: false
+
   /@types/node@20.10.3:
     resolution: {integrity: sha512-XJavIpZqiXID5Yxnxv3RUDKTN5b81ddNC3ecsA0SoFXz/QU8OGBwZGMomiq0zw+uuqbL/krztv/DINAQ/EV4gg==}
     dependencies:
@@ -1918,8 +1931,8 @@ packages:
     resolution: {integrity: sha512-GzIjNdcEtH4ieA2S8NmrSxv7DfEV5fmixQeyTmqmRmRJPGpRBaSnA2a0VrCjyT8iW8JjEdMbKzDotAJf+ajgaQ==}
     dev: false
 
-  /classnames@2.5.0:
-    resolution: {integrity: sha512-FQuRlyKinxrb5gwJlfVASbSrDlikDJ07426TrfPsdGLvtochowmkbnSFdQGJ2aoXrSetq5KqGV9emvWpy+91xA==}
+  /classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
     dev: false
 
   /client-only@0.0.1:
@@ -4033,7 +4046,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -4589,16 +4601,26 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-animate-on-scroll@2.1.7(classnames@2.5.0)(react@18.2.0):
+  /react-animate-on-scroll@2.1.7(classnames@2.5.1)(react@18.2.0):
     resolution: {integrity: sha512-A4MsApouThr2YhguCQ0fq/HVOLtDMuBM1XCHxhYug8k2NfP0S4S6B7qhrVjylMCX4zFAnTa+YKz7eQG/StizFw==}
     peerDependencies:
       classnames: ^2.2.5
       react: '>= 15.4.1 < 17.0.0-0'
     dependencies:
-      classnames: 2.5.0
+      classnames: 2.5.1
       lodash.throttle: 4.1.1
       prop-types: 15.8.1
       react: 18.2.0
+    dev: false
+
+  /react-click-away-listener@2.2.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-p63JRQtK9d085+QHUJ2Pje22P/N4tEaXsS2x7tbbptriQqZ9o8xEk7G1JrxwND5YmEVc/VO4fC3+cSBsqqgLUQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-dom@18.2.0(react@18.2.0):

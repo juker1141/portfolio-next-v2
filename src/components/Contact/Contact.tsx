@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm, SubmitHandler } from "react-hook-form";
+import ScrollAnimation from "react-animate-on-scroll";
 
 import { ComponentProps } from "@/util/types";
 
@@ -112,16 +113,28 @@ const Contact = ({ isWideScreen, sectionRefs }: ComponentProps) => {
         />
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-4 lg:px-8 xl:px-0 md:mt-12 lg:mb-0">
           <div className="lg:col-span-2 flex flex-col items-center justify-center">
-            <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
-              Get in Touch
-            </h4>
-            <Image
-              src="/images/contact-main2.svg"
-              width={400}
-              height={400}
-              className="hidden lg:block"
-              alt="contact-main"
-            />
+            <ScrollAnimation
+              animateIn="lightSpeedInLeft"
+              animateOut="fadeOutDown"
+              scrollableParentSelector="body"
+            >
+              <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
+                Get in Touch
+              </h4>
+            </ScrollAnimation>
+            <ScrollAnimation
+              animateIn="fadeInBottomLeft"
+              animateOut="fadeOut"
+              scrollableParentSelector="body"
+            >
+              <Image
+                src="/images/contact-main2.svg"
+                width={400}
+                height={400}
+                className="hidden lg:block"
+                alt="contact-main"
+              />
+            </ScrollAnimation>
           </div>
           <div className="lg:col-span-3 flex flex-col justify-center">
             <form

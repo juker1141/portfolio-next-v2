@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState, Fragment, useEffect, useRef } from "react";
+import ScrollAnimation from "react-animate-on-scroll";
+
 import WorkImage from "@/components/Work/WorkImage";
 
 import { ComponentProps } from "@/util/types";
@@ -15,6 +17,9 @@ type Work = {
   imageUrl: string;
   imagePosition: string;
   elementType: ElementType;
+  animateIn: string;
+  animateOut: string;
+  delay: number;
 };
 
 const Work = ({
@@ -32,6 +37,9 @@ const Work = ({
       imageUrl: "/works/maskMap_1.jpg",
       imagePosition: "bg-left",
       elementType: "sushi",
+      animateIn: "",
+      animateOut: "hinge",
+      delay: 200,
     },
     {
       title: "Project2",
@@ -40,6 +48,9 @@ const Work = ({
       imageUrl: "/works/music_1.jpg",
       imagePosition: "bg-center",
       elementType: "drink",
+      animateIn: "",
+      animateOut: "slideOutLeft",
+      delay: 0,
     },
     {
       title: "Project3",
@@ -48,6 +59,9 @@ const Work = ({
       imageUrl: "/works/stores_1.jpg",
       imagePosition: "bg-center",
       elementType: "cactus",
+      animateIn: "",
+      animateOut: "fadeInUpBig",
+      delay: 100,
     },
   ]);
 
@@ -59,21 +73,32 @@ const Work = ({
             <Image
               width={100}
               height={100}
-              className="absolute top-12 lg:left-0 xl:left-20"
+              data-rellax-speed="-7"
+              data-rellax-min-y="0"
+              data-rellax-percentage=".15"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute top-12 lg:left-0 xl:left-20 rellax-work-el"
               src="images/element/e-9.svg"
               alt="e-9"
             />
             <Image
               width={70}
               height={70}
-              className="absolute -top-0 lg:right-6 xl:right-24"
+              data-rellax-speed="-7"
+              data-rellax-min-y="0"
+              data-rellax-percentage="-.15"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute -top-0 lg:right-6 xl:right-24 rellax-work-el"
               src="images/element/e-9.svg"
               alt="e-9"
             />
             <Image
               width={200}
               height={200}
-              className="absolute -bottom-0 right-0 xl:right-16"
+              data-rellax-speed="5"
+              data-rellax-min-y="0"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute -bottom-0 right-0 xl:-right-96 rellax-work-el"
               src="images/element/e-22.svg"
               alt="e-22"
             />
@@ -85,21 +110,33 @@ const Work = ({
             <Image
               width={160}
               height={160}
-              className="absolute -bottom-8 left-0 xl:left-12"
+              data-rellax-speed="-7"
+              data-rellax-min-y="0"
+              data-rellax-percentage="-.2"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute -bottom-8 left-0 xl:left-12 rellax-work-el"
               src="images/element/e-23.svg"
               alt="e-23"
             />
             <Image
               width={60}
               height={60}
-              className="absolute -top-10 lg:-left-8 xl:left-12 rotate-90"
+              data-rellax-speed="2"
+              data-rellax-min-y="0"
+              // data-rellax-percentage="-.15"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute -top-10 lg:-left-8 xl:left-[450px] rotate-90 rellax-work-el"
               src="images/element/e-17.svg"
               alt="e-17"
             />
             <Image
               width={30}
               height={30}
-              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45"
+              data-rellax-speed="-3"
+              data-rellax-min-y="0"
+              data-rellax-percentage="-.8"
+              data-rellax-vertical-scroll-axis="x"
+              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45 rellax-work-el"
               src="images/element/e-18.svg"
               alt="e-18"
             />
@@ -111,14 +148,18 @@ const Work = ({
             <Image
               width={40}
               height={40}
-              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12"
+              data-rellax-speed="-5"
+              data-rellax-percentage="-.2"
+              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12 rellax-el"
               src="images/element/e-6.svg"
               alt="e-6"
             />
             <Image
               width={30}
               height={30}
-              className="absolute -top-0 lg:left-0 xl:left-12"
+              data-rellax-speed="-5"
+              data-rellax-percentage="-.3"
+              className="absolute -top-0 lg:left-0 xl:left-12 rellax-el"
               src="images/element/e-5.svg"
               alt="e-5"
             />
@@ -132,7 +173,9 @@ const Work = ({
             <Image
               width={40}
               height={40}
-              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12"
+              data-rellax-speed="5"
+              data-rellax-percentage="-1.4"
+              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12 rellax-el"
               src="images/element/e-5.svg"
               alt="e-5"
             />
@@ -155,8 +198,21 @@ const Work = ({
           <div className="container h-screen mx-auto flex justify-center items-center">
             <div className="px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
               <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
-                <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
-                <p className="text-xl">{work.content}</p>
+                <h2
+                  data-aos="fade-up"
+                  data-aos-duration="700"
+                  className="text-4xl lg:text-5xl mb-4"
+                >
+                  {work.title}
+                </h2>
+                <p
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                  data-aos-duration="700"
+                  className="text-xl"
+                >
+                  {work.content}
+                </p>
               </div>
               <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
                 <WorkImage
@@ -184,7 +240,7 @@ const Work = ({
         id="work-scrollbar"
         className={styles.sliderContainer}
       >
-        <ul ref={slidersRef} className={styles.sliderWrapper}>
+        <ul ref={slidersRef} id="work-wrapper" className={styles.sliderWrapper}>
           <li
             ref={(el: any) => (sliderRefs.current[0] = el)}
             data-slide="0"
@@ -194,32 +250,44 @@ const Work = ({
               <Image
                 width={isWideScreen ? 200 : 150}
                 height={isWideScreen ? 200 : 150}
-                className="absolute bottom-24 left-6 lg:left-12"
+                data-rellax-speed="-10"
+                data-rellax-vertical-scroll-axis="x"
+                className="absolute bottom-24 left-6 lg:left-12 rellax-work-el"
                 src="images/sp-main.svg"
                 alt="sp-main"
               />
               <Image
                 width={20}
                 height={20}
-                className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36"
+                className="absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36 rellax-work-el"
+                data-rellax-speed="-3"
+                data-rellax-vertical-scroll-axis="x"
                 src="images/element/e-13.svg"
                 alt="e-13"
               />
               <Image
                 width={30}
                 height={30}
-                className="absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52"
+                className="absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52 rellax-work-el"
+                data-rellax-speed="-7"
+                data-rellax-vertical-scroll-axis="x"
                 src="images/element/e-14.svg"
                 alt="e-14"
               />
               <Image
                 width={15}
                 height={15}
-                className="absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48"
+                className="absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48 rellax-work-el"
+                data-rellax-speed="-7"
+                data-rellax-vertical-scroll-axis="x"
                 src="images/element/e-13.svg"
                 alt="e-13"
               />
-              <div className="flex flex-col items-center justify-center">
+              <div
+                data-rellax-speed="5"
+                data-rellax-vertical-scroll-axis="x"
+                className="flex flex-col items-center justify-center rellax-work-el"
+              >
                 <h4
                   data-aos="fade-up"
                   className="font-amatic-sc font-bold text-8xl mb-6"

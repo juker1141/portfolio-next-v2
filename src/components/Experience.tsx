@@ -9,76 +9,71 @@ const Experience = ({ isWideScreen, sectionRefs }: ComponentProps) => {
       ref={sectionRefs}
       id="experience"
       data-anchor="Experience"
-      className="container min-h-screen mx-auto flex justify-center items-center experience"
+      className="container min-h-screen mx-auto flex justify-center items-center relative experience"
     >
+      <Image
+        width={120}
+        height={120}
+        data-rellax-speed="5"
+        data-rellax-min-y="0"
+        // data-rellax-percentage="-.5"
+        data-rellax-vertical-scroll-axis="x"
+        className="absolute hidden lg:block top-24 left-[900px] rellax-h-el"
+        src="images/element/e-9.svg"
+        alt="e-9-cloud"
+      />
+      <Image
+        width={120}
+        height={120}
+        data-rellax-speed="3"
+        data-rellax-min-y="0"
+        // data-rellax-percentage="-.5"
+        data-rellax-vertical-scroll-axis="x"
+        className="absolute top-64 right-12 hidden lg:block rellax-h-el"
+        src="images/element/e-9.svg"
+        alt="e-9-cloud"
+      />
       <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
         <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
-          <Image
-            width={120}
-            height={120}
-            data-rellax-speed="5"
+          <div
+            data-rellax-speed="-8"
+            data-rellax-percentage="1.4"
+            // data-rellax-min="-120"
             data-rellax-min-y="0"
-            // data-rellax-percentage="-.5"
+            data-rellax-min-x="-300"
             data-rellax-vertical-scroll-axis="x"
-            className="absolute hidden lg:block -top-8 left-[700px] rellax-h-el"
-            src="images/element/e-9.svg"
-            alt="e-9-cloud"
-          />
-          <ScrollAnimation
-            animateIn="fadeInLeft"
-            animateOut="fadeOutRight"
-            scrollableParentSelector="body"
+            className="relative rellax-h-el"
           >
-            <div
-              data-rellax-speed="-8"
-              data-rellax-percentage="1.4"
-              // data-rellax-min="-120"
-              data-rellax-min-y="0"
-              data-rellax-min-x="-300"
-              data-rellax-vertical-scroll-axis="x"
-              className="relative"
-            >
-              <div className="relative px-8 lg:px-0 hidden lg:block">
-                <Image
-                  width={400}
-                  height={400}
-                  src="images/ex-main.svg"
-                  alt="ex-main"
-                  data-aos="fade-right"
-                  data-aos-delay="300"
-                  data-aos-easing="ease-in-out-back"
-                />
-                <Image
-                  width={100}
-                  height={100}
-                  className="absolute bottom-1 -left-12 animate-breath hidden lg:block "
-                  src="images/ex-main-wind.svg"
-                  alt="ex-main-wind"
-                />
-              </div>
-              <ul
+            <div className="relative px-8 lg:px-0 hidden lg:block">
+              <Image
+                width={400}
+                height={400}
+                src="images/ex-main.svg"
+                alt="ex-main"
                 data-aos="fade-right"
-                data-aos-delay="1000"
-                className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5"
-              >
-                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-                <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
-              </ul>
+                data-aos-delay="300"
+                data-aos-easing="ease-in-out-back"
+              />
+              <Image
+                width={100}
+                height={100}
+                className="absolute bottom-1 -left-12 animate-breath hidden lg:block "
+                src="images/ex-main-wind.svg"
+                alt="ex-main-wind"
+              />
             </div>
-          </ScrollAnimation>
+            <ul
+              data-aos="fade-right"
+              data-aos-delay="1000"
+              className="speed-lines absolute top-1/2 translate-y-1/2 -left-10 animate-fix-0.5"
+            >
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+              <li className="animate-speed origin-bottom-right h-0.5 my-7 bg-primary"></li>
+            </ul>
+          </div>
         </div>
         <div className="lg:col-span-3 flex flex-col lg:pr-16 xl:pr-0 relative">
-          <Image
-            width={120}
-            height={120}
-            data-rellax-speed="-5"
-            data-rellax-percentage="0.5"
-            // className="absolute top-10 right-20 hidden lg:block rellax-el"
-            className="absolute top-20 right-20 hidden lg:block"
-            src="images/element/e-9.svg"
-            alt="e-9-cloud"
-          />
           <Image
             width={80}
             height={80}
@@ -89,40 +84,33 @@ const Experience = ({ isWideScreen, sectionRefs }: ComponentProps) => {
             src="images/element/e-8.svg"
             alt="e-8-c"
           />
-          <ScrollAnimation
-            animateIn="fadeInLeft"
-            animateOut="fadeOutRight"
-            scrollableParentSelector="body"
+          <div
+            className="flex flex-col relative"
+            data-aos="fade-right"
+            data-aos-delay="500"
           >
-            <div
-              className="flex flex-col relative"
-              // data-aos="fade-right"
-              // data-aos-delay="500"
-            >
-              <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
-                Experience
-              </h4>
-              <p className="lg:text-lg font-light">Oct 2021 - Present</p>
-              <h3 className="text-xl lg:text-2xl font-bold mb-2">
-                Frontend Developer
-              </h3>
-              <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
-                RealTime Ltd.
-              </span>
-              <p className="text-sm lg:text-lg mb-10">
-                Responsible for layout and JavaScript. I participated in two
-                Next.js & Web3 blockchain projects, two backstage management
-                system by Vue.js and a real-time chat robot with a backstage
-                page by React.js.
-                {/* <br />
+            <h4 className="text-8xl font-amatic-sc font-bold mb-10 lg:mb-6">
+              Experience
+            </h4>
+            <p className="lg:text-lg font-light">Oct 2021 - Present</p>
+            <h3 className="text-xl lg:text-2xl font-bold mb-2">
+              Frontend Developer
+            </h3>
+            <span className="text-sm font-light lg:font-normal lg:text-base flex justify-end mb-2">
+              RealTime Ltd.
+            </span>
+            <p className="text-sm lg:text-lg mb-10">
+              Responsible for layout and JavaScript. I participated in two
+              Next.js & Web3 blockchain projects, two backstage management
+              system by Vue.js and a real-time chat robot with a backstage page
+              by React.js.
+              {/* <br />
                 <br />I usually play a leader in how to develop the project and
                 discuss with developers to solve the problem. Also, I introduced
                 Functional Programming, TypeScript, and Unit Test to improve
                 development flow, reduce bugs and maintain costs. */}
-              </p>
-            </div>
-          </ScrollAnimation>
-
+            </p>
+          </div>
           <div
             className="flex flex-col"
             data-aos="fade-right"
