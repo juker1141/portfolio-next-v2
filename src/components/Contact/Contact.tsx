@@ -115,7 +115,7 @@ const Contact = ({ isWideScreen, sectionRefs }: ComponentProps) => {
           <div className="lg:col-span-2 flex flex-col items-center justify-center">
             <ScrollAnimation
               animateIn="lightSpeedInLeft"
-              animateOut="fadeOutDown"
+              animateOut="lightSpeedOutRight"
               scrollableParentSelector="body"
             >
               <h4 className="font-amatic-sc font-bold text-8xl lg:mb-24">
@@ -124,7 +124,7 @@ const Contact = ({ isWideScreen, sectionRefs }: ComponentProps) => {
             </ScrollAnimation>
             <ScrollAnimation
               animateIn="fadeInBottomLeft"
-              animateOut="fadeOut"
+              animateOut="fadeOutRight"
               scrollableParentSelector="body"
             >
               <Image

@@ -1,0 +1,11 @@
+@media (max-width: 1024px) {
+  .rellax-el {
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .rellax-h-el {
+    transform: translate3d(0, 0, 0) !important;
+  }
+  .rellax-work-el {
+    transform: translate3d(0, 0, 0) !important;
+  }
+}

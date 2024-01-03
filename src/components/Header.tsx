@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import ClickAwayListener from "react-click-away-listener";
+
 import useCheckIsWide from "@/hooks/useCheckIsWide";
 import MenuBtn from "@/components/MenuBtn";
 import MenuList from "@/components/MenuList";
@@ -102,25 +104,31 @@ const Header = ({
           showMenu={showMenu}
         />
       </div>
-      <nav
-        className={`
+      <ClickAwayListener
+        onClickAway={() => {
+          setIsShowMenu(false);
+        }}
+      >
+        <nav
+          className={`
         z-[1] fixed lg:relative top-0 left-0 w-screen lg:w-auto px-6 pt-[135px] lg:p-0
         ${
           isShowMenu
             ? "visible opacity-100 bg-secondary lg:bg-transparent"
             : "invisible lg:visible opacity-0"
         } ${
-          !isShowMenuBtn || isShowMenu ? "lg:flex" : "lg:hidden"
-        } flex text-5xl lg:text-5xl h-screen lg:opacity-100 transition-opacity duration-300 ease-in-out lg:h-auto font-amatic-sc font-bold`}
-      >
-        <MenuList
-          isShowMenuBtn={isShowMenuBtn}
-          isWideScreen={isWideScreen}
-          setIsShowMenu={setIsShowMenu}
-          goSectionScroll={goSectionScroll}
-          // isShowMenu={isShowMenu}
-        />
-      </nav>
+            !isShowMenuBtn || isShowMenu ? "lg:flex" : "lg:hidden"
+          } flex text-5xl lg:text-5xl h-screen lg:opacity-100 transition-opacity duration-300 ease-in-out lg:h-auto font-amatic-sc font-bold`}
+        >
+          <MenuList
+            isShowMenuBtn={isShowMenuBtn}
+            isWideScreen={isWideScreen}
+            setIsShowMenu={setIsShowMenu}
+            goSectionScroll={goSectionScroll}
+            // isShowMenu={isShowMenu}
+          />
+        </nav>
+      </ClickAwayListener>
     </header>
   );
 };

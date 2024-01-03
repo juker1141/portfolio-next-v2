@@ -12,7 +12,8 @@ import type { Component } from "@/util/types";
 
 const useSmoothScroller = (
   fullpages: Component[],
-  fullpagesString: string[]
+  fullpagesString: string[],
+  isWideScreen: boolean
 ) => {
   const sectionRefs = useRef<HTMLElement[]>([]);
   const sliderRefs = useRef<HTMLLIElement[]>([]);
@@ -89,7 +90,7 @@ const useSmoothScroller = (
       if (hashEl) {
         if (hashParts[0] === "#Work") {
           // 做 #Work 的處理
-          console.log("Handling #Work");
+          // console.log("Handling #Work");
 
           hashEl.scrollIntoView({
             behavior: "smooth",
@@ -134,7 +135,6 @@ const useSmoothScroller = (
     // console.log("data is change", scrollData);
 
     if (!isIniting.current) {
-      console.log(2131321);
       const isWorkSection = scrollData.section === "Work";
       window.location.hash = `#${scrollData.section}${
         isWorkSection ? `/${scrollData.slider + 1}` : ``
@@ -167,6 +167,7 @@ const useSmoothScroller = (
       const rect = sectionRefs.current[elemIndex].getBoundingClientRect();
 
       if (
+        isWideScreen &&
         rect.bottom - window.innerHeight <= 10 &&
         elemIndex !== sectionRefs.current.length - 1 &&
         delta > 0 &&
@@ -181,12 +182,20 @@ const useSmoothScroller = (
           await scrollToTop(body, delta);
         }
       } else if (
+        isWideScreen &&
         rect.top >= -10 && // 距離
         elemIndex !== 0 && // 第一張投影片不能往上
         delta < 0 && // 方向往下
         scrollData.section !== "Work" // 除了 Work 以外
       ) {
         // is near top
+        e.preventDefault();
+        if (!isTriggered.current) {
+          isTriggered.current = true;
+
+          await scrollToTop(body, delta);
+        }
+      } else if (!isWideScreen && scrollData.section !== "Work") {
         e.preventDefault();
         if (!isTriggered.current) {
           isTriggered.current = true;
@@ -238,12 +247,12 @@ const useSmoothScroller = (
   useEffect(() => {
     const slidersScrollEl = slidersScrollRef.current;
 
-    // document.body.addEventListener("wheel", handleWheelScroll, {
-    //   passive: false,
-    // });
-    // slidersScrollEl?.addEventListener("wheel", sliderHandleWheelScroll, {
-    //   passive: false,
-    // });
+    document.body.addEventListener("wheel", handleWheelScroll, {
+      passive: false,
+    });
+    slidersScrollEl?.addEventListener("wheel", sliderHandleWheelScroll, {
+      passive: false,
+    });
     return () => {
       document.body.removeEventListener("wheel", handleWheelScroll);
       slidersScrollEl?.removeEventListener("wheel", sliderHandleWheelScroll);

@@ -26,7 +26,7 @@ const GoTopBtn = ({ goTopScroll }: { goTopScroll: () => void }) => {
       removeEventListener("hashchange", checkHash);
     };
   }, []);
-  const goTopSection: React.MouseEventHandler<HTMLImageElement> = (e) => {
+  const goTopSection: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     // (window as any).fullpage_api.moveTo("Home");
     goTopScroll();
@@ -34,16 +34,17 @@ const GoTopBtn = ({ goTopScroll }: { goTopScroll: () => void }) => {
 
   return (
     <Fragment>
-      <Image
-        onClick={goTopSection}
-        className={`fixed bottom-10 right-4 lg:right-6 drop-shadow-md hover:animate-bounce duration-75 ${
-          isShowBtn ? "blcok" : "hidden"
-        }`}
-        src="/images/go-top-btn.svg"
-        width="40"
-        height="40"
-        alt="GoTopBtn"
-      />
+      <button onClick={goTopSection}>
+        <Image
+          className={`fixed bottom-10 right-4 lg:right-6 drop-shadow-md hover:animate-bounce duration-100 ${
+            isShowBtn ? "blcok" : "hidden"
+          }`}
+          src="/images/go-top-btn.svg"
+          width="40"
+          height="40"
+          alt="GoTopBtn"
+        />
+      </button>
       <div id="reCaptchaEl" />
     </Fragment>
   );

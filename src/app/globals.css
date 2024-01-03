@@ -163,3 +163,18 @@ body button:hover {
   animation-fill-mode: forwards;
   stroke-width: 5;
 }
+
+.animate__delay-0_3s {
+  -webkit-animation-delay: calc(1s * 0.3);
+  animation-delay: calc(1s * 0.3);
+}
+
+.animate__delay-0_5s {
+  -webkit-animation-delay: calc(1s * 0.5);
+  animation-delay: calc(1s * 0.5);
+}
+
+.animate__delay-0_75s {
+  -webkit-animation-delay: calc(1s * 0.75);
+  animation-delay: calc(1s * 0.75);
+}

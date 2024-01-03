@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Amatic_SC, Roboto, Londrina_Solid, Titan_One } from "next/font/google";
 
 import "./globals.css";
+import "./rellax.css";
 import "./doodle.css";
 import "./experience.css";
 import "aos/dist/aos.css";

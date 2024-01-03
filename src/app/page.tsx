@@ -27,6 +27,9 @@ import { Component } from "@/util/types";
 export type FullpageApi = Object;
 
 export default function Home() {
+  const rellaxEl = useRef<any>();
+  const rellaxHoriEl = useRef<any>();
+  const rellaxWorkHoriEl = useRef<any>();
   const [fullpages, setFullpages] = useState<Component[]>([
     Banner,
     About,
@@ -34,6 +37,7 @@ export default function Home() {
     Work,
     Contact,
   ]);
+  const { isWideScreen } = useCheckIsWide();
 
   const fullpagesString = fullpages.map((page: Component) => page.name);
   const {
@@ -43,24 +47,22 @@ export default function Home() {
     scrollData,
     goTopScroll,
     goSectionScroll,
-  } = useSmoothScroller(fullpages, fullpagesString);
-
-  const { isWideScreen } = useCheckIsWide();
+  } = useSmoothScroller(fullpages, fullpagesString, isWideScreen);
 
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
-    new Rellax(".rellax-el", {
+    rellaxEl.current = new Rellax(".rellax-el", {
       wrapper: "body",
       speed: 0,
     });
-    new Rellax(".rellax-h-el", {
+    rellaxHoriEl.current = new Rellax(".rellax-h-el", {
       wrapper: "body",
       speed: 0,
       horizontal: true,
     });
-    new Rellax(".rellax-work-el", {
+    rellaxWorkHoriEl.current = new Rellax(".rellax-work-el", {
       wrapper: "#work-scrollbar",
       speed: 0,
       horizontal: true,
@@ -76,9 +78,22 @@ export default function Home() {
         }
       });
     });
+    console.log(aosAnimation);
     aosAnimation.forEach((aosObject) => {
       observer.observe(aosObject);
     });
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      rellaxEl.current.refresh();
+      rellaxHoriEl.current.refresh();
+      rellaxWorkHoriEl.current.refresh();
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -86,13 +101,12 @@ export default function Home() {
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
       <GoogleReCaptchaProvider
         reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
-        // TODO: 正式版需要設定我不是機器人標章位置
-        // container={{
-        //   element: "reCaptchaEl",
-        //   parameters: {
-        //     badge: "bottomleft",
-        //   },
-        // }}
+        container={{
+          element: "reCaptchaEl",
+          parameters: {
+            badge: "bottomleft",
+          },
+        }}
       >
         <Header
           isWideScreen={isWideScreen}
@@ -102,38 +116,6 @@ export default function Home() {
         />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
-        {/* <ReactFullpage
-          anchors={["Home", "About", "Experience", "Work", "Contact", "Footer"]}
-          licenseKey={"gplv3-license"}
-          navigation
-          scrollOverflow={false}
-          scrollBar={true}
-          // responsiveWidth={1024}
-          // pluginWrapper={pluginWrapper}
-          // scrollHorizontally={true}
-          // sectionsColor={sectionsColor}
-          credits={{
-            enabled: true,
-            label: "",
-            position: "right",
-          }}
-          afterSlideLoad={afterSlideLoad}
-          onLeave={onLeave}
-          controlArrows={false}
-          loopHorizontal={false}
-          slidesNavigation={true}
-          slidesNavPosition={"bottom"}
-          render={(comp: any) => (
-            <ReactFullpage.Wrapper>
-              {fullpages.map((Component, index) => (
-                <Component
-                  key={index}
-                  isWideScreen={isWideScreen}
-                />
-              ))}
-            </ReactFullpage.Wrapper>
-          )}
-        /> */}
         {fullpages.map((Component, index) => (
           <Component
             sectionRefs={(el: HTMLElement) => (sectionRefs.current[index] = el)}
@@ -144,7 +126,6 @@ export default function Home() {
           />
         ))}
         <GoTopBtn goTopScroll={goTopScroll} />
-        {/* <Footer /> */}
       </GoogleReCaptchaProvider>
     </Fragment>
   );

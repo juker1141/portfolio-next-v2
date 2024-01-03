@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 import Marker from "@/components/Marker";
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
@@ -39,15 +37,6 @@ const MenuList = ({
   setIsShowMenu,
   goSectionScroll,
 }: MenuListProps) => {
-  useEffect(() => {});
-
-  const moveToSection = (e: any, section: string) => {
-    e.preventDefault();
-
-    (window as any).fullpage_api.moveTo(section);
-    setIsShowMenu(false);
-  };
-
   return (
     <ul
       className={`flex flex-col ${
@@ -59,7 +48,12 @@ const MenuList = ({
       {NavData.map((nav, index) => {
         return (
           <li key={index} className="my-2">
-            <a onClick={(e) => goSectionScroll(nav.href)}>
+            <a
+              onClick={(e) => {
+                setIsShowMenu(false);
+                goSectionScroll(nav.href);
+              }}
+            >
               <Marker type="text">
                 <span className="px-4 py-2">{nav.title}</span>
               </Marker>
@@ -75,6 +69,7 @@ const MenuList = ({
         <ul className="flex justify-center items-center mb-6 lg:mb-0 px-0 lg:px-2">
           <li className="mr-2">
             <a
+              onClick={() => setIsShowMenu(false)}
               href="https://www.linkedin.com/in/chih-lung-tu-a6807821a/"
               target="_blank"
               rel="noreferrer noopener"
@@ -91,6 +86,7 @@ const MenuList = ({
           </li>
           <li className="mr-2">
             <a
+              onClick={() => setIsShowMenu(false)}
               href="https://github.com/juker1141"
               target="_blank"
               rel="noreferrer noopener"
@@ -107,6 +103,7 @@ const MenuList = ({
           </li>
           <li>
             <a
+              onClick={() => setIsShowMenu(false)}
               href="mailto:juker1141@gmail.com"
               className="flex items-center px-3 relative"
             >

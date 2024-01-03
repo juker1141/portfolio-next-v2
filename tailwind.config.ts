@@ -18,7 +18,6 @@ const config: Config = {
         roboto: ["var(--font-roboto)"],
         "londrina-solid": ["var(--font-londrina-solid)"],
         "titan-one": ["var(--font-titan-one)"],
-        // mono: ["var(--font-roboto-mono)"],
       },
       backgroundImage: {
         hello: "url('/images/hello2.svg')",

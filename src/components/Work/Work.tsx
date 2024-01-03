@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import { useState, Fragment, useEffect, useRef } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
+import { useInView } from "react-intersection-observer";
 
 import WorkImage from "@/components/Work/WorkImage";
+import WorkSlider from "@/components/Work/WorkSlider";
 
 import { ComponentProps } from "@/util/types";
 
@@ -29,6 +30,9 @@ const Work = ({
   sliderRefs,
 }: ComponentProps) => {
   const slidersRef = useRef<any>();
+
+  const { ref, inView } = useInView();
+
   const [worksList, setWorksList] = useState<Work[]>([
     {
       title: "Project1",
@@ -77,7 +81,7 @@ const Work = ({
               data-rellax-min-y="0"
               data-rellax-percentage=".15"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute top-12 lg:left-0 xl:left-20 rellax-work-el"
+              className="absolute top-12 lg:left-0 xl:left-20 rellax-work-el hidden lg:block"
               src="images/element/e-9.svg"
               alt="e-9"
             />
@@ -88,7 +92,7 @@ const Work = ({
               data-rellax-min-y="0"
               data-rellax-percentage="-.15"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute -top-0 lg:right-6 xl:right-24 rellax-work-el"
+              className="absolute -top-0 lg:right-6 xl:right-24 rellax-work-el hidden lg:block"
               src="images/element/e-9.svg"
               alt="e-9"
             />
@@ -98,7 +102,7 @@ const Work = ({
               data-rellax-speed="5"
               data-rellax-min-y="0"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute -bottom-0 right-0 xl:-right-96 rellax-work-el"
+              className="absolute -bottom-0 right-0 xl:-right-96 rellax-work-el hidden lg:block"
               src="images/element/e-22.svg"
               alt="e-22"
             />
@@ -114,7 +118,7 @@ const Work = ({
               data-rellax-min-y="0"
               data-rellax-percentage="-.2"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute -bottom-8 left-0 xl:left-12 rellax-work-el"
+              className="absolute -bottom-8 left-0 xl:left-12 rellax-work-el hidden lg:block"
               src="images/element/e-23.svg"
               alt="e-23"
             />
@@ -125,7 +129,7 @@ const Work = ({
               data-rellax-min-y="0"
               // data-rellax-percentage="-.15"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute -top-10 lg:-left-8 xl:left-[450px] rotate-90 rellax-work-el"
+              className="absolute -top-10 lg:-left-8 xl:left-[450px] rotate-90 rellax-work-el hidden lg:block"
               src="images/element/e-17.svg"
               alt="e-17"
             />
@@ -136,7 +140,7 @@ const Work = ({
               data-rellax-min-y="0"
               data-rellax-percentage="-.8"
               data-rellax-vertical-scroll-axis="x"
-              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45 rellax-work-el"
+              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45 rellax-work-el hidden lg:block"
               src="images/element/e-18.svg"
               alt="e-18"
             />
@@ -150,7 +154,7 @@ const Work = ({
               height={40}
               data-rellax-speed="-5"
               data-rellax-percentage="-.2"
-              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12 rellax-el"
+              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12 rellax-el hidden lg:block"
               src="images/element/e-6.svg"
               alt="e-6"
             />
@@ -159,14 +163,14 @@ const Work = ({
               height={30}
               data-rellax-speed="-5"
               data-rellax-percentage="-.3"
-              className="absolute -top-0 lg:left-0 xl:left-12 rellax-el"
+              className="absolute -top-0 lg:left-0 xl:left-12 rellax-el hidden lg:block"
               src="images/element/e-5.svg"
               alt="e-5"
             />
             <Image
               width={100}
               height={100}
-              className="absolute bottom-6 right-4 lg:right-6 xl:right-36 2xl:right-48"
+              className="absolute bottom-6 right-4 lg:right-6 xl:right-36 2xl:right-48  hidden lg:block"
               src="images/element/e-21.svg"
               alt="e-21"
             />
@@ -175,7 +179,7 @@ const Work = ({
               height={40}
               data-rellax-speed="5"
               data-rellax-percentage="-1.4"
-              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12 rellax-el"
+              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12 rellax-el hidden lg:block"
               src="images/element/e-5.svg"
               alt="e-5"
             />
@@ -189,41 +193,40 @@ const Work = ({
   const renderWorksList = () => {
     return worksList.map((work, index) => {
       return (
-        <li
-          ref={(el: any) => (sliderRefs.current[index + 1] = el)}
+        // <li
+        //   ref={(el: any) => (sliderRefs.current[index + 1] = el)}
+        //   key={index + 1}
+        //   data-slide={index + 1}
+        //   className={styles.slider}
+        // >
+        //   <div className="container h-screen mx-auto flex justify-center items-center">
+        //     <div className="px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
+        //       <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
+        //         <ScrollAnimation
+        //           animateIn="fadeIn"
+        //           scrollableParentSelector="#work-scrollbar"
+        //           initiallyVisible={true}
+        //         >
+        //           <h2 className="text-4xl lg:text-5xl mb-4">{work.title}</h2>
+        //           <p className="text-xl">{work.content}</p>
+        //         </ScrollAnimation>
+        //       </div>
+        //       <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
+        //         <WorkImage
+        //           imageUrl={work.imageUrl}
+        //           imagePosition={work.imagePosition}
+        //         />
+        //         {renderWorkElement(work.elementType)}
+        //       </div>
+        //     </div>
+        //   </div>
+        // </li>
+        <WorkSlider
           key={index + 1}
-          data-slide={index + 1}
-          className={styles.slider}
-        >
-          <div className="container h-screen mx-auto flex justify-center items-center">
-            <div className="px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10">
-              <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
-                <h2
-                  data-aos="fade-up"
-                  data-aos-duration="700"
-                  className="text-4xl lg:text-5xl mb-4"
-                >
-                  {work.title}
-                </h2>
-                <p
-                  data-aos="fade-up"
-                  data-aos-delay="300"
-                  data-aos-duration="700"
-                  className="text-xl"
-                >
-                  {work.content}
-                </p>
-              </div>
-              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
-                <WorkImage
-                  imageUrl={work.imageUrl}
-                  imagePosition={work.imagePosition}
-                />
-                {renderWorkElement(work.elementType)}
-              </div>
-            </div>
-          </div>
-        </li>
+          work={work}
+          index={index}
+          sliderRefs={sliderRefs}
+        />
       );
     });
   };
@@ -284,29 +287,27 @@ const Work = ({
                 alt="e-13"
               />
               <div
+                ref={ref}
                 data-rellax-speed="5"
                 data-rellax-vertical-scroll-axis="x"
                 className="flex flex-col items-center justify-center rellax-work-el"
               >
-                <h4
-                  data-aos="fade-up"
-                  className="font-amatic-sc font-bold text-8xl mb-6"
-                >
-                  Side Projects
-                </h4>
-                <p
-                  data-aos="fade-up"
-                  data-aos-delay="300"
-                  className="w-full lg:w-1/2 text-lg text-center"
-                >
-                  I frequently dedicate my spare time to researching new
-                  technologies or engaging in practical exercises.
-                  <br /> For additional information, you can visit{" "}
-                  <a className="font-bold" href="http://google.com">
-                    My Github
-                  </a>
-                  .
-                </p>
+                {inView && (
+                  <Fragment>
+                    <h4 className="font-amatic-sc font-bold text-8xl mb-6 animate__animated animate__fadeInUp animate__faster animate__delay-0_3s">
+                      Side Projects
+                    </h4>
+                    <p className="w-full lg:w-1/2 text-lg text-center animate__animated animate__fadeInUp animate__fast animate__delay-0_5s">
+                      I frequently dedicate my spare time to researching new
+                      technologies or engaging in practical exercises.
+                      <br /> For additional information, you can visit{" "}
+                      <a className="font-bold" href="http://google.com">
+                        My Github
+                      </a>
+                      .
+                    </p>
+                  </Fragment>
+                )}
               </div>
             </div>
           </li>
