@@ -31,7 +31,7 @@ const WorkSlider = ({
   index: number;
   sliderRefs: React.MutableRefObject<HTMLLIElement[]>;
 }) => {
-  const { ref, inView, entry } = useInView();
+  const { ref, inView } = useInView();
 
   const renderWorkElement = (type: ElementType) => {
     switch (type) {
@@ -91,7 +91,6 @@ const WorkSlider = ({
               height={60}
               data-rellax-speed="2"
               data-rellax-min-y="0"
-              // data-rellax-percentage="-.15"
               data-rellax-vertical-scroll-axis="x"
               className="absolute -top-10 lg:-left-8 xl:left-[450px] rotate-90 rellax-work-el hidden lg:block"
               src="images/element/e-17.svg"
