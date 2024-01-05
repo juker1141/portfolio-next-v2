@@ -4,6 +4,7 @@ import { useState, Fragment, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
 import WorkSlider from "@/components/Work/WorkSlider";
+import NavBar from "@/components/NavBar";
 
 import { ComponentProps } from "@/util/types";
 
@@ -27,6 +28,8 @@ const Work = ({
   sectionRefs,
   slidersScrollRef,
   sliderRefs,
+  scrollData,
+  goSliderScroll,
 }: ComponentProps) => {
   const slidersRef = useRef<any>();
 
@@ -164,6 +167,14 @@ const Work = ({
           {renderWorksList()}
         </ul>
       </div>
+
+      <NavBar
+        className="flex items-center"
+        position="bottom"
+        navDatas={sliderRefs.current}
+        isActive={(index: number) => scrollData.slider === index}
+        onClick={(index: number) => goSliderScroll(index)}
+      />
     </section>
   );
 };

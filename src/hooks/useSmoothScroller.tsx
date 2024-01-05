@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+// import { useRouter } from "next/navigation";
 
 import {
-  isFirstSilder,
-  isLastSilder,
   detectActiveSection,
   detectActiveSlider,
   type ScrollData,
@@ -15,6 +14,7 @@ const useSmoothScroller = (
   fullpagesString: string[],
   isWideScreen: boolean
 ) => {
+  // const router = useRouter();
   const sectionRefs = useRef<HTMLElement[]>([]);
   const sliderRefs = useRef<HTMLLIElement[]>([]);
   const slidersScrollRef = useRef<HTMLDivElement>(null);
@@ -46,7 +46,7 @@ const useSmoothScroller = (
         top: 0,
         behavior: "smooth",
       });
-    }, 1000);
+    }, 500);
   };
 
   const goSectionScroll = (target: string) => {
@@ -72,6 +72,18 @@ const useSmoothScroller = (
         behavior: "smooth",
       });
     }, 1000);
+  };
+
+  const goSliderScroll = (index: number) => {
+    setScrollData((prevData) => ({
+      ...prevData,
+      slider: index,
+    }));
+
+    sliderRefs.current[index].scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   const detecthashLocation = async (
@@ -136,9 +148,9 @@ const useSmoothScroller = (
 
     if (!isIniting.current) {
       const isWorkSection = scrollData.section === "Work";
-      window.location.hash = `#${scrollData.section}${
-        isWorkSection ? `/${scrollData.slider + 1}` : ``
-      }`;
+      const hashSlider = isWorkSection ? `/${scrollData.slider + 1}` : "";
+      // router.push(`#${scrollData.section}${hashSlider}`);
+      window.location.hash = `#${scrollData.section}${hashSlider}`;
     }
   }, [scrollData]);
 
@@ -158,6 +170,7 @@ const useSmoothScroller = (
 
   const handleWheelScroll = useCallback(
     async (e: WheelEvent) => {
+      console.log("trigger");
       const delta = e.deltaY;
 
       const body = document.body;
@@ -305,6 +318,7 @@ const useSmoothScroller = (
     scrollData,
     goTopScroll,
     goSectionScroll,
+    goSliderScroll,
   };
 };
 

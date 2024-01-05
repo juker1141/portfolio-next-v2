@@ -17,6 +17,7 @@
     "@types/lodash": "^4.14.202",
     "@types/nodemailer": "^6.4.14",
     "@types/rellax": "^1.7.7",
+    "@types/smoothscroll-polyfill": "^0.3.3",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "axios": "^1.6.2",
@@ -31,7 +32,8 @@
     "react-hook-form": "^7.48.2",
     "react-intersection-observer": "^9.5.3",
     "rellax": "^1.12.1",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",

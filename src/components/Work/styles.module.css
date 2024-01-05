@@ -6,6 +6,7 @@
   position: absolute;
   overflow-x: hidden;
   overflow-y: scroll;
+  -webkit-scroll-snap-type: both mandatory;
   scroll-snap-type: both mandatory;
   -webkit-overflow-scrolling: touch;
 }

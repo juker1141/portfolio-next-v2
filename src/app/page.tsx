@@ -4,6 +4,7 @@ import { Fragment, useState, useEffect, useRef } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import AOS from "aos";
 import Rellax from "rellax";
+import smoothscroll from "smoothscroll-polyfill";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -21,6 +22,7 @@ import Experience from "@/components/Experience";
 import Work from "@/components/Work/Work";
 import Contact from "@/components/Contact/Contact";
 import GoTopBtn from "@/components/GoTopBtn";
+import NavBar from "@/components/NavBar";
 
 import { Component } from "@/util/types";
 
@@ -47,12 +49,16 @@ export default function Home() {
     scrollData,
     goTopScroll,
     goSectionScroll,
+    goSliderScroll,
   } = useSmoothScroller(fullpages, fullpagesString, isWideScreen);
 
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
+    if (window) {
+      smoothscroll.polyfill();
+    }
     rellaxEl.current = new Rellax(".rellax-el", {
       wrapper: "body",
       speed: 0,
@@ -115,14 +121,24 @@ export default function Home() {
           goSectionScroll={goSectionScroll}
         />
         {/* <Tomato /> */}
-        {/* <NavBar /> */}
+        <NavBar
+          className="hidden lg:flex lg:flex-col items-center"
+          position="right"
+          navDatas={sectionRefs.current}
+          isActive={(index: number) =>
+            scrollData.section === fullpagesString[index]
+          }
+          onClick={(index: number) => goSectionScroll(fullpagesString[index])}
+        />
         {fullpages.map((Component, index) => (
           <Component
+            key={index}
             sectionRefs={(el: HTMLElement) => (sectionRefs.current[index] = el)}
             sliderRefs={sliderRefs}
             slidersScrollRef={slidersScrollRef}
-            key={index}
+            scrollData={scrollData}
             isWideScreen={isWideScreen}
+            goSliderScroll={goSliderScroll}
           />
         ))}
         <GoTopBtn goTopScroll={goTopScroll} />

@@ -29,6 +29,9 @@ dependencies:
   '@types/rellax':
     specifier: ^1.7.7
     version: 1.7.7
+  '@types/smoothscroll-polyfill':
+    specifier: ^0.3.3
+    version: 0.3.3
   animate.css:
     specifier: ^4.1.1
     version: 4.1.1
@@ -74,6 +77,9 @@ dependencies:
   sharp:
     specifier: ^0.33.0
     version: 0.33.1
+  smoothscroll-polyfill:
+    specifier: ^0.4.4
+    version: 0.4.4
 
 devDependencies:
   '@testing-library/jest-dom':
@@ -1360,6 +1366,10 @@ packages:
   /@types/scheduler@0.16.8:
     resolution: {integrity: sha512-WZLiwShhwLRmeV6zH+GkbOFT6Z6VklCItrDioxUnv+u4Ll+8vKeFySoFyK/0ctcRpOmwAicELfmys1sDc/Rw+A==}
     dev: true
+
+  /@types/smoothscroll-polyfill@0.3.3:
+    resolution: {integrity: sha512-VBcuyevh5N80XlrUz8a2GWgP9MnIVctdUgxWj8YdD+tN2OMptZTEUKYo8wXly8MR91HisJ9CaX8utF9zbMU8yA==}
+    dev: false
 
   /@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
@@ -4942,6 +4952,10 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /smoothscroll-polyfill@0.4.4:
+    resolution: {integrity: sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==}
+    dev: false
 
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
