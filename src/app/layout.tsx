@@ -5,6 +5,8 @@ import "./globals.css";
 import "./doodle.css";
 import "./test.scss";
 import "aos/dist/aos.css";
+import "./animate.css";
+import "./animate-test.css";
 
 const amaticSC = Amatic_SC({
   weight: ["400", "700"],
@@ -59,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto`}
+        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto fp-moving-left`}
       >
         {children}
       </body>

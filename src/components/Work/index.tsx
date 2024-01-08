@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useRef, useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffect } from "react";
 import WorkImage from "@/components/Work/WorkImage";
 
 type ElementType = "sushi" | "drink" | "cactus";
@@ -20,8 +20,6 @@ const Work = ({
   fullpageApi: any;
   isWideScreen: boolean;
 }) => {
-  const workBannerMRef = useRef<any>();
-  const sliderRef = useRef<any>();
   const [isScrollUp, setIsScrollUp] = useState(false);
   const [worksList, setWorksList] = useState<Work[]>([
     {
@@ -172,58 +170,80 @@ const Work = ({
   };
 
   useEffect(() => {
-    let isScrolling = false;
-    let slideIndex = 0;
     const onWheelScroll = (e: any) => {
-      console.log(1312);
-      // console.log(23132);
-      // e.preventDefault();
-      // if (!isScrolling) {
-      //   isScrolling = true;
-      //   if (sliderRef.current) {
-      //     if (
-      //       e.deltaY > 0 &&
-      //       slideIndex <= sliderRef.current.children.length - 1
-      //     ) {
-      //       slideIndex += 1;
-      //       workBannerMRef.current.style;
-      //       console.log("trigger");
-      //     } else if (e.deltaY < 0 && slideIndex != 0) {
-      //       slideIndex -= 1;
-      //     }
-      //     // workBannerMRef.current.style.left = `${e.deltaY * 100}px`;
-      //     window.location.hash = `#Work/${slideIndex + 1}`;
-      //     console.log(window.location.hash);
-      //     sliderRef.current.scrollTo({
-      //       left: 1000 * slideIndex,
-      //       behavior: "smooth",
-      //     });
-      //   }
-      //   setTimeout(() => {
-      //     isScrolling = false;
-      //   }, 1500);
-      // }
+      console.log(e.deltaY);
+      if (e.deltaY > 0) {
+        setIsScrollUp(true);
+      }
+      setTimeout(() => {
+        setIsScrollUp(false);
+      }, 1200);
     };
-    window.addEventListener("scroll", onWheelScroll, { passive: false });
-    // window.addEventListener("scroll", (e) => e.preventDefault(), {
-    //   passive: false,
-    // });
+    window.addEventListener("wheel", onWheelScroll);
     return () => {
-      window.removeEventListener("scroll", onWheelScroll);
+      window.removeEventListener("wheel", onWheelScroll);
     };
   }, []);
 
   return (
-    <div className="section relative overflow-hidden">
-      <div className="container-m">
-        <ul className="wrapper-m">
-          {Array.from(Array(4).keys()).map((n) => (
-            <li key={n} className="slide-m flex items-center justify-center">
-              {n + 1}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="section">
+      <Fragment>
+        <div className="slide" id="workId1" data-anchor="workBanner">
+          <div className="container h-screen mx-auto flex flex-col justify-center items-center relative px-8 lg:px-0 pb-16 lg:pb-0">
+            <Image
+              width={isWideScreen ? 200 : 150}
+              height={isWideScreen ? 200 : 150}
+              data-rellax-speed="4"
+              data-rellax-percentage="0.5"
+              data-rellax-vertical-scroll-axis="x"
+              className={`absolute bottom-24 left-6 lg:left-12 rellax-h-el`}
+              src="images/sp-main.svg"
+              alt="sp-main"
+            />
+            <Image
+              width={20}
+              height={20}
+              className={`absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36 `}
+              src="images/element/e-13.svg"
+              alt="e-13"
+            />
+            <Image
+              width={30}
+              height={30}
+              className={`absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52 `}
+              src="images/element/e-14.svg"
+              alt="e-14"
+            />
+            <Image
+              width={15}
+              height={15}
+              className={`absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48 `}
+              src="images/element/e-13.svg"
+              alt="e-13"
+            />
+            <h4
+              data-aos="fade-up"
+              className="font-amatic-sc font-bold text-8xl mb-6"
+            >
+              Side Projects
+            </h4>
+            <p
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="w-full lg:w-1/2 text-lg lg:text-center"
+            >
+              I frequently dedicate my spare time to researching new
+              technologies or engaging in practical exercises.
+              <br /> For additional information, you can visit{" "}
+              <a className="font-bold" href="http://google.com">
+                My Github
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+        {renderWorksList()}
+      </Fragment>
     </div>
   );
 };

@@ -22,10 +22,8 @@ const About = ({
             <Image
               width={120}
               height={120}
-              data-rellax-speed="-5"
-              data-rellax-percentage="0.5"
-              // className="absolute top-0 right-2 lg:-top-8 lg:-right-12 rellax-el"
-              className="absolute top-0 right-2 lg:-top-64 lg:-right-12 rellax-el"
+              className="absolute top-0 right-2 lg:-top-8 lg:-right-12"
+              // className="absolute top-0 right-2 lg:-top-64 lg:-right-12 rellax-el"
               src="images/element/e-9.svg"
               alt="e-9"
             />
@@ -53,37 +51,11 @@ const About = ({
             <Image
               width={120}
               height={120}
-              data-rellax-speed="3"
-              data-rellax-percentage="0.5"
-              className="absolute hidden lg:block -bottom-24 lg:bottom-56 right-0 z-0 rellax-el"
+              className="absolute hidden lg:block -bottom-24 right-0 z-0"
               src="images/element/e-8.svg"
               alt="e-8"
             />
           </div>
-          {/* <div className="flex flex-col justify-center">
-            <div className="w-full flex justify-start">
-              <div className="w-1/2">
-                <h3 className="text-5xl font-bold mb-2">Frontend</h3>
-                <p className="text-xl mb-10">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Beatae sunt maiores iusto! Itaque, nam odit doloremque
-                  perspiciatis ducimus officia repellendus aliquam neque
-                  mollitia libero rerum sapiente cum autem rem beatae.
-                </p>
-              </div>
-            </div>
-            <div className="w-full flex justify-end">
-              <div className="w-1/2">
-                <h3 className="text-5xl font-bold mb-2">Backend</h3>
-                <p className="text-xl mb-10">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Beatae sunt maiores iusto! Itaque, nam odit doloremque
-                  perspiciatis ducimus officia repellendus aliquam neque
-                  mollitia libero rerum sapiente cum autem rem beatae.
-                </p>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

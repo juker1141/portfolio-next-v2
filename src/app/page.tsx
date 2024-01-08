@@ -48,13 +48,13 @@ export default function Home() {
   ]);
 
   useEffect(() => {
-    new Rellax(".rellax-el", {
-      speed: 0,
-    });
-    new Rellax(".rellax-h-el", {
-      speed: 0,
-      horizontal: true,
-    });
+    // new Rellax(".rellax-el", {
+    //   speed: 0,
+    // });
+    // new Rellax(".rellax-h-el", {
+    //   speed: 0,
+    //   horizontal: true,
+    // });
     AOS.init();
   }, []);
 
@@ -74,9 +74,11 @@ export default function Home() {
     direction: string,
     trigger: string
   ) {
+    document.body.classList.add("fp-moving-vertically");
+    destination.item.querySelector(".trainers")?.classList.add("animate");
     // console.log((window as any).fullpage_api.getActiveSection());
     // console.log("Index: " + origin.index + " Slide Index: " + slideIndexS);
-    // console.log(origin, destination, trigger);
+    console.log(origin, destination, direction, trigger);
     if (origin.anchor === "Work" && destination.anchor === "Home") {
       return true;
     }
@@ -105,7 +107,7 @@ export default function Home() {
         //   },
         // }}
       >
-        {/* <Header isWideScreen={isWideScreen} /> */}
+        <Header isWideScreen={isWideScreen} />
         {/* <Tomato /> */}
         {/* <NavBar /> */}
         <ReactFullpage

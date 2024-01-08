@@ -40,6 +40,16 @@ const config: Config = {
           "0%": { transform: "translateX(0) scaleX(.8)", opacity: "1" },
           "100%": { transform: "translateX(-50px) scaleX(1)", opacity: "0" },
         },
+        // hideText: {
+        //   "0%": {
+        //     transform: "translate3d(0, 0%, 0)",
+        //     opacity: "1",
+        //   },
+        //   "100%": {
+        //     transform: "translate3d(0, 125%, 0)",
+        //     opacity: "1",
+        //   },
+        // },
       },
       animation: {
         "fix-0.5": "fix 0.5s ease-in-out alternate infinite",

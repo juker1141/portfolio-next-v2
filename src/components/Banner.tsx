@@ -17,26 +17,6 @@ const Banner = ({
       <div className="container h-screen mx-auto flex justify-center items-center overflow-y-hidden">
         <div className="pt-12 md:pt-36 px-4 lg:pt-0 lg:px-8 xl:px-0 w-full relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-28 lg:gap-10">
           <div className="flex flex-col justify-center items-start relative">
-            {/* <h2 className="text-5xl mb-2">
-            {/* <span className="bg-hello bg-center bg-no-repeat bg-contain text-9xl text-transparent mr-3">
-              Hello! I&apos;m Ryu
-            </span> */}
-
-            {/* <Image
-              src="/images/hello.svg"
-              height="48"
-              width="200"
-              alt="hello"
-            /> */}
-            {/* 52.456 47.799! I&apos;m Ryu */}
-            {/* </h2> */}
-            {/* <Image
-              width={250}
-              height={800}
-              className="mb-2"
-              src="images/hello.svg"
-              alt="hello"
-            />*/}
             <Image
               width={128}
               height={128}
@@ -50,10 +30,10 @@ const Banner = ({
               data-aos="fade-right"
             >
               <div className="mb-4">
-                <Underline delay={"0s"}>Frontend</Underline> And
+                <Underline delay={"700ms"}>Frontend</Underline> And
               </div>
               <div className="mb-4">
-                <Underline delay={"500ms"}>Backend</Underline> Developer
+                <Underline delay={"1s"}>Backend</Underline> Developer
               </div>
             </h4>
             <p

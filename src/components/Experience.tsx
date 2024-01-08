@@ -12,15 +12,15 @@ const Experience = ({
       <div className="container h-screen mx-auto flex justify-center items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-5 lg:gap-10 px-4 lg:px-8 xl:px-0">
           <div className="lg:col-span-2 font-amatic-sc font-bold text-8xl flex flex-col justify-center items-center relative">
-            <div className="relative px-8 lg:px-0 hidden lg:block">
+            <div className="relative px-8 lg:px-0 hidden lg:block animate-main trainers">
               <Image
                 width={400}
                 height={400}
                 src="images/ex-main.svg"
                 alt="ex-main"
-                data-aos="fade-right"
-                data-aos-delay="300"
-                data-aos-easing="ease-in-out-back"
+                // data-aos="fade-right"
+                // data-aos-delay="300"
+                // data-aos-easing="ease-in-out-back"
               />
               <Image
                 width={100}
@@ -35,9 +35,10 @@ const Experience = ({
             <Image
               width={120}
               height={120}
-              data-rellax-speed="4"
-              data-rellax-percentage="0.5"
-              className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
+              // data-rellax-speed="4"
+              // data-rellax-percentage="0.5"
+              // className="absolute hidden lg:block -top-3/4 pt-24 -right-0 rellax-el"
+              className="absolute hidden lg:block -top-16 -right-0"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
@@ -55,18 +56,19 @@ const Experience = ({
             <Image
               width={120}
               height={120}
-              data-rellax-speed="-5"
-              data-rellax-percentage="0.5"
-              className="absolute top-10 right-20 hidden lg:block rellax-el"
+              // data-rellax-speed="-5"
+              // data-rellax-percentage="0.5"
+              // className="absolute top-10 right-20 hidden lg:block rellax-el"
+              className="absolute top-12 right-20 hidden lg:block"
               src="images/element/e-9.svg"
               alt="e-9-cloud"
             />
             <Image
               width={80}
               height={80}
-              data-rellax-speed="4"
-              data-rellax-percentage="0.5"
-              className="absolute lg:hidden top-16 right-0 rellax-el"
+              // data-rellax-speed="4"
+              // data-rellax-percentage="0.5"
+              className="absolute lg:hidden top-16 right-0"
               src="images/element/e-8.svg"
               alt="e-8-c"
             />
