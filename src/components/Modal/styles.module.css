@@ -1,0 +1,13 @@
+.modalBorder {
+  border-style: solid;
+  border-width: 10px 10px 10px 10px;
+  border-image: url("/images/doodleCssSvg/border.svg") 20 20 20 20 stretch
+    stretch;
+}
+
+.modalButton {
+  border-style: solid;
+  border-width: 10px 10px 10px 10px;
+  border-image: url("/images/doodleCssSvg/button.svg") 10 10 10 10 stretch
+    stretch;
+}

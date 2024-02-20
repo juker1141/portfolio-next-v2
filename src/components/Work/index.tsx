@@ -1,250 +1,120 @@
 "use client";
 import Image from "next/image";
-import { useState, Fragment, useEffect } from "react";
-import WorkImage from "@/components/Work/WorkImage";
+import { useRef, Fragment } from "react";
 
-type ElementType = "sushi" | "drink" | "cactus";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
-type Work = {
-  title: string;
-  content: string;
-  imageUrl: string;
-  imagePosition: string;
-  elementType: ElementType;
-};
+import { useMediaQuery } from "react-responsive";
+import { largeScreenSize } from "@/util/screen";
 
-const Work = ({
-  fullpageApi,
-  isWideScreen,
-}: {
-  fullpageApi: any;
-  isWideScreen: boolean;
-}) => {
-  const [isScrollUp, setIsScrollUp] = useState(false);
-  const [worksList, setWorksList] = useState<Work[]>([
-    {
-      title: "Project1",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
-      imageUrl: "/works/maskMap_1.jpg",
-      imagePosition: "bg-left",
-      elementType: "sushi",
-    },
-    {
-      title: "Project2",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
-      imageUrl: "/works/music_1.jpg",
-      imagePosition: "bg-center",
-      elementType: "drink",
-    },
-    {
-      title: "Project3",
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus voluptatibus blanditiis nulla suscipit atque veritatis quas, illo minima ut aperiam delectus exercitationem cumque rerum quasi sint reiciendis alias est rem.",
-      imageUrl: "/works/stores_1.jpg",
-      imagePosition: "bg-center",
-      elementType: "cactus",
-    },
-  ]);
+import type { Work } from "@/components/Work/types";
+import { workDatas } from "@/components/Work/data";
 
-  const renderWorkElement = (type: ElementType) => {
-    switch (type) {
-      case "sushi":
-        return (
-          <Fragment>
-            <Image
-              width={100}
-              height={100}
-              className="absolute top-12 lg:left-0 xl:left-20"
-              src="images/element/e-9.svg"
-              alt="e-9"
-            />
-            <Image
-              width={70}
-              height={70}
-              className="absolute -top-0 lg:right-6 xl:right-24"
-              src="images/element/e-9.svg"
-              alt="e-9"
-            />
-            <Image
-              width={200}
-              height={200}
-              className="absolute -bottom-0 right-0 xl:right-16"
-              src="images/element/e-22.svg"
-              alt="e-22"
-            />
-          </Fragment>
-        );
-      case "drink":
-        return (
-          <Fragment>
-            <Image
-              width={160}
-              height={160}
-              className="absolute -bottom-8 left-0 xl:left-12"
-              src="images/element/e-23.svg"
-              alt="e-23"
-            />
-            <Image
-              width={60}
-              height={60}
-              className="absolute -top-10 lg:-left-8 xl:left-12 rotate-90"
-              src="images/element/e-17.svg"
-              alt="e-17"
-            />
-            <Image
-              width={30}
-              height={30}
-              className="absolute bottom-10 lg:right-6 xl:right-36 rotate-45"
-              src="images/element/e-18.svg"
-              alt="e-18"
-            />
-          </Fragment>
-        );
-      case "cactus":
-        return (
-          <Fragment>
-            <Image
-              width={40}
-              height={40}
-              className="absolute -top-12 lg:-left-8 xl:left-0 -rotate-12"
-              src="images/element/e-6.svg"
-              alt="e-6"
-            />
-            <Image
-              width={30}
-              height={30}
-              className="absolute -top-0 lg:left-0 xl:left-12"
-              src="images/element/e-5.svg"
-              alt="e-5"
-            />
-            <Image
-              width={100}
-              height={100}
-              className="absolute bottom-6 right-4 lg:right-6 xl:right-36 2xl:right-48"
-              src="images/element/e-21.svg"
-              alt="e-21"
-            />
-            <Image
-              width={40}
-              height={40}
-              className="absolute bottom-24 lg:-right-6 xl:right-16 rotate-12"
-              src="images/element/e-5.svg"
-              alt="e-5"
-            />
-          </Fragment>
-        );
-      default:
-        return;
-    }
-  };
+import WorkItem from "./WorkItem";
 
-  const renderWorksList = () => {
-    return worksList.map((work, index) => {
-      return (
-        <div
-          className="slide"
-          id={`workId${index + 2}`}
-          key={index}
-          data-anchor={`${index + 2}`}
-        >
-          <div className="container h-screen mx-auto flex justify-center items-center">
-            <div className="px-4 lg:pt-0 lg:px-0 w-full relative grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-10 lg:px-8 xl:px-0">
-              <div className="order-2 lg:order-1 lg:col-span-2 flex flex-col justify-center items-start">
-                <h2 className="text-4xl lg:text-5xl mb-2">{work.title}</h2>
-                <p className="text-xl">{work.content}</p>
-              </div>
-              <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
-                <WorkImage
-                  imageUrl={work.imageUrl}
-                  imagePosition={work.imagePosition}
-                />
-                {renderWorkElement(work.elementType)}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  };
+const Work = ({ fullpageApi }: { fullpageApi: any }) => {
+  const slideRef = useRef<HTMLDivElement>(null);
+  const worksList = useRef<Work[]>(workDatas);
+  const isLargeScreen = useMediaQuery({
+    query: `(min-width: ${largeScreenSize})`,
+  });
 
-  useEffect(() => {
-    const onWheelScroll = (e: any) => {
-      console.log(e.deltaY);
-      if (e.deltaY > 0) {
-        setIsScrollUp(true);
+  useGSAP(
+    () => {
+      if (slideRef.current) {
+        const target: any = slideRef.current;
+        const layout = target.querySelector(".layout").children;
+        const heading = target.querySelector(".heading");
+        const content = target.querySelector(".content");
+        const images = target.querySelector(".images");
+
+        gsap.to(layout, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(heading, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(content, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(images, {
+          autoAlpha: 0,
+          x: "-100vw",
+          duration: 0,
+        });
       }
-      setTimeout(() => {
-        setIsScrollUp(false);
-      }, 1200);
-    };
-    window.addEventListener("wheel", onWheelScroll);
-    return () => {
-      window.removeEventListener("wheel", onWheelScroll);
-    };
-  }, []);
+    },
+    { scope: slideRef }
+  );
 
   return (
-    <div className="section">
+    <section className="section">
       <Fragment>
-        <div className="slide" id="workId1" data-anchor="workBanner">
-          <div className="container h-screen mx-auto flex flex-col justify-center items-center relative px-8 lg:px-0 pb-16 lg:pb-0">
-            <Image
-              width={isWideScreen ? 200 : 150}
-              height={isWideScreen ? 200 : 150}
-              data-rellax-speed="4"
-              data-rellax-percentage="0.5"
-              data-rellax-vertical-scroll-axis="x"
-              className={`absolute bottom-24 left-6 lg:left-12 rellax-h-el`}
-              src="images/sp-main.svg"
-              alt="sp-main"
-            />
-            <Image
-              width={20}
-              height={20}
-              className={`absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36 `}
-              src="images/element/e-13.svg"
-              alt="e-13"
-            />
-            <Image
-              width={30}
-              height={30}
-              className={`absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52 `}
-              src="images/element/e-14.svg"
-              alt="e-14"
-            />
-            <Image
-              width={15}
-              height={15}
-              className={`absolute top-40 lg:top-64 xl:top-32 left-16 lg:left-48 xl:right-48 `}
-              src="images/element/e-13.svg"
-              alt="e-13"
-            />
-            <h4
-              data-aos="fade-up"
-              className="font-amatic-sc font-bold text-8xl mb-6"
+        <div ref={slideRef} className="slide" id="workId1" data-anchor="1">
+          <div className="container h-full-dvh mx-auto flex flex-col justify-center items-start lg:items-center relative px-8 lg:px-0 pb-16 lg:pb-0">
+            <div className="absolute h-full w-full layout -z-5">
+              <Image
+                width={35}
+                height={35}
+                style={{
+                  width: 35,
+                  height: 35,
+                }}
+                className={`absolute top-60 lg:top-1/3 xl:top-72 right-10 lg:right-36 xl:right-36 drop-shadow`}
+                src="/images/element/yellow-star.svg"
+                alt="yellow-star.svg"
+              />
+              <Image
+                width={60}
+                height={60}
+                style={{
+                  width: 60,
+                  height: 60,
+                }}
+                className={`absolute top-32 lg:top-52 xl:top-24 left-10 lg:left-36 xl:right-52 drop-shadow`}
+                src="/images/element/stars.svg"
+                alt="stars.svg"
+              />
+            </div>
+            <div
+              className={`images absolute bottom-16 lg:bottom-24 left-6 lg:left-12`}
             >
+              <Image
+                width={isLargeScreen ? 220 : 160}
+                height={isLargeScreen ? 220 : 160}
+                style={{
+                  width: isLargeScreen ? 220 : 160,
+                  height: isLargeScreen ? 220 : 160,
+                }}
+                className="drop-shadow-images-xs lg:drop-shadow-images-sm"
+                src="/images/main/bone.svg"
+                alt="bone.svg"
+              />
+              <div className="absolute top-1/3 left-0 h-[50vh] w-full -z-50 bg-stick-4 bg-center bg-contain bg-no-repeat hidden lg:block" />
+            </div>
+            <h4 className="font-amatic-sc font-bold text-7xl lg:text-8xl text-left mb-6 heading">
               Side Projects
             </h4>
-            <p
-              data-aos="fade-up"
-              data-aos-delay="300"
-              className="w-full lg:w-1/2 text-lg lg:text-center"
-            >
+            <p className="w-full lg:w-1/2 text-base lg:text-lg lg:text-center content">
               I frequently dedicate my spare time to researching new
               technologies or engaging in practical exercises.
               <br /> For additional information, you can visit{" "}
-              <a className="font-bold" href="http://google.com">
+              <a className="font-bold" href="https://github.com/juker1141">
                 My Github
               </a>
               .
             </p>
           </div>
         </div>
-        {renderWorksList()}
+        {worksList.current.map((work, index) => {
+          return <WorkItem work={work} key={index} index={index} />;
+        })}
       </Fragment>
-    </div>
+    </section>
   );
 };
 

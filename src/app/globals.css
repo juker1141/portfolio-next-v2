@@ -41,52 +41,30 @@ body {
     rgb(var(--background-start-rgb));
 }*/
 
+html,
 body {
-  cursor: url(/images/cursor/cursor.png), auto;
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  cursor: url(/images/main/cursor/cursor.png), auto;
   color: theme(colors.primary);
   /* background-color: #e0d9c7; */
-  background-color: #f4ecdf;
+  background-color: theme(colors.beige);
   overflow: hidden;
 }
-/* body .section {
-  overflow-x: hidden;
-} */
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
 
 body a:hover {
-  cursor: url(/images/cursor/cursor-pointer.png), pointer;
+  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
 }
 
 body button:hover {
-  cursor: url(/images/cursor/cursor-pointer.png), pointer;
-}
-
-.fp-watermark {
-  display: none;
-}
-
-.fp-slidesNav {
-  display: flex;
-  justify-content: center;
-}
-.fp-overflow {
-  height: 100%;
-  overflow-y: visible !important;
-}
-
-@media (min-width: 1024px) {
-  .fp-overflow {
-    overflow-y: auto !important;
-  }
-}
-
-#fp-nav {
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  #fp-nav {
-    display: block;
-  }
+  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
 }
 
 .marker {
@@ -125,7 +103,7 @@ body button:hover {
   fill: none;
   stroke: #e83331;
   stroke-miterlimit: 10;
-  mask: url(/images/mask1.png);
+  mask: url(/images/main/mask1.png);
 }
 
 @keyframes sign {
@@ -197,4 +175,13 @@ body button:hover {
 .slide-m {
   height: 100vh;
   width: 90vw;
+}
+
+@media (min-width: 1024px) {
+  .menu-border {
+    border-style: solid;
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/border.svg") 10 10 10 10 stretch
+      stretch;
+  }
 }

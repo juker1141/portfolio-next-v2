@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Amatic_SC, Roboto, Londrina_Solid, Titan_One } from "next/font/google";
 
 import "./globals.css";
+import "./fullpageCustom.css";
+import "./experience.css";
 import "./doodle.css";
-import "./test.scss";
-import "aos/dist/aos.css";
-import "./animate.css";
-import "./animate-test.css";
 
 const amaticSC = Amatic_SC({
   weight: ["400", "700"],
@@ -53,6 +51,13 @@ export const metadata: Metadata = {
   description: "A Frontend focused Web Developer",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -61,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto fp-moving-left`}
+        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto`}
       >
         {children}
       </body>

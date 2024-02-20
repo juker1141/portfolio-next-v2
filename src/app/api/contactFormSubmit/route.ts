@@ -44,7 +44,9 @@ export async function POST(request: Request, response: Response) {
 
   const sendMailPromise = () =>
     new Promise<string>((resolve, reject) => {
+      console.log("try send email");
       transport.sendMail(mailOptions, function (err) {
+        console.log(err);
         if (!err) {
           resolve("Email sent");
         } else {
