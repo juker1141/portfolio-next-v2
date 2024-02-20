@@ -62,7 +62,7 @@ const About = ({ fullpageApi }: { fullpageApi: any }) => {
               width: isLargeScreen ? 120 : 100,
               height: isLargeScreen ? 120 : 100,
             }}
-            className="absolute top-28 z-5 lg:-z-5 right-2/3 lg:top-28 lg:right-1/2 lg:mr-12 drop-shadow"
+            className="absolute top-28 z-5 lg:-z-5 right-2/3 lg:top-28 lg:right-1/2 xl:top-48 lg:mr-12 drop-shadow"
             src="/images/element/cloud.svg"
             alt="cloud.svg"
           />

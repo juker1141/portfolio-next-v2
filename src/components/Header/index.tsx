@@ -225,7 +225,6 @@ const Header = ({
           <MenuList
             hideMenuAnimate={hideMenuAnimate}
             isLargeScreen={isLargeScreen}
-            setIsShowMenu={setIsShowMenu}
           />
         </nav>
       </ClickAwayListener>
