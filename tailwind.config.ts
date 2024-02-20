@@ -8,20 +8,42 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        "full-dvh": "100dvh",
+      },
+      minHeight: {
+        "full-dvh": "100dvh",
+      },
       colors: {
-        primary: "#f2b84d",
-        secondary: "#543c1a",
+        primary: "#543c1a",
+        secondary: "#121212",
+        beige: "#f4ecdf",
+        yellow: "#f2b84d",
+      },
+      zIndex: {
+        "5": "5",
       },
       fontFamily: {
         "amatic-sc": ["var(--font-amitic-sc)"],
         roboto: ["var(--font-roboto)"],
         "londrina-solid": ["var(--font-londrina-solid)"],
         "titan-one": ["var(--font-titan-one)"],
-        // mono: ["var(--font-roboto-mono)"],
+      },
+      dropShadow: {
+        "images-xs": "0 20px 20px rgba(0, 0, 0, 0.2)",
+        "images-sm": "0 30px 20px rgba(0, 0, 0, 0.2)",
+        images: "0 50px 20px rgba(0, 0, 0, 0.2)",
       },
       backgroundImage: {
-        hello: "url('/images/hello2.svg')",
-        menu: "url('/images/menu.svg')",
+        "menu-btn": "url('/images/main/menu-btn.svg')",
+        menu: "url('/images/main/menu.svg')",
+        "stick-1": "url('/images/main/stick-1.svg')",
+        "stick-2": "url('/images/main/stick-2.svg')",
+        "stick-3": "url('/images/main/stick-3.svg')",
+        "stick-4": "url('/images/main/stick-4.svg')",
+      },
+      transitionProperty: {
+        height: "height",
       },
       keyframes: {
         fix: {
@@ -33,8 +55,19 @@ const config: Config = {
           "100%": { transform: "translateX(-100px) scaleX(1)", opacity: "0.5" },
         },
         breath: {
-          "0%": { transform: "translateX(0) scaleX(.8)", opacity: "1" },
-          "100%": { transform: "translateX(-50px) scaleX(1)", opacity: "0" },
+          "0%": { transform: "translateX(-20px) scaleX(.8)", opacity: "1" },
+          "30%": { opacity: "1" },
+          "100%": { transform: "translateX(-70px) scaleX(1)", opacity: "0" },
+        },
+        "bounce-sm": {
+          "0%, 100%": {
+            transform: "translateY(-15%)",
+            "animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+          },
         },
       },
       animation: {
@@ -43,6 +76,7 @@ const config: Config = {
         "fix-0.9": "fix 0.9s ease-in-out alternate infinite",
         speed: "speed 1s ease-out infinite",
         breath: "breath 1s ease-out infinite",
+        "bounce-sm": "bounce-sm 1s infinite",
       },
     },
   },

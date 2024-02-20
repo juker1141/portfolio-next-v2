@@ -41,52 +41,38 @@ body {
     rgb(var(--background-start-rgb));
 }*/
 
+html,
 body {
-  cursor: url(/images/cursor/cursor.png), auto;
-  color: theme(colors.secondary);
-  /* background-color: #e0d9c7; */
-  background-color: #f4ecdf;
   overflow: hidden;
-}
-
-body a:hover {
-  cursor: url(/images/cursor/cursor-pointer.png), pointer;
-}
-
-body button:hover {
-  cursor: url(/images/cursor/cursor-pointer.png), pointer;
-}
-
-.fp-watermark {
-  display: none;
-}
-
-.fp-slidesNav {
-  display: flex;
-  justify-content: center;
-}
-.fp-overflow {
   height: 100%;
 }
 
-#fp-nav {
-  display: none;
+body {
+  cursor: url(/images/main/cursor/cursor.png), auto;
+  color: theme(colors.primary);
+  /* background-color: #e0d9c7; */
+  background-color: theme(colors.beige);
+  overflow: hidden;
 }
 
-@media (min-width: 1024px) {
-  #fp-nav {
-    display: block;
-  }
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+body a:hover {
+  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
+}
+
+body button:hover {
+  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
 }
 
 .marker {
   position: relative;
-  //margin: 0 40px;
-  color: #333;
+  /* color: #333; */
   text-decoration: none;
-  //line-height: 1em;
 }
-.marker svg {
+.marker .circle {
   position: absolute;
   left: 0;
   top: -50%;
@@ -97,14 +83,14 @@ body button:hover {
   margin-right: auto;
   pointer-events: none;
 }
-.marker path {
+.marker .circle path {
   transition: stroke-dashoffset 300ms linear;
   stroke-width: 2;
-  stroke: rgb(239 68 68);
+  stroke: #ef4444;
   fill: none;
   stroke-linecap: round;
 }
-.marker:hover path {
+.marker:hover .circle path {
   stroke-dashoffset: 0;
 }
 
@@ -117,7 +103,7 @@ body button:hover {
   fill: none;
   stroke: #e83331;
   stroke-miterlimit: 10;
-  mask: url(/images/mask1.png);
+  mask: url(/images/main/mask1.png);
 }
 
 @keyframes sign {
@@ -153,3 +139,49 @@ body button:hover {
 /* .drawing {
   animation: sign 4s ease;
 } */
+
+/* .work-slide{
+  overflow-y: hidden;
+  overflow: auto !important
+} */
+.work-slide {
+  scroll-snap-type: both mandatory;
+  /* transform: rotate(90deg) translateY(-100vh); */
+  /* -webkit-overflow-scrolling: touch; */
+}
+.work-slide li {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.wrapper-m {
+  display: flex;
+  width: 400vw;
+  transform: rotate(90deg) translateY(-100vh);
+  transform-origin: top left;
+}
+
+.container-m {
+  width: 100vh;
+  height: 100vw;
+  top: 0;
+  transform: rotate(-90deg) translateX(-100vh);
+  transform-origin: top left;
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.slide-m {
+  height: 100vh;
+  width: 90vw;
+}
+
+@media (min-width: 1024px) {
+  .menu-border {
+    border-style: solid;
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/border.svg") 10 10 10 10 stretch
+      stretch;
+  }
+}

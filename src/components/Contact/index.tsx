@@ -1,141 +1,285 @@
+"use client";
+
 import Image from "next/image";
+import { useCallback, useState, useRef } from "react";
+
+import axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+import { useMediaQuery } from "react-responsive";
+import { largeScreenSize } from "@/util/screen";
+
+import { Modal, useModal } from "@/components/Modal";
 
 type Inputs = {
   name: string;
   email: string;
-  content: string;
+  message: string;
 };
 
-const Contact = () => {
-  // const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   // (window as any).grecaptcha.ready(function () {
-  //   //   (window as any).grecaptcha
-  //   //     .execute("reCAPTCHA_site_key", { action: "submit" })
-  //   //     .then(function (token) {
-  //   //       // Add your logic to submit to your backend server here.
-  //   //     });
-  //   // });
-  // };
+const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [notification, setNotification] = useState("");
+
+  const isLargeScreen = useMediaQuery({
+    query: `(min-width: ${largeScreenSize})`,
+  });
+
+  const { modalRef, modalType, isShowModal, showModal, hideModal } = useModal();
+
+  useGSAP(
+    () => {
+      if (sectionRef.current) {
+        const target: any = sectionRef.current;
+        const layout = target.querySelector(".layout").children;
+        const heading = target.querySelector(".heading");
+        const content = target.querySelector(".content");
+        const images = target.querySelector(".images");
+
+        gsap.to(layout, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(heading, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(content, {
+          autoAlpha: 0,
+          duration: 0,
+        });
+        gsap.to(images, {
+          autoAlpha: 0,
+          x: "-30vw",
+          duration: 0,
+        });
+      }
+    },
+    { scope: sectionRef }
+  );
+
+  // Create an event handler so you can call the verification on button click event or form submit
+  const handleReCaptchaVerify = useCallback(
+    async (data: any) => {
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+
+      const token = await executeRecaptcha("yourAction");
+      console.log(token);
+      submitEnquiryForm(token, data);
+      // Do whatever you want with the token
+    },
+    [executeRecaptcha]
+  );
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    handleReCaptchaVerify(data);
+  };
+
+  const submitEnquiryForm = (gReCaptchaToken: string, data: any) => {
+    async function goAsync() {
+      const response = await axios({
+        method: "post",
+        url: "/api/contactFormSubmit",
+        data: {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          gRecaptchaToken: gReCaptchaToken,
+        },
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response?.data?.success === true) {
+        setNotification(`Success with score: ${response?.data?.score}`);
+      } else {
+        setNotification(`Failure with score: ${response?.data?.score}`);
+      }
+    }
+    goAsync()
+      .then(() => {
+        showModal("success");
+      })
+      .catch(() => {
+        showModal("error");
+      }); // suppress typescript error
+  };
 
   return (
-    <div className="section relative">
-      <Image
-        className="absolute top-36 -left-20"
-        src="/images/potato4.svg"
-        width={200}
-        height={200}
-        alt="potato4"
-      />
-      <Image
-        className="absolute top-1/2 -translate-y-1/2 -right-24 -rotate-3"
-        src="/images/potato5.svg"
-        width={250}
-        height={250}
-        alt="potato5"
-      />
-      <div className="container min-h-screen mx-auto flex justify-center items-center relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="section relative overflow-hidden fp-auto-height"
+    >
+      <div className="layout absolute w-full h-full -z-5">
         <Image
-          className="absolute -top-20 left-52 -rotate-3"
-          src="/images/potato3.svg"
+          className="absolute -bottom-12 left-1/2 -translate-x-1/2 hidden lg:block drop-shadow"
+          src="/images/main/potato1.svg"
+          style={{ width: 250, height: 250 }}
+          width={250}
+          height={250}
+          alt="potato1"
+        />
+        <Image
+          className="absolute -top-20 left-52 -rotate-3 hidden xl:block drop-shadow"
+          src="/images/main/potato3.svg"
+          style={{ width: 150, height: 150 }}
           width={150}
           height={150}
           alt="potato3"
         />
-        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-14 lg:gap-10">
-          <div className="lg:col-span-2 flex flex-col items-center justify-between">
-            <h4 className="font-amatic-sc font-bold text-8xl">Get in Touch</h4>
+        <Image
+          className="absolute top-40 -left-20 hidden lg:block drop-shadow"
+          src="/images/main/potato4.svg"
+          style={{ width: 200, height: 200 }}
+          width={200}
+          height={200}
+          alt="potato4"
+        />
+        <Image
+          className="absolute top-1/2 -translate-y-1/2 -right-24 -rotate-3 hidden lg:block drop-shadow"
+          src="/images/main/potato5.svg"
+          style={{ width: 250, height: 250 }}
+          width={250}
+          height={250}
+          alt="potato5"
+        />
+      </div>
+      <div className="container min-h-full-dvh mx-auto flex justify-center items-center relative lg:overflow-hidden">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 lg:gap-10 px-8 lg:px-8 xl:px-0 md:mt-12 lg:mb-0">
+          <div className="lg:col-span-2 flex flex-col items-center justify-center">
+            <h4 className="font-amatic-sc font-bold text-7xl lg:text-8xl lg:mb-24 heading">
+              Get in Touch
+            </h4>
             <Image
-              src="/images/contact-main2.svg"
-              width={400}
-              height={400}
+              src="/images/main/contact-main.svg"
+              style={{ width: 420, height: 420 }}
+              width={420}
+              height={420}
+              className="hidden lg:block drop-shadow-images images"
               alt="contact-main"
             />
           </div>
           <div className="lg:col-span-3 flex flex-col justify-center">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="doodle font-amatic-sc text-3xl flex flex-col items-end w-full"
+              className="doodle font-amatic-sc text-xl lg:text-3xl flex flex-col items-end w-full content"
             >
               <div className="w-full flex flex-col">
                 <label htmlFor="name" className="font-bold">
                   Name
                 </label>
-                <input
-                  id="name"
-                  className="px-2"
-                  {...register("name", { required: true, maxLength: 30 })}
-                />
-                {errors.name && <span>Name field is required</span>}
+                <div className="relative flex flex-col">
+                  <input
+                    id="name"
+                    className={`px-1 lg:px-2 bg-beige focus:outline-blue-400 ${
+                      errors.name && "error"
+                    }`}
+                    {...register("name", { required: true, maxLength: 30 })}
+                  />
+                  {errors.name && (
+                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                      Name field is required
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <div className="w-full flex flex-col">
+              <div className="w-full flex flex-col relative">
                 <label htmlFor="email" className="font-bold">
                   Email
                 </label>
-                <input
-                  id="email"
-                  className="px-2"
-                  {...register("email", { required: true })}
-                />
-                {errors.email && <span>Email field is required</span>}
+                <div className="relative flex flex-col">
+                  <input
+                    id="email"
+                    className={`px-1 lg:px-2 bg-beige focus:outline-blue-400 ${
+                      errors.email && "error"
+                    }`}
+                    {...register("email", { required: true })}
+                  />
+                  {errors.email && (
+                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                      Email field is required
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div className="w-full flex flex-col">
-                <label htmlFor="content" className="font-bold">
-                  Content
+                <label htmlFor="message" className="font-bold">
+                  Message
                 </label>
-                <textarea
-                  rows={5}
-                  id="content"
-                  className="resize-none px-2 focus-visible:outline-none"
-                  {...register("content", { required: true, maxLength: 200 })}
-                />
-                {errors.content && <span>Content field is required</span>}
+                <div className="relative flex flex-col">
+                  <textarea
+                    rows={isLargeScreen ? 5 : 3}
+                    id="message"
+                    className={`resize-none bg-beige px-1 lg:px-2 focus:outline-blue-400  ${
+                      errors.message && "error"
+                    }`}
+                    {...register("message", {
+                      required: true,
+                      maxLength: 200,
+                    })}
+                  />
+                  {errors.message && (
+                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                      Message field is required
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="w-full mt-2">
+                <small className="text-sm lg:text-base xl:text-xl font-bold flex items-center flex-wrap leading-none">
+                  This site is protected by reCAPTCHA and the Google
+                  <a
+                    className="px-2 underline decoration-primary underline-offset-1"
+                    href="https://policies.google.com/privacy"
+                  >
+                    Privacy Policy
+                  </a>
+                  and
+                  <a
+                    className="px-2 underline decoration-primary underline-offset-1"
+                    href="https://policies.google.com/terms"
+                  >
+                    Terms of Service
+                  </a>
+                  apply.
+                </small>
               </div>
 
               <div className="w-full relative flex justify-end">
-                <Image
-                  className="absolute -bottom-20 -left-16"
-                  src="/images/potato1.svg"
-                  width={250}
-                  height={250}
-                  alt="potato1"
-                />
                 <button
                   type="submit"
-                  className="font-bold font-amatic-sc w-1/2 mt-10 flex justify-center items-center relative group"
+                  className="font-bold font-amatic-sc w-full lg:w-1/2 mt-4 lg:mt-10 flex justify-center items-center relative group"
                 >
-                  {/* <Image
-                    className="absolute -top-8 -left-12 invisible group-hover:visible brightness-90 rotate-90"
-                    src="/images/element/e-24.svg"
-                    width={70}
-                    height={70}
-                    alt="e-24"
-                  /> */}
                   <div className="relative">
                     Submit
-                    <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-10 transition-all">
+                    <div className="invisible group-hover:visible group-hover:text-black group-hover:text-4xl absolute top-0 left-1/2 -translate-x-1/2 z-30 lg:z-10 transition-all">
                       Submit
                     </div>
                   </div>
                   <Image
-                    className="absolute -top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 brightness-90 z-0 transition-all"
-                    src="/images/element/e-24.svg"
-                    width={240}
-                    height={240}
-                    alt="e-24"
+                    className="absolute top-30 lg:-top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all scale-[1.8] lg:scale-100 z-20 lg:z-0 drop-shadow"
+                    src="/images/element/tomato.svg"
+                    width={isLargeScreen ? 240 : 180}
+                    height={isLargeScreen ? 240 : 180}
+                    alt="e-24-tomato-onclick"
                   />
                 </button>
               </div>
@@ -143,60 +287,13 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      {/* <div className="bg-secondary">
-        <div className="container p-6 h-full mx-auto flex justify-center items-center">
-          <div className="w-full flex justify-between items-center">
-            <Image
-              src="/images/logo-white.svg"
-              alt="logo-footer"
-              width="60"
-              height="60"
-            />
-            <div className="flex justify-center text-lg text-white font-black">
-              Copyright © {new Date().getFullYear()}. All rights reserved.
-            </div>
-            <ul className="flex justify-center items-center mb-6 lg:mb-0">
-              <li className="mr-2">
-                <a
-                  href="https://www.linkedin.com/in/chih-lung-tu-a6807821a/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon icon={faLinkedin} color="white" size="2xl" />
-                </a>
-              </li>
-              <li className="mr-2">
-                <a
-                  href="https://github.com/juker1141"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon
-                    icon={faGithubSquare}
-                    color="white"
-                    size="2xl"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:juker1141@gmail.com"
-                  className="flex items-center m-2"
-                >
-                  <FontAwesomeIcon
-                    icon={faEnvelopeSquare}
-                    color="white"
-                    size="2xl"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
-    </div>
+      <Modal
+        modalRef={modalRef}
+        isShowModal={isShowModal}
+        hideModal={hideModal}
+        modalType={modalType}
+      />
+    </section>
   );
 };
 

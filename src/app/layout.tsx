@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Amatic_SC, Roboto, Londrina_Solid, Titan_One } from "next/font/google";
 
 import "./globals.css";
+import "./fullpageCustom.css";
+import "./experience.css";
 import "./doodle.css";
-import "./test.scss";
 
 const amaticSC = Amatic_SC({
   weight: ["400", "700"],
@@ -48,6 +49,13 @@ const titanOne = Titan_One({
 export const metadata: Metadata = {
   title: "Ryu | Frontend Web Developer | Backend Web Developer",
   description: "A Frontend focused Web Developer",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

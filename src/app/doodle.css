@@ -8,7 +8,7 @@
 
 .doodle {
   background-color: transparent;
-  color: theme(colors.secondary);
+  color: theme(colors.primary);
 }
 
 .doodle input,
@@ -42,15 +42,39 @@
 .doodle fieldset,
 .doodle textarea {
   border-style: solid;
-  border-width: 10px 10px 10px 10px;
-  border-image: url("/doodle-css-svg/border.svg") 10 10 10 10 stretch stretch;
+  border-width: 5px 5px 5px 5px;
+  border-image: url("/images/doodleCssSvg/border.svg") 5 5 5 5 stretch stretch;
+}
+
+.doodle fieldset.error,
+.doodle textarea.error {
+  border-style: solid;
+  border-width: 5px 5px 5px 5px;
+  border-image: url("/images/doodleCssSvg/border-error.svg") 5 5 5 5 stretch
+    stretch;
+}
+@media (min-width: 1024px) {
+  .doodle fieldset,
+  .doodle textarea {
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/border.svg") 10 10 10 10 stretch
+      stretch;
+  }
+
+  .doodle fieldset.error,
+  .doodle textarea.error {
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/border-error.svg") 10 10 10 10
+      stretch stretch;
+  }
 }
 
 .doodle .border,
 .doodle-border {
   border-style: solid;
   border-width: 10px 10px 10px 10px;
-  border-image: url("/doodle-css-svg/button.svg") 10 10 10 10 stretch stretch;
+  border-image: url("/images/doodleCssSvg/button.svg") 10 10 10 10 stretch
+    stretch;
 }
 
 .doodle button,
@@ -58,8 +82,36 @@
 .doodle select,
 .doodle input[type="file"]::file-selector-button {
   border-style: solid;
-  border-width: 10px 10px 10px 10px;
-  border-image: url("/doodle-css-svg/button.svg") 10 10 10 10 stretch stretch;
+  border-width: 5px 5px 5px 5px;
+  border-image: url("/images/doodleCssSvg/button.svg") 5 5 5 5 stretch stretch;
+}
+
+.doodle button.error,
+.doodle input.error,
+.doodle select.error,
+.doodle input[type="file"]::file-selector-button {
+  border-style: solid;
+  border-width: 5px 5px 5px 5px;
+  border-image: url("/images/doodleCssSvg/button-error.svg") 5 5 5 5 stretch
+    stretch;
+}
+
+@media (min-width: 1024px) {
+  .doodle button,
+  .doodle input,
+  .doodle select {
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/button.svg") 10 10 10 10 stretch
+      stretch;
+  }
+
+  .doodle button.error,
+  .doodle input.error,
+  .doodle select.error {
+    border-width: 10px 10px 10px 10px;
+    border-image: url("/images/doodleCssSvg/button-error.svg") 10 10 10 10
+      stretch stretch;
+  }
 }
 
 .doodle button {
@@ -73,13 +125,13 @@
 .doodle hr {
   border-style: solid;
   border-width: 0px 3px 6px 3px;
-  border-image: url("/doodle-css-svg/hr.svg") 0 3 6 3 stretch stretch;
+  border-image: url("/images/doodleCssSvg/hr.svg") 0 3 6 3 stretch stretch;
 }
 
 .doodle blockquote {
   border-left-style: solid;
   border-width: 0px 6px 3px 6px;
-  border-image: url("/doodle-css-svg/bq.svg") 0 6 3 6 stretch stretch;
+  border-image: url("/images/doodleCssSvg/bq.svg") 0 6 3 6 stretch stretch;
   padding-left: 0.5em;
   border-right-width: 0px;
 }
@@ -101,7 +153,7 @@
 .doodle table caption {
   border-bottom-style: solid;
   border-width: 0px 3px 6px 3px;
-  border-image: url("/doodle-css-svg/hr.svg") 0 3 6 3 stretch stretch;
+  border-image: url("/images/doodleCssSvg/hr.svg") 0 3 6 3 stretch stretch;
 }
 
 .doodle table td {
@@ -112,7 +164,7 @@
   -webkit-appearance: none;
   appearance: none;
   padding-right: 1.5em;
-  background: url("/doodle-css-svg/caret.svg") no-repeat right transparent;
+  background: url("/images/doodleCssSvg/caret.svg") no-repeat right transparent;
   background-position-x: calc(100% - 10px);
 }
 
@@ -123,27 +175,28 @@
 
 .doodle textarea,
 .doodle input {
-  background-color: unset;
+  /* background-color: unset; */
   font-family: var(--font-roboto);
   font-size: 0.75em;
-  color: theme(colors.secondary);
+  color: theme(colors.primary);
 }
 
 .doodle button,
 .doodle select {
-  background-color: unset;
+  /* background-color: unset; */
   font-family: var(--font-amitic-sc);
-  color: theme(colors.secondary);
+  color: theme(colors.primary);
 }
 
 .doodle input[type="checkbox"] {
   border-width: 6px 6px 6px 6px;
-  border-image: url("/doodle-css-svg/checkbox.svg") 6 6 6 6 stretch stretch;
+  border-image: url("/images/doodleCssSvg/checkbox.svg") 6 6 6 6 stretch stretch;
 }
 
 .doodle input[type="radio"] {
   border-width: 16px 16px 16px 16px;
-  border-image: url("/doodle-css-svg/radio.svg") 16 16 16 16 stretch stretch;
+  border-image: url("/images/doodleCssSvg/radio.svg") 16 16 16 16 stretch
+    stretch;
 }
 
 .doodle input[type="checkbox"],
@@ -182,5 +235,5 @@
   font-size: 0.8em;
   font-size: 1em;
   background-color: unset;
-  color: theme(colors.secondary);
+  color: theme(colors.primary);
 }

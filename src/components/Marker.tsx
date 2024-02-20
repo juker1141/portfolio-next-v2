@@ -31,9 +31,10 @@ function circlePath(
 
 interface MarkerProps {
   children: React.ReactNode;
+  type: "text" | "icon";
 }
 
-const Marker: React.FC<MarkerProps> = ({ children }) => {
+const Marker: React.FC<MarkerProps> = ({ children, type }) => {
   const markerRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
 
@@ -50,12 +51,21 @@ const Marker: React.FC<MarkerProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    if (markerRef.current) {
-      const svgElement = markerRef.current.querySelector("svg");
+    if (markerRef.current && children) {
+      const svgElement = markerRef.current.querySelector(
+        ".circle"
+      ) as SVGElement;
       if (svgElement) {
-        const rect = markerRef.current.getBoundingClientRect(),
-          width = rect.width,
-          height = 2 * rect.height;
+        const rect = markerRef.current.getBoundingClientRect();
+        let width = rect.width;
+        let height = 2 * rect.height;
+
+        if (type === "icon") {
+          width = rect.width * 2.5;
+          height = rect.height * 2;
+          svgElement.style.left = "-50%";
+        }
+
         svgElement.style.width = width.toString();
         svgElement.style.height = height.toString();
 
@@ -66,17 +76,18 @@ const Marker: React.FC<MarkerProps> = ({ children }) => {
         svgElement.setAttribute("viewBox", "-1 -1 2 2");
       }
     }
-  }, []);
+  }, [children, type]);
 
   return (
     <div
       ref={markerRef}
       // onMouseEnter={handleMouseEnter}
-      onMouseOver={onMouseOver}
-      className={`marker mx-4 my-2 group`}
+      // onMouseOver={onMouseOver}
+      onMouseEnter={onMouseOver}
+      className="marker group"
     >
       {children}
-      <svg>
+      <svg className="circle">
         <path
           ref={pathRef}
           pathLength="100"

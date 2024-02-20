@@ -1,0 +1,31 @@
+@keyframes swing {
+  0% {
+    -webkit-transform: rotateZ(5deg);
+    -moz-transform: rotateZ(5deg);
+    transform: rotateZ(5deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(-5deg);
+    -moz-transform: rotateZ(-5deg);
+    transform: rotateZ(-5deg);
+  }
+}
+
+.images {
+  transform-origin: bottom center 0;
+  transform-style: preserve-3d;
+  animation: swing 4s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.stick {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-image: url("/images/main/stick.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
