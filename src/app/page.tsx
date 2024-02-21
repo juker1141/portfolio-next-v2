@@ -5,7 +5,7 @@ import { Fragment, useState, useRef, useEffect, useCallback } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 // 偵測使用者的環境
-import device from "current-device";
+import { isDesktop } from "react-device-detect";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -51,7 +51,7 @@ export default function Home() {
   const ready = useRef(false);
   const [isFirstRendered, setIsFirstRendered] = useState(false);
   const isFirstTimeOnLeaved = useRef(false);
-  const isDesktop = useRef(false);
+  // const isDesktop = useRef(false);
   const isTriggerAnimate = useRef(false);
 
   const animationTimeout = useRef<NodeJS.Timeout>();
@@ -68,9 +68,9 @@ export default function Home() {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      isDesktop.current = device.desktop();
-    }
+    // if (typeof window !== "undefined") {
+    //   isDesktop.current = device.desktop();
+    // }
 
     addEventListener(
       "load",
@@ -140,7 +140,7 @@ export default function Home() {
         if (
           trigger === "verticalNav" ||
           trigger === "menu" ||
-          (isDesktop.current && trigger === null)
+          (isDesktop && trigger === null)
         ) {
           (window as any).fullpage_api.moveTo(destination.anchor);
           return false;
