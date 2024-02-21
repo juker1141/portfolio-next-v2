@@ -23,9 +23,6 @@ const MenuBtn = ({
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
   });
-  const isLargeScreen = useMediaQuery({
-    query: `(min-width: ${largeScreenSize})`,
-  });
   const { contextSafe } = useGSAP();
   const showMenuRole: any = contextSafe(() => {
     const menuRoleEl = document.querySelector("#menuRoleEl");

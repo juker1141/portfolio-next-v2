@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "react-responsive";
-import { middleScreenSize } from "@/util/screen";
+import { largeScreenSize, middleScreenSize } from "@/util/screen";
 
 import Underline from "@/components/Underline";
 import styles from "./styles.module.css";
@@ -57,7 +57,6 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={80}
             height={80}
-            style={{ width: 80, height: 80 }}
             className="absolute bottom-20 xl:bottom-56 right-1/2 hidden lg:block mr-8 drop-shadow"
             src="/images/element/light.svg"
             alt="light.svg"
@@ -65,7 +64,6 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={150}
             height={150}
-            style={{ width: 150, height: 150 }}
             className="absolute top-0 lg:top-36 right-1/2 mr-12 -rotate-6 hidden lg:block drop-shadow"
             src="/images/element/yellow-line.svg"
             alt="yellow-line.svg"
@@ -73,7 +71,6 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={60}
             height={60}
-            style={{ width: 60, height: 60 }}
             className="absolute bottom-36 right-20 lg:left-1/3 hidden lg:block drop-shadow"
             src="/images/element/blue-line.svg"
             alt="blue-line.svg"

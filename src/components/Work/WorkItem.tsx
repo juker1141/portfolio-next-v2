@@ -98,15 +98,15 @@ const WorkItem = ({ index, work }: ItemProps) => {
               alt="drink.svg"
             />
             <Image
-              width={isLargeScreen ? 80 : 50}
-              height={isLargeScreen ? 80 : 50}
+              width={75}
+              height={75}
               className="absolute -top-0 -left-4 lg:-left-8 xl:left-12 rotate-90 drop-shadow"
               src="/images/element/red-line.svg"
               alt="red-line.svg"
             />
             <Image
-              width={isLargeScreen ? 50 : 40}
-              height={isLargeScreen ? 50 : 40}
+              width={50}
+              height={50}
               className="absolute bottom-8 -right-2 lg:right-6 xl:right-36 rotate-45 drop-shadow"
               src="/images/element/yellow-line-ver.svg"
               alt="yellow-line-ver.svg"
@@ -186,9 +186,9 @@ const WorkItem = ({ index, work }: ItemProps) => {
                 className={`${styles["border-hr"]} w-full mt-1 mb-2 lg:mt-2 lg:mb-4`}
               />
             </div>
-            <p className="text-base lg:text-lg description">
+            <div className="text-base lg:text-lg description">
               {work.description()}
-            </p>
+            </div>
           </div>
           <div className="order-1 lg:order-2 lg:col-span-3 w-full flex justify-center items-center relative px-0 lg:px-0">
             <WorkImage

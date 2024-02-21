@@ -64,7 +64,6 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={100}
             height={100}
-            style={{ width: 100, height: 100 }}
             className="absolute top-44 right-52 hidden lg:block drop-shadow"
             src="/images/element/cloud.svg"
             alt="cloud-right.svg"
@@ -72,7 +71,6 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={80}
             height={80}
-            style={{ width: 80, height: 80 }}
             className="absolute lg:hidden top-24 md:top-64 right-4 drop-shadow"
             src="/images/element/flower-2.svg"
             alt="flower-2.svg"

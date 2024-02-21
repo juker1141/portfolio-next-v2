@@ -23,6 +23,7 @@ const Header = ({
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
   });
+  console.log(isMiddleScreen);
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
@@ -198,8 +199,8 @@ const Header = ({
               }
               className="drop-shadow-images-xs lg:drop-shadow-images-sm"
               alt="logo.svg"
-              width={isMiddleScreen ? "80" : "50"}
-              height={isMiddleScreen ? "80" : "50"}
+              width={isMiddleScreen ? 80 : 50}
+              height={isMiddleScreen ? 80 : 50}
             />
             <div
               className={`before:absolute ${

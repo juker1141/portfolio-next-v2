@@ -26,7 +26,6 @@ const config: Config = {
       fontFamily: {
         "amatic-sc": ["var(--font-amitic-sc)"],
         roboto: ["var(--font-roboto)"],
-        "londrina-solid": ["var(--font-londrina-solid)"],
         "titan-one": ["var(--font-titan-one)"],
       },
       dropShadow: {
