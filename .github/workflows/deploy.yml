@@ -43,7 +43,7 @@ jobs:
           REMOTE_USER: ${{ secrets.AWS_USER }}
           ARGS: "-rlgoDzvc -i --delete"
           SOURCE: ".next/"
-          TARGET: "/home/ec2-user/portfolio/"
+          TARGET: "/home/ec2-user/portfolio/.next/"
 
       - name: Start the project
         run: |
