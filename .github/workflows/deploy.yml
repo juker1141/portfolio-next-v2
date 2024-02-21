@@ -47,7 +47,7 @@ jobs:
 
       - name: Start the project
         run:
-          echo ${{ secrets.AWS_PRIVATE_KEY }} > private_key && chmod 400 private_key
+          echo "${{ secrets.AWS_PRIVATE_KEY }}" > private_key && chmod 400 private_key
 
           scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }}:/home/ec2-user
 
