@@ -33,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Build Next.js app
-        run: npm run build --if-present
+        run: npm run build --if-present && ls -al && pwd
 
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@main
