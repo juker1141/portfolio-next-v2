@@ -1,0 +1,48 @@
+name: Deploy Next.js to EC2
+
+on:
+  push:
+    branches:
+      - main # 可以根据你的实际情况调整分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_USER: ${{ secrets.AWS_USER }}
+      AWS_SERVER: ${{ secrets.AWS_SERVER }}
+      AWS_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up environment
+        run: |
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env.local
+          echo "RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}" >> .env.local
+          echo "CONTACT_EMAIL=${{ secrets.CONTACT_EMAIL }}" >> .env.local
+          echo "CONTACT_PASSWORD=${{ secrets.CONTACT_PASSWORD }}" >> .env.local
+
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
+
+      - name: Deploy to EC2
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.AWS_SERVER }}
+          REMOTE_USER: ${{ secrets.AWS_USER }}
+          SOURCE: "dist/"
+          TARGET: "/home/ec2-user/portfolio/"
+
+      - name: Restart Nginx
+        run: ssh -i ${{ secrets.AWS_PRIVATE_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "cd nignx && docker-compose restart nginx"

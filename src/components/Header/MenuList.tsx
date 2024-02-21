@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,23 +29,9 @@ const NavData = [
 type MenuListProps = {
   hideMenuAnimate: any;
   isLargeScreen: boolean;
-  setIsShowMenu: Function;
 };
 
-const MenuList = ({
-  hideMenuAnimate,
-  isLargeScreen,
-  setIsShowMenu,
-}: MenuListProps) => {
-  useEffect(() => {});
-
-  const moveToSection = (e: any, section: string) => {
-    e.preventDefault();
-
-    (window as any).fullpage_api.moveTo(section);
-    setIsShowMenu(false);
-  };
-
+const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
   return (
     <div
       id="menuEl"

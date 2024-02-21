@@ -56,15 +56,15 @@
 @media (min-width: 1024px) {
   .doodle fieldset,
   .doodle textarea {
-    border-width: 10px 10px 10px 10px;
-    border-image: url("/images/doodleCssSvg/border.svg") 10 10 10 10 stretch
+    border-width: 16px 16px 16px 16px;
+    border-image: url("/images/doodleCssSvg/border.svg") 16 16 16 16 stretch
       stretch;
   }
 
   .doodle fieldset.error,
   .doodle textarea.error {
-    border-width: 10px 10px 10px 10px;
-    border-image: url("/images/doodleCssSvg/border-error.svg") 10 10 10 10
+    border-width: 16px 16px 16px 16px;
+    border-image: url("/images/doodleCssSvg/border-error.svg") 16 16 16 16
       stretch stretch;
   }
 }
