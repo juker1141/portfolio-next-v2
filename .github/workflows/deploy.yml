@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up environment
         run: |
@@ -27,7 +27,7 @@ jobs:
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
-          node-version: "20"
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
@@ -41,8 +41,12 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.AWS_SERVER }}
           REMOTE_USER: ${{ secrets.AWS_USER }}
+          ARGS: "-rlgoDzvc -i --delete"
           SOURCE: "dist/"
           TARGET: "/home/ec2-user/portfolio/"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
 
       - name: Restart Nginx
         run: ssh -i ${{ secrets.AWS_PRIVATE_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "docker-compose -f nginx/docker-compose.yml restart nginx"
