@@ -45,7 +45,11 @@ jobs:
           SOURCE: ".next/"
           TARGET: "/home/ec2-user/portfolio/"
 
-      - name: Restart Nginx
+      - name: Start the project
         run:
           echo ${{ secrets.AWS_PRIVATE_KEY }} > private_key && chmod 400 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "cd /home/ec2-user/portfolio/ && npm run start"
+
+          scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }}:/home/ec2-user
+
+          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/shopping-mall-go/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
+          docker-compose -f portfolio/docker-compose.yml up -d"
