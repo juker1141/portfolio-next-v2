@@ -33,7 +33,7 @@ jobs:
         run: npm install
 
       - name: Build Next.js app
-        run: npm run build --if-present && ls -al && pwd
+        run: npm run build --if-present
 
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@main
@@ -46,4 +46,6 @@ jobs:
           TARGET: "/home/ec2-user/portfolio/"
 
       - name: Restart Nginx
-        run: ssh -i ${{ secrets.AWS_PRIVATE_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "cd /home/ec2-user/portfolio/ && npm run start"
+        run:
+          echo ${{ secrets.AWS_PRIVATE_KEY }} > private_key && chmod 400 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "cd /home/ec2-user/portfolio/ && npm run start"
