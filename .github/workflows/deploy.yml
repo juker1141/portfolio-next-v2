@@ -47,9 +47,11 @@ jobs:
 
       - name: Start the project
         run: |
+          ls -al
           echo "${AWS_PRIVATE_KEY}" > private_key && chmod 400 private_key
 
           scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${AWS_USER}@${AWS_SERVER}:/home/ec2-user
 
-          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_SERVER} "sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/shopping-mall-go/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
+          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_SERVER} "
+          sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/portfolio/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
           docker-compose -f portfolio/docker-compose.yml up -d"
