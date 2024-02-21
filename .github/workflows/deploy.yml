@@ -38,18 +38,17 @@ jobs:
       - name: Deploy to EC2
         uses: easingthemes/ssh-deploy@main
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.AWS_SERVER }}
-          REMOTE_USER: ${{ secrets.AWS_USER }}
+          SSH_PRIVATE_KEY: ${AWS_PRIVATE_KEY}
+          REMOTE_HOST: ${AWS_SERVER}
+          REMOTE_USER: ${AWS_USER}
           ARGS: "-rlgoDzvc -i --delete"
           SOURCE: ".next/"
           TARGET: "/home/ec2-user/portfolio/"
 
       - name: Start the project
-        run:
-          echo "${{ secrets.AWS_PRIVATE_KEY }}" > private_key && chmod 400 private_key
+        run: echo "${AWS_PRIVATE_KEY}" > private_key && chmod 400 private_key
 
-          scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }}:/home/ec2-user
+          scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${AWS_USER}@${AWS_SERVER}:/home/ec2-user
 
-          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/shopping-mall-go/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
+          ssh -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_SERVER} "sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/shopping-mall-go/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
           docker-compose -f portfolio/docker-compose.yml up -d"
