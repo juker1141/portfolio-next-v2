@@ -42,11 +42,8 @@ jobs:
           REMOTE_HOST: ${{ secrets.AWS_SERVER }}
           REMOTE_USER: ${{ secrets.AWS_USER }}
           ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/"
+          SOURCE: ".next/"
           TARGET: "/home/ec2-user/portfolio/"
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
 
       - name: Restart Nginx
-        run: ssh -i ${{ secrets.AWS_PRIVATE_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "docker-compose -f nginx/docker-compose.yml restart nginx"
+        run: ssh -i ${{ secrets.AWS_PRIVATE_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.AWS_SERVER }} "cd /home/ec2-user/portfolio/ && npm run start"
