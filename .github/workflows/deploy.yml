@@ -42,16 +42,15 @@ jobs:
           REMOTE_HOST: ${{ secrets.AWS_SERVER }}
           REMOTE_USER: ${{ secrets.AWS_USER }}
           ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: ".next/"
-          TARGET: "/home/ec2-user/portfolio/.next/"
+          SOURCE: "/"
+          TARGET: "/home/ec2-user/portfolio/"
 
       - name: Start the project
         run: |
           ls -al
           echo "${AWS_PRIVATE_KEY}" > private_key && chmod 400 private_key
 
-          scp -o StrictHostKeyChecking=no -i private_key ./docker-compose.yml ${AWS_USER}@${AWS_SERVER}:/home/ec2-user
-
           ssh -o StrictHostKeyChecking=no -i private_key ${AWS_USER}@${AWS_SERVER} "
-          sudo mv /home/ec2-user/docker-compose.yml /home/ec2-user/portfolio/docker-compose.yml && docker-compose -f portfolio/docker-compose.yml down &&
-          docker-compose -f portfolio/docker-compose.yml up -d"
+          cd portfolio &&
+          ls -al
+          "
