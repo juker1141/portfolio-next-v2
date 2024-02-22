@@ -1,0 +1,12 @@
+version: "3"
+services:
+  portfolio-next-v2:
+    image: 617893088694.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-next-v2:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - ec2-network
+
+networks:
+  ec2-network:
+    external: true
