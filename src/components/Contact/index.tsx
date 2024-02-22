@@ -196,7 +196,7 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
                     {...register("name", { required: true, maxLength: 30 })}
                   />
                   {errors.name && (
-                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                    <span className="absolute top-1 left-2 -z-5 lg:z-0 lg:static text-2xl font-bold text-rose-500">
                       Name field is required
                     </span>
                   )}
@@ -216,7 +216,7 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
                     {...register("email", { required: true })}
                   />
                   {errors.email && (
-                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                    <span className="absolute top-1 left-2 -z-5 lg:z-0 lg:static text-2xl font-bold text-rose-500">
                       Email field is required
                     </span>
                   )}
@@ -242,7 +242,7 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
                     />
                   )}
                   {errors.message && (
-                    <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
+                    <span className="absolute top-1 left-2 -z-5 lg:z-0 lg:static text-2xl font-bold text-rose-500">
                       Message field is required
                     </span>
                   )}

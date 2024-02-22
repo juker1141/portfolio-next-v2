@@ -24,7 +24,7 @@ const Modal = ({
     switch (modalType) {
       case "success":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
+          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper hidden lg:block">
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={180}
@@ -92,7 +92,7 @@ const Modal = ({
         );
       case "error":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
+          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper hidden lg:block">
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={200}
@@ -218,7 +218,7 @@ const Modal = ({
               className="mb-8 images"
               src="/images/main/airplane.svg"
               alt="airplane.svg"
-            ></Image>
+            />
             {renderModalTypeContent()}
             <button
               onClick={() => hideModal()}
