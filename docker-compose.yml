@@ -6,9 +6,9 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "3000:3000"
-#     networks:
-#       - ec2-network
+    networks:
+      - ec2-network
 
-# networks:
-#   ec2-network:
-#     external: true
+networks:
+  ec2-network:
+    external: true
