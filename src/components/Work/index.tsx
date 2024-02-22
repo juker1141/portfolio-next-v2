@@ -10,12 +10,16 @@ import { largeScreenSize } from "@/util/screen";
 
 import type { Work } from "@/components/Work/types";
 import { workDatas } from "@/components/Work/data";
+import useMountRender from "@/hook/useMountRender";
 
 import WorkItem from "./WorkItem";
 
 const Work = ({ fullpageApi }: { fullpageApi: any }) => {
   const slideRef = useRef<HTMLDivElement>(null);
   const worksList = useRef<Work[]>(workDatas);
+
+  const isMounted = useMountRender();
+
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
@@ -83,31 +87,30 @@ const Work = ({ fullpageApi }: { fullpageApi: any }) => {
             <div
               className={`images absolute bottom-16 lg:bottom-24 left-6 lg:left-12`}
             >
-              <Image
-                width={isLargeScreen ? 220 : 160}
-                height={isLargeScreen ? 220 : 160}
-                style={{
-                  width: isLargeScreen ? 220 : 160,
-                  height: isLargeScreen ? 220 : 160,
-                }}
-                className="drop-shadow-images-xs lg:drop-shadow-images-sm"
-                src="/images/main/bone.svg"
-                alt="bone.svg"
-              />
+              {isMounted && (
+                <Image
+                  width={isLargeScreen ? 220 : 160}
+                  height={isLargeScreen ? 220 : 160}
+                  className="drop-shadow-images-xs lg:drop-shadow-images-sm"
+                  src="/images/main/bone.svg"
+                  alt="bone.svg"
+                />
+              )}
               <div className="absolute top-1/3 left-0 h-[50vh] w-full -z-50 bg-stick-4 bg-center bg-contain bg-no-repeat hidden lg:block" />
             </div>
             <h4 className="font-amatic-sc font-bold text-7xl lg:text-8xl text-left mb-6 heading">
               Side Projects
             </h4>
-            <p className="w-full lg:w-1/2 text-base lg:text-lg lg:text-center content">
+            <div className="w-full lg:w-1/2 text-base lg:text-lg lg:text-center content">
               I frequently dedicate my spare time to researching new
               technologies or engaging in practical exercises.
-              <br /> For additional information, you can visit{" "}
-              <a className="font-bold" href="https://github.com/juker1141">
+              <br />
+              For additional information, you can visit
+              <a className="font-bold ml-1" href="https://github.com/juker1141">
                 My Github
               </a>
               .
-            </p>
+            </div>
           </div>
         </div>
         {worksList.current.map((work, index) => {

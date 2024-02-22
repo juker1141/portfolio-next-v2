@@ -11,9 +11,12 @@ import { largeScreenSize, middleScreenSize } from "@/util/screen";
 
 import Underline from "@/components/Underline";
 import styles from "./styles.module.css";
+import useMountRender from "@/hook/useMountRender";
 
 const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
   const sectionRef = useRef<HTMLElement>(null);
+
+  const isMounted = useMountRender();
 
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
@@ -102,13 +105,15 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
                 src="/images/main/banner-main.svg"
                 alt="banner-main.svg"
               />
-              <Image
-                width={isMiddleScreen ? 400 : 300}
-                height={isMiddleScreen ? 400 : 300}
-                className="drop-shadow-images z-5 block lg:hidden"
-                src="/images/main/banner-main-mobile.svg"
-                alt="banner-main-mobile.svg"
-              />
+              {isMounted && (
+                <Image
+                  width={isMiddleScreen ? 400 : 300}
+                  height={isMiddleScreen ? 400 : 300}
+                  className="drop-shadow-images z-5 block lg:hidden"
+                  src="/images/main/banner-main-mobile.svg"
+                  alt="banner-main-mobile.svg"
+                />
+              )}
               <div className="absolute top-1/2 lg:top-2/3 left-0 h-[50vh] lg:h-[70vh] w-full -z-50 bg-stick-1 bg-center bg-contain bg-no-repeat drop-shadow" />
             </div>
           </div>

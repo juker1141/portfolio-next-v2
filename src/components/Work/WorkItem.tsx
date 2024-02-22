@@ -17,6 +17,7 @@ import type { Work, ElementType } from "@/components/Work/types";
 import Marker from "@/components/Marker";
 
 import styles from "./workItem.module.css";
+import useMountRender from "@/hook/useMountRender";
 
 type ItemProps = {
   index: number;
@@ -25,6 +26,8 @@ type ItemProps = {
 
 const WorkItem = ({ index, work }: ItemProps) => {
   const slideRef = useRef<HTMLDivElement>(null);
+  const isMounted = useMountRender();
+
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
@@ -64,20 +67,24 @@ const WorkItem = ({ index, work }: ItemProps) => {
       case "sushi":
         return (
           <Fragment>
-            <Image
-              width={isLargeScreen ? 120 : 90}
-              height={isLargeScreen ? 120 : 90}
-              className="absolute top-28 lg:top-12 -right-10 lg:right-0 lg:left-0 xl:left-20 drop-shadow"
-              src="/images/element/cloud.svg"
-              alt="cloud-left.svg"
-            />
-            <Image
-              width={isLargeScreen ? 90 : 60}
-              height={isLargeScreen ? 90 : 60}
-              className="absolute top-4 lg:-top-0 right-[90%] lg:right-6 xl:right-24 drop-shadow"
-              src="/images/element/cloud.svg"
-              alt="cloud-right.svg"
-            />
+            {isMounted && (
+              <Image
+                width={isLargeScreen ? 120 : 90}
+                height={isLargeScreen ? 120 : 90}
+                className="absolute top-28 lg:top-12 -right-10 lg:right-0 lg:left-0 xl:left-20 drop-shadow"
+                src="/images/element/cloud.svg"
+                alt="cloud-left.svg"
+              />
+            )}
+            {isMounted && (
+              <Image
+                width={isLargeScreen ? 90 : 60}
+                height={isLargeScreen ? 90 : 60}
+                className="absolute top-4 lg:-top-0 right-[90%] lg:right-6 xl:right-24 drop-shadow"
+                src="/images/element/cloud.svg"
+                alt="cloud-right.svg"
+              />
+            )}
             <Image
               width={220}
               height={220}
@@ -116,13 +123,15 @@ const WorkItem = ({ index, work }: ItemProps) => {
       case "cactus":
         return (
           <Fragment>
-            <Image
-              width={isLargeScreen ? 60 : 40}
-              height={isLargeScreen ? 60 : 40}
-              className="absolute top-4 lg:-top-12 -left-4 lg:-left-8 xl:left-0 -rotate-12 drop-shadow"
-              src="/images/element/music-1.svg"
-              alt="music-1.svg"
-            />
+            {isMounted && (
+              <Image
+                width={isLargeScreen ? 60 : 40}
+                height={isLargeScreen ? 60 : 40}
+                className="absolute top-4 lg:-top-12 -left-4 lg:-left-8 xl:left-0 -rotate-12 drop-shadow"
+                src="/images/element/music-1.svg"
+                alt="music-1.svg"
+              />
+            )}
             <Image
               width={50}
               height={50}
@@ -137,13 +146,15 @@ const WorkItem = ({ index, work }: ItemProps) => {
               src="/images/element/cactus.svg"
               alt="cactus"
             />
-            <Image
-              width={isLargeScreen ? 60 : 30}
-              height={isLargeScreen ? 60 : 30}
-              className="absolute bottom-4 lg:bottom-24 right-2 lg:-right-6 xl:right-16 rotate-12 drop-shadow"
-              src="/images/element/music-2.svg"
-              alt="music-2.svg"
-            />
+            {isMounted && (
+              <Image
+                width={isLargeScreen ? 60 : 30}
+                height={isLargeScreen ? 60 : 30}
+                className="absolute bottom-4 lg:bottom-24 right-2 lg:-right-6 xl:right-16 rotate-12 drop-shadow"
+                src="/images/element/music-2.svg"
+                alt="music-2.svg"
+              />
+            )}
           </Fragment>
         );
       default:
@@ -173,11 +184,13 @@ const WorkItem = ({ index, work }: ItemProps) => {
                     className="flex items-center relative"
                   >
                     <Marker type="icon">
-                      <FontAwesomeIcon
-                        icon={faGithubAlt}
-                        color="#543c1a"
-                        size={isLargeScreen ? "3x" : "2x"}
-                      />
+                      {isMounted && (
+                        <FontAwesomeIcon
+                          icon={faGithubAlt}
+                          color="#543c1a"
+                          size={isLargeScreen ? "3x" : "2x"}
+                        />
+                      )}
                     </Marker>
                   </a>
                 )}

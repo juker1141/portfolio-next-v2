@@ -1,6 +1,5 @@
 "use client";
-import Script from "next/script";
-import { Fragment, useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
@@ -222,51 +221,47 @@ export default function Home() {
   );
 
   return (
-    <Fragment>
-      <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
-      {}
-      <GoogleReCaptchaProvider
-        reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
-        container={{
-          element: "reCaptchaEl",
-          parameters: {
-            badge: "bottomleft",
-          },
+    <GoogleReCaptchaProvider
+      reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
+      container={{
+        element: "reCaptchaEl",
+        parameters: {
+          badge: "bottomleft",
+        },
+      }}
+    >
+      <Header isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
+      <ReactFullpage
+        anchors={fullpageAnchors}
+        menu="#nav-menu"
+        licenseKey={"gplv3-license"}
+        navigation
+        navigationPosition="right"
+        scrollOverflow={false}
+        scrollBar={false}
+        scrollingSpeed={1200}
+        credits={{
+          enabled: true,
+          label: "",
+          position: "right",
         }}
-      >
-        <Header isShowMenu={isShowMenu} setIsShowMenu={setIsShowMenu} />
-        <ReactFullpage
-          anchors={fullpageAnchors}
-          menu="#nav-menu"
-          licenseKey={"gplv3-license"}
-          navigation
-          navigationPosition="right"
-          scrollOverflow={false}
-          scrollBar={false}
-          scrollingSpeed={1200}
-          credits={{
-            enabled: true,
-            label: "",
-            position: "right",
-          }}
-          scrollOverflowMacStyle={true}
-          afterLoad={afterLoad}
-          afterSlideLoad={afterSlideLoad}
-          onLeave={onLeave}
-          controlArrows={false}
-          loopHorizontal={false}
-          slidesNavigation={true}
-          slidesNavPosition={"bottom"}
-          render={(comp: any) => (
-            <ReactFullpage.Wrapper>
-              {fullpages.current.map((Component, index) => (
-                <Component key={index} fullpageApi={comp.fullpageApi} />
-              ))}
-            </ReactFullpage.Wrapper>
-          )}
-        />
-        <GoTopBtn />
-      </GoogleReCaptchaProvider>
-    </Fragment>
+        scrollOverflowMacStyle={true}
+        afterLoad={afterLoad}
+        afterSlideLoad={afterSlideLoad}
+        onLeave={onLeave}
+        controlArrows={false}
+        loopHorizontal={false}
+        slidesNavigation={true}
+        slidesNavPosition={"bottom"}
+        render={(comp: any) => (
+          <ReactFullpage.Wrapper>
+            {fullpages.current.map((Component, index) => (
+              <Component key={index} fullpageApi={comp.fullpageApi} />
+            ))}
+          </ReactFullpage.Wrapper>
+        )}
+      />
+      <GoTopBtn />
+    </GoogleReCaptchaProvider>
   );
 }

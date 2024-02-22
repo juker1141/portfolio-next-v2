@@ -14,6 +14,7 @@ import { useMediaQuery } from "react-responsive";
 import { largeScreenSize } from "@/util/screen";
 
 import { Modal, useModal } from "@/components/Modal";
+import useMountRender from "@/hook/useMountRender";
 
 type Inputs = {
   name: string;
@@ -25,6 +26,8 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [notification, setNotification] = useState("");
+
+  const isMounted = useMountRender();
 
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
@@ -225,17 +228,19 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
                   Message
                 </label>
                 <div className="relative flex flex-col">
-                  <textarea
-                    rows={isLargeScreen ? 5 : 3}
-                    id="message"
-                    className={`resize-none bg-beige px-1 lg:px-2 focus:outline-blue-400  ${
-                      errors.message && "error"
-                    }`}
-                    {...register("message", {
-                      required: true,
-                      maxLength: 200,
-                    })}
-                  />
+                  {isMounted && (
+                    <textarea
+                      rows={isLargeScreen ? 5 : 3}
+                      id="message"
+                      className={`resize-none bg-beige px-1 lg:px-2 focus:outline-blue-400  ${
+                        errors.message && "error"
+                      }`}
+                      {...register("message", {
+                        required: true,
+                        maxLength: 200,
+                      })}
+                    />
+                  )}
                   {errors.message && (
                     <span className="absolute top-1 left-2 lg:static text-2xl font-bold text-rose-500">
                       Message field is required
@@ -274,13 +279,15 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
                       Submit
                     </div>
                   </div>
-                  <Image
-                    className="absolute top-30 lg:-top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all scale-[1.8] lg:scale-100 z-20 lg:z-0 drop-shadow"
-                    src="/images/element/tomato.svg"
-                    width={isLargeScreen ? 240 : 180}
-                    height={isLargeScreen ? 240 : 180}
-                    alt="e-24-tomato-onclick"
-                  />
+                  {isMounted && (
+                    <Image
+                      className="absolute top-30 lg:-top-24 right-1/2 translate-x-1/2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all scale-[1.8] lg:scale-100 z-20 lg:z-0 drop-shadow"
+                      src="/images/element/tomato.svg"
+                      width={isLargeScreen ? 240 : 180}
+                      height={isLargeScreen ? 240 : 180}
+                      alt="e-24-tomato-onclick"
+                    />
+                  )}
                 </button>
               </div>
             </form>

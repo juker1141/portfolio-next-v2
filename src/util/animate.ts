@@ -86,7 +86,6 @@ export const animateMenu = ({
   }
 
   if (menuBtnEl && !isShowMenu) {
-    console.log("trigger");
     const tl = gsap.timeline({ ease: "bounce.inOut" });
     tl.to(menuBtnEl, {
       duration: 0.2,
@@ -303,6 +302,29 @@ export const pageAnimateIn = ({
         duration: 0.5,
       });
     } else if (experienceStage === 1 && direction === "down") {
+      gsap.to(heading, {
+        stagger: 0.15,
+        autoAlpha: 1,
+        x: 0,
+        duration: 0.5,
+      });
+      if (layout) {
+        gsap.to(layout, {
+          stagger: 0.15,
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.5,
+        });
+      }
+      const tl = gsap.timeline({ ease: "power1.inOut" });
+      tl.to(images, {
+        x: 100,
+        duration: 0.5,
+      }).to(images, {
+        x: 0,
+        autoAlpha: 1,
+        duration: 0.5,
+      });
       gsap.to(content2, {
         delay: 0.5,
         autoAlpha: 1,

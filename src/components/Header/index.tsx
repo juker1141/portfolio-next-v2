@@ -11,6 +11,7 @@ import { useGSAP } from "@gsap/react";
 import ClickAwayListener from "react-click-away-listener";
 
 import { useMediaQuery } from "react-responsive";
+import useMountRender from "@/hook/useMountRender";
 import { largeScreenSize, middleScreenSize } from "@/util/screen";
 
 const Header = ({
@@ -20,10 +21,10 @@ const Header = ({
   isShowMenu: boolean;
   setIsShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const isMounted = useMountRender();
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
   });
-  console.log(isMiddleScreen);
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
@@ -191,7 +192,7 @@ const Header = ({
           className="flex items-center relative w-16 h-16 lg:w-20 lg:h-20 z-10"
         >
           <a href="/" onClick={goTopSection}>
-            <Image
+            {/* <Image
               src={
                 isShowMenu && !isLargeScreen
                   ? "/images/main/logo-white.svg"
@@ -201,7 +202,32 @@ const Header = ({
               alt="logo.svg"
               width={isMiddleScreen ? 80 : 50}
               height={isMiddleScreen ? 80 : 50}
-            />
+            /> */}
+            {isMounted ? (
+              <Image
+                src={
+                  isShowMenu && !isLargeScreen
+                    ? "/images/main/logo-white.svg"
+                    : "/images/main/logo.svg"
+                }
+                className="drop-shadow-images-xs lg:drop-shadow-images-sm"
+                alt="logo.svg"
+                width={isMiddleScreen ? 80 : 50}
+                height={isMiddleScreen ? 80 : 50}
+              />
+            ) : (
+              <Image
+                src={
+                  isShowMenu && !isLargeScreen
+                    ? "/images/main/logo-white.svg"
+                    : "/images/main/logo.svg"
+                }
+                className="drop-shadow-images-xs lg:drop-shadow-images-sm"
+                alt="logo.svg"
+                width={80}
+                height={80}
+              />
+            )}
             <div
               className={`before:absolute ${
                 isShowMenu ? "before:bg-white" : "before:bg-primary"

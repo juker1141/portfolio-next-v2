@@ -6,9 +6,12 @@ import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "react-responsive";
 import { largeScreenSize, middleScreenSize } from "@/util/screen";
+import useMountRender from "@/hook/useMountRender";
 
 const About = ({ fullpageApi }: { fullpageApi: any }) => {
   const sectionRef = useRef<HTMLElement>(null);
+  const isMounted = useMountRender();
+
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
   });
@@ -55,21 +58,18 @@ const About = ({ fullpageApi }: { fullpageApi: any }) => {
     <section className="section" ref={sectionRef}>
       <div className="container h-full-dvh mx-auto flex justify-center items-center  overflow-y-hidden">
         <div className="absolute w-full h-full top-0 left-0 layout">
-          <Image
-            width={isLargeScreen ? 120 : 100}
-            height={isLargeScreen ? 120 : 100}
-            style={{
-              width: isLargeScreen ? 120 : 100,
-              height: isLargeScreen ? 120 : 100,
-            }}
-            className="absolute top-28 z-5 lg:-z-5 right-2/3 lg:top-28 lg:right-1/2 xl:top-48 lg:mr-12 drop-shadow"
-            src="/images/element/cloud.svg"
-            alt="cloud.svg"
-          />
+          {isMounted && (
+            <Image
+              width={isLargeScreen ? 120 : 100}
+              height={isLargeScreen ? 120 : 100}
+              className="absolute top-28 z-5 lg:-z-5 right-2/3 lg:top-28 lg:right-1/2 lg:mr-12 drop-shadow"
+              src="/images/element/cloud.svg"
+              alt="cloud.svg"
+            />
+          )}
           <Image
             width={120}
             height={120}
-            style={{ width: 120, height: 120 }}
             className="absolute hidden lg:block bottom-24 right-24 z-0 drop-shadow"
             src="/images/element/flower-1.svg"
             alt="flower-1.svg"
@@ -79,13 +79,15 @@ const About = ({ fullpageApi }: { fullpageApi: any }) => {
           <div className="lg:col-span-2 relative px-12 lg:px-8 xl:px-0 flex justify-center items-center group">
             <div className="images bg-white p-3 rounded-full drop-shadow-images-xs lg:drop-shadow-images-sm">
               <div className="z-0 rounded-full relative overflow-hidden border-4 border-primary">
-                <Image
-                  src="/images/main/hero.webp"
-                  width={isMiddleScreen ? 400 : 250}
-                  height={isMiddleScreen ? 400 : 250}
-                  className="rounded-full"
-                  alt="Hero"
-                />
+                {isMounted && (
+                  <Image
+                    src="/images/main/hero.webp"
+                    width={isMiddleScreen ? 400 : 250}
+                    height={isMiddleScreen ? 400 : 250}
+                    className="rounded-full"
+                    alt="Hero"
+                  />
+                )}
                 <Image
                   src="/images/main/about-role.svg"
                   width={200}
