@@ -22,7 +22,13 @@ type Inputs = {
   message: string;
 };
 
-const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
+const Contact = ({
+  fullpageApi,
+  setIsLoading,
+}: {
+  fullpageApi: any;
+  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [notification, setNotification] = useState("");
@@ -73,10 +79,20 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
         console.log("Execute recaptcha not yet available");
         return;
       }
+      try {
+        const token = await executeRecaptcha("yourAction");
 
-      const token = await executeRecaptcha("yourAction");
-      console.log(token);
-      submitEnquiryForm(token, data);
+        const response = await submitEnquiryForm(token, data);
+        if (response?.data?.success === true) {
+          showModal("success");
+        } else {
+          throw new Error(`Failure with score: ${response?.data?.score}`);
+        }
+      } catch (err: any) {
+        showModal("error");
+      } finally {
+        if (setIsLoading) setIsLoading(false);
+      }
       // Do whatever you want with the token
     },
     [executeRecaptcha]
@@ -89,39 +105,41 @@ const Contact = ({ fullpageApi }: { fullpageApi: any }) => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (setIsLoading) setIsLoading(true);
     handleReCaptchaVerify(data);
   };
 
-  const submitEnquiryForm = (gReCaptchaToken: string, data: any) => {
-    async function goAsync() {
-      const response = await axios({
-        method: "post",
-        url: "/api/contactFormSubmit",
-        data: {
-          name: data.name,
-          email: data.email,
-          message: data.message,
-          gRecaptchaToken: gReCaptchaToken,
-        },
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      });
+  const submitEnquiryForm = async (gReCaptchaToken: string, data: any) => {
+    // async function goAsync() {
 
-      if (response?.data?.success === true) {
-        setNotification(`Success with score: ${response?.data?.score}`);
-      } else {
-        setNotification(`Failure with score: ${response?.data?.score}`);
-      }
-    }
-    goAsync()
-      .then(() => {
-        showModal("success");
-      })
-      .catch(() => {
-        showModal("error");
-      }); // suppress typescript error
+    //   if (response?.data?.success === true) {
+    //     setNotification(`Success with score: ${response?.data?.score}`);
+    //   } else {
+    //     setNotification(`Failure with score: ${response?.data?.score}`);
+    //     throw new Error(`Failure with score: ${response?.data?.score}`);
+    //   }
+    // }
+    // goAsync()
+    //   .then(() => {
+    //     showModal("success");
+    //   })
+    //   .catch(() => {
+    //     showModal("error");
+    //   }); // suppress typescript error
+    return await axios({
+      method: "post",
+      url: "/api/contactFormSubmit",
+      data: {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        gRecaptchaToken: gReCaptchaToken,
+      },
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (

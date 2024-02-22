@@ -23,6 +23,7 @@ import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import GoTopBtn from "@/components/GoTopBtn";
+import Loading from "@/components/Loading";
 
 import { fullpageAnchors, getSlideDirection, Trigger } from "@/util/fullpage";
 import {
@@ -36,9 +37,11 @@ export type FullpageApi = Object;
 type Component = ({
   fullpageApi,
   experienceStage,
+  setIsLoading,
 }: {
   fullpageApi: any;
   experienceStage?: number;
+  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => JSX.Element;
 
 export default function Home() {
@@ -49,6 +52,7 @@ export default function Home() {
   const experienceStage = useRef(0);
 
   const ready = useRef(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isFirstRendered, setIsFirstRendered] = useState(false);
   const isFirstTimeOnLeaved = useRef(false);
   // const isDesktop = useRef(false);
@@ -260,12 +264,17 @@ export default function Home() {
           render={(comp: any) => (
             <ReactFullpage.Wrapper>
               {fullpages.current.map((Component, index) => (
-                <Component key={index} fullpageApi={comp.fullpageApi} />
+                <Component
+                  key={index}
+                  fullpageApi={comp.fullpageApi}
+                  setIsLoading={setIsLoading}
+                />
               ))}
             </ReactFullpage.Wrapper>
           )}
         />
         <GoTopBtn />
+        <Loading isLoading={isLoading} />
       </GoogleReCaptchaProvider>
     </Fragment>
   );

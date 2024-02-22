@@ -24,7 +24,7 @@ const Modal = ({
     switch (modalType) {
       case "success":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper hidden lg:block">
+          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={180}
@@ -92,7 +92,7 @@ const Modal = ({
         );
       case "error":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper hidden lg:block">
+          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={200}
@@ -159,7 +159,9 @@ const Modal = ({
           </div>
         );
       default:
-        return;
+        return (
+          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper"></div>
+        );
     }
   };
 
@@ -288,12 +290,13 @@ const useModal = () => {
   const showModal = useCallback(
     (type: ModalType) => {
       if (modalRef.current && !isShowModal) {
+        console.log(3213123);
         setModalType(type);
         const clouds =
           modalRef.current.querySelector(".clouds-wrapper")?.children;
         const content = modalRef.current.querySelector(".content")?.children;
         const images = modalRef.current.querySelector(".images");
-
+        console.log(clouds, content, images);
         if (clouds && content) {
           gsap.to(modalRef.current, {
             autoAlpha: 1,
@@ -325,6 +328,7 @@ const useModal = () => {
               setIsShowModal(true);
             },
           });
+          console.log(2131231312);
         }
       }
     },

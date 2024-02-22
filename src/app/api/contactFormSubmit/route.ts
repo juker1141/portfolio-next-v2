@@ -1,10 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import axios from "axios";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: NextRequest, response: NextResponse) {
   const secretKey = process?.env?.RECAPTCHA_SECRET_KEY;
+
+  if (!secretKey) {
+    return new NextResponse(
+      JSON.stringify({ message: "Internal Server Error" }),
+      { status: 500 }
+    );
+  }
 
   const postData = await request.json();
   const { gRecaptchaToken, name, email, message } = postData;
@@ -69,6 +76,12 @@ export async function POST(request: Request, response: Response) {
     );
   } catch (e) {
     console.log("recaptcha error:", e);
+    return new NextResponse(
+      JSON.stringify({ message: `recaptcha error: ${e}` }),
+      {
+        status: 500,
+      }
+    );
   }
 
   if (res && res.data?.success && res.data?.score > 0.5) {
@@ -78,22 +91,39 @@ export async function POST(request: Request, response: Response) {
       console.log("Saving data to the database:", name, email, message);
       console.log("res.data?.score:", res.data?.score);
 
-      return NextResponse.json({
-        success: true,
-        name,
-        email,
-        message,
-        score: res.data?.score,
-      });
-    } catch (e) {
-      return NextResponse.json({
-        success: false,
-        name,
-        message: "failed to sending email",
-      });
+      return new NextResponse(
+        JSON.stringify({
+          success: true,
+          name,
+          email,
+          message,
+          score: res.data?.score,
+        }),
+        {
+          status: 200,
+        }
+      );
+    } catch (e: any) {
+      console.log(e);
+      return new NextResponse(
+        JSON.stringify({
+          success: false,
+          name,
+          message: "Failed to sending email",
+        }),
+        {
+          status: 400,
+        }
+      );
     }
   } else {
+    console.log("res", res);
     console.log("fail: res.data?.score:", res.data?.score);
-    return NextResponse.json({ success: false, name, score: res.data?.score });
+    return new NextResponse(
+      JSON.stringify({ success: false, name, score: res.data?.score }),
+      {
+        status: 400,
+      }
+    );
   }
 }
