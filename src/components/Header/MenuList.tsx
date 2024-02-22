@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Marker from "@/components/Marker";
 import CloseBtn from "@/components/Header/CloseBtn";
+import useMountRender from "@/hook/useMountRender";
 
 const NavData = [
   {
@@ -32,6 +33,8 @@ type MenuListProps = {
 };
 
 const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
+  const isMounted = useMountRender();
+
   return (
     <div
       id="menuEl"
@@ -68,11 +71,13 @@ const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
                   className="flex items-center px-3 relative"
                 >
                   <Marker type="icon">
-                    <FontAwesomeIcon
-                      icon={faLinkedin}
-                      color={!isLargeScreen ? "white" : ""}
-                      size="2xs"
-                    />
+                    {isMounted && (
+                      <FontAwesomeIcon
+                        icon={faLinkedin}
+                        color={!isLargeScreen ? "white" : ""}
+                        size="2xs"
+                      />
+                    )}
                   </Marker>
                 </a>
               </li>
@@ -84,11 +89,13 @@ const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
                   className="flex items-center px-3 relative"
                 >
                   <Marker type="icon">
-                    <FontAwesomeIcon
-                      icon={faGithubSquare}
-                      color={!isLargeScreen ? "white" : ""}
-                      size="2xs"
-                    />
+                    {isMounted && (
+                      <FontAwesomeIcon
+                        icon={faGithubSquare}
+                        color={!isLargeScreen ? "white" : ""}
+                        size="2xs"
+                      />
+                    )}
                   </Marker>
                 </a>
               </li>
@@ -98,11 +105,13 @@ const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
                   className="flex items-center px-3 relative"
                 >
                   <Marker type="icon">
-                    <FontAwesomeIcon
-                      icon={faEnvelopeSquare}
-                      color={!isLargeScreen ? "white" : ""}
-                      size="2xs"
-                    />
+                    {isMounted && (
+                      <FontAwesomeIcon
+                        icon={faEnvelopeSquare}
+                        color={!isLargeScreen ? "white" : ""}
+                        size="2xs"
+                      />
+                    )}
                   </Marker>
                 </a>
               </li>

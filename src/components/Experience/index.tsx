@@ -11,8 +11,6 @@ import styles from "./styles.module.css";
 const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // const stage = useState()
-
   useGSAP(
     () => {
       if (sectionRef.current) {
@@ -64,7 +62,6 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={100}
             height={100}
-            style={{ width: 100, height: 100 }}
             className="absolute top-44 right-52 hidden lg:block drop-shadow"
             src="/images/element/cloud.svg"
             alt="cloud-right.svg"
@@ -72,7 +69,6 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
           <Image
             width={80}
             height={80}
-            style={{ width: 80, height: 80 }}
             className="absolute lg:hidden top-24 md:top-64 right-4 drop-shadow"
             src="/images/element/flower-2.svg"
             alt="flower-2.svg"
@@ -113,12 +109,12 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
             </h4>
             <div className="flex flex-col relative">
               <div className="flex flex-col relative content1">
-                <p className="text-base lg:text-xl font-light flex justify-between items-end">
+                <div className="text-base lg:text-xl font-light flex justify-between items-end">
                   Oct 2021 - Oct 2022
                   <span className="text-sm font-light lg:font-normal lg:text-base">
                     RealTime Ltd.
                   </span>
-                </p>
+                </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-4">
                   Frontend Developer
                 </h3>
@@ -138,12 +134,12 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
                 </p>
               </div>
               <div className="flex flex-col absolute top-0 left-0 content2">
-                <p className="text-base lg:text-xl font-light flex justify-between items-end">
+                <div className="text-base lg:text-xl font-light flex justify-between items-end">
                   Oct 2022 - Present
                   <span className="text-sm font-light lg:font-normal lg:text-base">
                     RealTime Ltd.
                   </span>
-                </p>
+                </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-4">
                   Frontend & Backend Developer
                 </h3>

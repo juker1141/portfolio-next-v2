@@ -48,7 +48,7 @@ body {
 }
 
 body {
-  cursor: url(/images/main/cursor/cursor.png), auto;
+  cursor: url(/images/cursor/cursor.png), auto;
   color: theme(colors.primary);
   /* background-color: #e0d9c7; */
   background-color: theme(colors.beige);
@@ -60,11 +60,11 @@ body {
 }
 
 body a:hover {
-  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
+  cursor: url(/images/cursor/cursor-pointer.png), pointer;
 }
 
 body button:hover {
-  cursor: url(/images/main/cursor/cursor-pointer.png), pointer;
+  cursor: url(/images/cursor/cursor-pointer.png), pointer;
 }
 
 .marker {

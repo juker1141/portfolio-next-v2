@@ -1,16 +1,14 @@
 version: "3"
 services:
   portfolio:
-    image: node:18
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - "3000:3000"
-    networks:
-      - ec2-network
-    volumes:
-      - ./portfolio:/app
-    working_dir: /app
-    command: "npm run start"
+#     networks:
+#       - ec2-network
 
-networks:
-  ec2-network:
-    external: true
+# networks:
+#   ec2-network:
+#     external: true

@@ -7,7 +7,8 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "react-responsive";
-import { largeScreenSize, middleScreenSize } from "@/util/screen";
+import { middleScreenSize } from "@/util/screen";
+import useMountRender from "@/hook/useMountRender";
 
 const MenuBtn = ({
   handleToggleMenu,
@@ -20,11 +21,10 @@ const MenuBtn = ({
 }) => {
   const tlRef = useRef<any>(null);
 
+  const isMounted = useMountRender();
+
   const isMiddleScreen = useMediaQuery({
     query: `(min-width: ${middleScreenSize})`,
-  });
-  const isLargeScreen = useMediaQuery({
-    query: `(min-width: ${largeScreenSize})`,
   });
   const { contextSafe } = useGSAP();
   const showMenuRole: any = contextSafe(() => {
@@ -105,13 +105,15 @@ const MenuBtn = ({
             —
           </span>
         </div>
-        <Image
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-5 drop-shadow group-hover:scale-125"
-          src="/images/main/menu-btn.png"
-          width={isMiddleScreen ? 160 : 100}
-          height={isMiddleScreen ? 100 : 60}
-          alt="menu-btn.png"
-        />
+        {isMounted && (
+          <Image
+            className="absolute left-1/2 -translate-x-1/2 z-5 drop-shadow group-hover:scale-125"
+            src="/images/main/menu-btn.png"
+            width={isMiddleScreen ? 160 : 100}
+            height={isMiddleScreen ? 100 : 60}
+            alt="menu-btn.png"
+          />
+        )}
       </button>
       <Image
         id="menuRoleEl"

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Amatic_SC, Roboto, Londrina_Solid, Titan_One } from "next/font/google";
+import { Amatic_SC, Roboto, Titan_One } from "next/font/google";
 
 import "./globals.css";
 import "./fullpageCustom.css";
@@ -32,13 +32,6 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const londrinaSolid = Londrina_Solid({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-  variable: "--font-londrina-solid",
-});
-
 const titanOne = Titan_One({
   weight: "400",
   style: "normal",
@@ -66,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${amaticSC.variable} ${roboto.variable} ${londrinaSolid.variable} ${titanOne.variable} font-roboto`}
+        className={`${amaticSC.variable} ${roboto.variable} ${titanOne.variable} font-roboto`}
       >
         {children}
       </body>

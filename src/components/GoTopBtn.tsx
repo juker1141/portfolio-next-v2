@@ -7,9 +7,12 @@ import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "react-responsive";
 import { largeScreenSize } from "@/util/screen";
+import useMountRender from "@/hook/useMountRender";
 
 const GoTopBtn = () => {
   const goTopBtnRef = useRef<HTMLButtonElement>(null);
+  const isMounted = useMountRender();
+
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
@@ -34,7 +37,6 @@ const GoTopBtn = () => {
             autoAlpha: 0,
             duration: 0.3,
           });
-          // console.log("現在的錨點值是 #Banner", currentHash);
         } else {
           gsap.to(goTopBtnRef.current, {
             y: 0,
@@ -68,13 +70,15 @@ const GoTopBtn = () => {
           onClick={goTopSection}
           className="relative"
         >
-          <Image
-            className="drop-shadow-lg"
-            src="/images/main/go-top-role.svg"
-            width={isLargeScreen ? 150 : 100}
-            height={isLargeScreen ? 150 : 100}
-            alt="go-top-role.svg"
-          />
+          {isMounted && (
+            <Image
+              className="drop-shadow-lg"
+              src="/images/main/go-top-role.svg"
+              width={isLargeScreen ? 150 : 100}
+              height={isLargeScreen ? 150 : 100}
+              alt="go-top-role.svg"
+            />
+          )}
         </button>
       </div>
       <div id="reCaptchaEl" />
