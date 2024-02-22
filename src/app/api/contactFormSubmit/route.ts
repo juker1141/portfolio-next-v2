@@ -16,13 +16,13 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const postData = await request.json();
   const { gRecaptchaToken, name, email, message } = postData;
 
-  console.log(
-    "gRecaptchaToken,name,email,message:",
-    gRecaptchaToken?.slice(0, 10) + "...",
-    name,
-    email,
-    message
-  );
+  // console.log(
+  //   "gRecaptchaToken,name,email,message:",
+  //   gRecaptchaToken?.slice(0, 10) + "...",
+  //   name,
+  //   email,
+  //   message
+  // );
 
   const transport = nodemailer.createTransport({
     service: "gmail",
@@ -51,9 +51,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
   const sendMailPromise = () =>
     new Promise<string>((resolve, reject) => {
-      console.log("try send email");
+      // console.log("try send email");
       transport.sendMail(mailOptions, function (err) {
-        console.log(err);
+        // console.log(err);
         if (!err) {
           resolve("Email sent");
         } else {
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       }
     );
   } catch (e) {
-    console.log("recaptcha error:", e);
+    // console.log("recaptcha error:", e);
     return new NextResponse(
       JSON.stringify({ message: `recaptcha error: ${e}` }),
       {
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       );
     }
   } else {
-    console.log("res", res);
+    console.log("resData", res.data);
     console.log("fail: res.data?.score:", res.data?.score);
     return new NextResponse(
       JSON.stringify({ success: false, name, score: res.data?.score }),
