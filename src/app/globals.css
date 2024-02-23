@@ -2,45 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  scroll-behavior: smooth;
-}
-
-.scrollContainer {
-  scroll-snap-type: both mandatory;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scrollContainer section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-} */
-
-/*:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}*/
-
 html,
 body {
   overflow: hidden;
@@ -50,13 +11,12 @@ body {
 body {
   cursor: url(/images/cursor/cursor.png), auto;
   color: theme(colors.primary);
-  /* background-color: #e0d9c7; */
   background-color: theme(colors.beige);
   overflow: hidden;
 }
 
 .grecaptcha-badge {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 body a:hover {
@@ -65,116 +25,6 @@ body a:hover {
 
 body button:hover {
   cursor: url(/images/cursor/cursor-pointer.png), pointer;
-}
-
-.marker {
-  position: relative;
-  /* color: #333; */
-  text-decoration: none;
-}
-.marker .circle {
-  position: absolute;
-  left: 0;
-  top: -50%;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  pointer-events: none;
-}
-.marker .circle path {
-  transition: stroke-dashoffset 300ms linear;
-  stroke-width: 2;
-  stroke: #ef4444;
-  fill: none;
-  stroke-linecap: round;
-}
-.marker:hover .circle path {
-  stroke-dashoffset: 0;
-}
-
-#underline {
-  stroke-dasharray: 375;
-  stroke-dashoffset: 375;
-  animation: sign 4s ease;
-  animation-fill-mode: forwards;
-
-  fill: none;
-  stroke: #e83331;
-  stroke-miterlimit: 10;
-  mask: url(/images/main/mask1.png);
-}
-
-@keyframes sign {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.pen-stroke {
-  position: relative;
-  display: inline;
-}
-
-.pen-stroke svg {
-  position: absolute;
-  top: 1.2em;
-  left: 0;
-  width: 100%;
-  overflow: visible;
-}
-
-.pen-stroke path {
-  fill: none;
-  stroke: #ff2727;
-
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-
-  animation: sign 2s ease;
-  animation-fill-mode: forwards;
-  stroke-width: 5;
-}
-/* .drawing {
-  animation: sign 4s ease;
-} */
-
-/* .work-slide{
-  overflow-y: hidden;
-  overflow: auto !important
-} */
-.work-slide {
-  scroll-snap-type: both mandatory;
-  /* transform: rotate(90deg) translateY(-100vh); */
-  /* -webkit-overflow-scrolling: touch; */
-}
-.work-slide li {
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-}
-
-.wrapper-m {
-  display: flex;
-  width: 400vw;
-  transform: rotate(90deg) translateY(-100vh);
-  transform-origin: top left;
-}
-
-.container-m {
-  width: 100vh;
-  height: 100vw;
-  top: 0;
-  transform: rotate(-90deg) translateX(-100vh);
-  transform-origin: top left;
-  position: absolute;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-.slide-m {
-  height: 100vh;
-  width: 90vw;
 }
 
 @media (min-width: 1024px) {

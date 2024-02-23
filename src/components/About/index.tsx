@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { largeScreenSize, middleScreenSize } from "@/util/screen";
 import useMountRender from "@/hook/useMountRender";
 
-const About = ({ fullpageApi }: { fullpageApi: any }) => {
+const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isMounted = useMountRender();
 
@@ -106,11 +106,12 @@ const About = ({ fullpageApi }: { fullpageApi: any }) => {
               Frontend Developer / Backend Developer
             </span>
             <p className="text-lg lg:text-xl content">
-              I have been learning to program for{" "}
-              {new Date().getFullYear() - 2021} years. I am proficient in using
-              popular <strong>React</strong> and <strong>Vue</strong> frameworks
-              and have developed a complete website useing{" "}
-              <strong>Express and MongoDB</strong>.
+              Hi! I'm Ryu. I have been working as a developer for{" "}
+              {/* 2021.10 */}
+              {new Date().getFullYear() - 2022} years. I am proficient in using
+              popular <strong>React</strong>, <strong>Next</strong> and{" "}
+              <strong>Vue</strong> frameworks and have developed a complete
+              website using <strong>Node</strong> and <strong>Golang</strong>.
             </p>
           </div>
         </div>

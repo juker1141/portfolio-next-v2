@@ -7,13 +7,13 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { useMediaQuery } from "react-responsive";
-import { largeScreenSize, middleScreenSize } from "@/util/screen";
+import { middleScreenSize } from "@/util/screen";
 
 import Underline from "@/components/Underline";
 import styles from "./styles.module.css";
 import useMountRender from "@/hook/useMountRender";
 
-const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
+const Banner = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   const isMounted = useMountRender();
@@ -90,10 +90,8 @@ const Banner = ({ fullpageApi }: { fullpageApi: any }) => {
               </div>
             </h4>
             <p className="text-lg lg:text-xl lg:w-2/3 description">
-              Love programming and turning ideas into reality.
-              {/* Curious about
-              every detail of computer science.  */}
-              Try different ways to solve the problem when facing challenges.
+              Love programming and turning ideas into reality. Try different
+              ways to solve the problem when facing challenges.
             </p>
           </div>
           <div className="flex justify-center items-center">

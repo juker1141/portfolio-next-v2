@@ -35,11 +35,9 @@ import {
 
 export type FullpageApi = Object;
 type Component = ({
-  fullpageApi,
   experienceStage,
   setIsLoading,
 }: {
-  fullpageApi: any;
   experienceStage?: number;
   setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => JSX.Element;
@@ -48,14 +46,18 @@ export default function Home() {
   const recaptchaKey: string | undefined =
     process?.env?.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
+  // 特殊區塊需要有不同的動畫 or 阻擋
   const workSlideIndex = useRef(0);
   const experienceStage = useRef(0);
 
   const ready = useRef(false);
+
+  // loading 動畫
   const [isLoading, setIsLoading] = useState(false);
+  // 第一次載入 logo 跟 menu 要有動畫
   const [isFirstRendered, setIsFirstRendered] = useState(false);
+  // 當 url 上有 Anchor時，會在載入時自動滾到該區塊
   const isFirstTimeOnLeaved = useRef(false);
-  // const isDesktop = useRef(false);
   const isTriggerAnimate = useRef(false);
 
   const animationTimeout = useRef<NodeJS.Timeout>();
@@ -72,10 +74,6 @@ export default function Home() {
   const [isShowMenu, setIsShowMenu] = useState(false);
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
-    //   isDesktop.current = device.desktop();
-    // }
-
     addEventListener(
       "load",
       function () {
@@ -135,12 +133,15 @@ export default function Home() {
         }, 300);
         // Navigation Click or Menu Click or reload Page Case
 
+        // init animate
         if (!isFirstTimeOnLeaved.current && trigger === null) {
           isFirstTimeOnLeaved.current = true;
 
           (window as any).fullpage_api.moveTo(destination.anchor);
           return false;
         }
+
+        // 控制列 trigger 需要移動到該區塊
         if (
           trigger === "verticalNav" ||
           trigger === "menu" ||
@@ -160,7 +161,7 @@ export default function Home() {
         if (origin.anchor === "Experience") {
           if (experienceStage.current === 0 && direction === "down") {
             (window as any).fullpage_api.setAllowScrolling(false, "down");
-            // console.log("trigger1");
+
             experienceStage.current = 1;
 
             setTimeout(() => {
@@ -175,7 +176,7 @@ export default function Home() {
             return false;
           } else if (experienceStage.current === 1 && direction === "up") {
             (window as any).fullpage_api.setAllowScrolling(false, "up");
-            // console.log("trigger2");
+
             experienceStage.current = 0;
 
             setTimeout(() => {
@@ -189,11 +190,9 @@ export default function Home() {
             }, 500);
             return false;
           } else if (experienceStage.current === 1 && direction === "down") {
-            // console.log("trigger3");
             (window as any).fullpage_api.moveSectionDown();
             return false;
           } else if (experienceStage.current === 0 && direction === "up") {
-            // console.log("trigger4");
             (window as any).fullpage_api.moveSectionUp();
             return false;
           }
@@ -228,7 +227,6 @@ export default function Home() {
   return (
     <Fragment>
       <Script src="https://kit.fontawesome.com/d973d1ccea.js" />
-      {}
       <GoogleReCaptchaProvider
         reCaptchaKey={recaptchaKey ?? "NOT DEFINED"}
         container={{
@@ -261,14 +259,10 @@ export default function Home() {
           loopHorizontal={false}
           slidesNavigation={true}
           slidesNavPosition={"bottom"}
-          render={(comp: any) => (
+          render={() => (
             <ReactFullpage.Wrapper>
               {fullpages.current.map((Component, index) => (
-                <Component
-                  key={index}
-                  fullpageApi={comp.fullpageApi}
-                  setIsLoading={setIsLoading}
-                />
+                <Component key={index} setIsLoading={setIsLoading} />
               ))}
             </ReactFullpage.Wrapper>
           )}

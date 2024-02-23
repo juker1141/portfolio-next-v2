@@ -79,13 +79,7 @@ const Marker: React.FC<MarkerProps> = ({ children, type }) => {
   }, [children, type]);
 
   return (
-    <div
-      ref={markerRef}
-      // onMouseEnter={handleMouseEnter}
-      // onMouseOver={onMouseOver}
-      onMouseEnter={onMouseOver}
-      className="marker group"
-    >
+    <div ref={markerRef} onMouseEnter={onMouseOver} className="marker group">
       {children}
       <svg className="circle">
         <path

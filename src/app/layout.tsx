@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Amatic_SC, Roboto, Titan_One } from "next/font/google";
 
 import "./globals.css";
+import "./svg-animate.css";
 import "./fullpageCustom.css";
 import "./experience.css";
 import "./doodle.css";
