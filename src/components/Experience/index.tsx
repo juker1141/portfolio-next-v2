@@ -8,7 +8,7 @@ import { useGSAP } from "@gsap/react";
 
 import styles from "./styles.module.css";
 
-const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
+const Experience = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -126,10 +126,12 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
                   can independently handle most project tasks.
                 </p>
                 <p className="text-sm lg:text-lg">
-                  Recently, I completed two projects using Next.js and Web3
-                  blockchain technology, along with two backend systems using
-                  Vue 3. Additionally, I developed a real-time chatbot with
-                  React and WebSocket technology.
+                  In the past few months, I completed two projects using{" "}
+                  <strong>Next.js</strong> and <strong>Web3</strong> blockchain
+                  technology, along with two backend systems using{" "}
+                  <strong>Vue 3</strong>. Additionally, I developed a real-time
+                  chatbot with <strong>React</strong> and{" "}
+                  <strong>WebSocket</strong> technology.
                   {/* 我專攻前端網頁開發，大量運用 Functional Programming 理念。引入 TypeScript 和單元測試以確保程式碼穩定性和擴展性。儘管是唯一的前端開發者，我能獨立完成大部分專案任務。最近，我完成了兩個使用 Next.js 和 Web3 區塊鏈技術的專案，以及兩個使用 Vue 3 的後台系統。此外，我還開發了一個使用 React 和 WebSocket 技術的即時聊天機器人。*/}
                 </p>
               </div>
@@ -147,10 +149,11 @@ const Experience = ({ fullpageApi }: { fullpageApi: any }) => {
                   To align with the company’s development direction, I gradually
                   transitioned to the backend field. My primary responsibilities
                   include assisting with online projects to develop new APIs,
-                  fixing bugs, and self-learning Docker and Nginx for deploying
-                  test sites. Additionally, I frequently collaborate with the
-                  MIS team to research more efficient project deployment
-                  methods.
+                  fixing bugs, and self-learning <strong>Docker</strong>,{" "}
+                  <strong>AWS ECR</strong> and <strong>Nginx</strong> for
+                  deploying test sites. Additionally, I frequently collaborate
+                  with the MIS team to research more efficient project
+                  deployment methods.
                 </p>
                 <p className="text-sm lg:text-lg">
                   Despite this focus, I remain actively engaged in maintaining

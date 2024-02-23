@@ -23,21 +23,24 @@ type Inputs = {
 };
 
 const Contact = ({
-  fullpageApi,
   setIsLoading,
 }: {
-  fullpageApi: any;
   setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const [notification, setNotification] = useState("");
 
   const isMounted = useMountRender();
 
   const isLargeScreen = useMediaQuery({
     query: `(min-width: ${largeScreenSize})`,
   });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   const { modalRef, modalType, isShowModal, showModal, hideModal } = useModal();
 
@@ -72,60 +75,7 @@ const Contact = ({
     { scope: sectionRef }
   );
 
-  // Create an event handler so you can call the verification on button click event or form submit
-  const handleReCaptchaVerify = useCallback(
-    async (data: any) => {
-      if (!executeRecaptcha) {
-        console.log("Execute recaptcha not yet available");
-        return;
-      }
-      try {
-        const token = await executeRecaptcha("yourAction");
-
-        const response = await submitEnquiryForm(token, data);
-        if (response?.data?.success === true) {
-          showModal("success");
-        } else {
-          throw new Error(`Failure with score: ${response?.data?.score}`);
-        }
-      } catch (err: any) {
-        showModal("error");
-      } finally {
-        if (setIsLoading) setIsLoading(false);
-      }
-      // Do whatever you want with the token
-    },
-    [executeRecaptcha]
-  );
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    if (setIsLoading) setIsLoading(true);
-    handleReCaptchaVerify(data);
-  };
-
   const submitEnquiryForm = async (gReCaptchaToken: string, data: any) => {
-    // async function goAsync() {
-
-    //   if (response?.data?.success === true) {
-    //     setNotification(`Success with score: ${response?.data?.score}`);
-    //   } else {
-    //     setNotification(`Failure with score: ${response?.data?.score}`);
-    //     throw new Error(`Failure with score: ${response?.data?.score}`);
-    //   }
-    // }
-    // goAsync()
-    //   .then(() => {
-    //     showModal("success");
-    //   })
-    //   .catch(() => {
-    //     showModal("error");
-    //   }); // suppress typescript error
     return await axios({
       method: "post",
       url: "/api/contactFormSubmit",
@@ -140,6 +90,37 @@ const Contact = ({
         "Content-Type": "application/json",
       },
     });
+  };
+
+  // Create an event handler so you can call the verification on button click event or form submit
+  // 透過驗證器產出 token 給後端驗證
+  const handleReCaptchaVerify = useCallback(
+    async (data: any) => {
+      if (!executeRecaptcha) {
+        console.log("Execute recaptcha not yet available");
+        return;
+      }
+      try {
+        const token = await executeRecaptcha("sendEmail");
+
+        const response = await submitEnquiryForm(token, data);
+        if (response?.data?.success === true) {
+          showModal("success");
+        } else {
+          throw new Error(`Failure with score: ${response?.data?.score}`);
+        }
+      } catch (err: any) {
+        showModal("error");
+      } finally {
+        if (setIsLoading) setIsLoading(false);
+      }
+    },
+    [executeRecaptcha]
+  );
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (setIsLoading) setIsLoading(true);
+    handleReCaptchaVerify(data);
   };
 
   return (

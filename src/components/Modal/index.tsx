@@ -24,7 +24,7 @@ const Modal = ({
     switch (modalType) {
       case "success":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
+          <Fragment>
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={180}
@@ -88,11 +88,11 @@ const Modal = ({
               src="/images/modal/cloud-1.svg"
               alt="cloud-1.svg"
             />
-          </div>
+          </Fragment>
         );
       case "error":
         return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper">
+          <Fragment>
             <Image
               className="absolute top-36 left-48 drop-shadow"
               width={200}
@@ -156,12 +156,10 @@ const Modal = ({
               src="/images/modal/cloud-dark-1.svg"
               alt="cloud-dark-1.svg"
             />
-          </div>
+          </Fragment>
         );
       default:
-        return (
-          <div className="absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper"></div>
-        );
+        return;
     }
   };
 
@@ -235,7 +233,13 @@ const Modal = ({
             </button>
           </div>
         </div>
-        {renderModalTypeLayout()}
+        <div
+          className={`absolute top-0 left-0 w-full h-full -z-5 clouds-wrapper ${
+            isShowModal ? "visible" : "invisible"
+          }`}
+        >
+          {renderModalTypeLayout()}
+        </div>
       </div>
     </div>
   );
@@ -245,8 +249,6 @@ const useModal = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [modalType, setModalType] = useState<ModalType>("");
-
-  // const { contextSafe } = useGSAP({ scope: modalRef });
 
   useGSAP(
     () => {
@@ -328,7 +330,6 @@ const useModal = () => {
               setIsShowModal(true);
             },
           });
-          console.log(2131231312);
         }
       }
     },

@@ -12,11 +12,9 @@ import useMountRender from "@/hook/useMountRender";
 
 const MenuBtn = ({
   handleToggleMenu,
-  showMenu,
   isShowMenu,
 }: {
   handleToggleMenu: Function;
-  showMenu: (event: React.MouseEvent<HTMLButtonElement>) => void;
   isShowMenu: boolean;
 }) => {
   const tlRef = useRef<any>(null);

@@ -79,11 +79,16 @@ const Header = ({
       const tl = gsap.timeline({ ease: "power3.inOut" });
       if (logoEl) {
         tl.to(logoEl, {
-          onStart: () => (window as any).fullpage_api.moveTo("Home"),
           duration: 0.2,
           y: 30,
         }).to(logoEl, {
           duration: 0.2,
+          onComplete: () => {
+            window.open(
+              "https://www.linkedin.com/in/chih-lung-tu-a6807821a/",
+              "_blank"
+            );
+          },
           y: 0,
         });
       }
@@ -192,17 +197,6 @@ const Header = ({
           className="flex items-center relative w-16 h-16 lg:w-20 lg:h-20 z-10"
         >
           <a href="/" onClick={goTopSection}>
-            {/* <Image
-              src={
-                isShowMenu && !isLargeScreen
-                  ? "/images/main/logo-white.svg"
-                  : "/images/main/logo.svg"
-              }
-              className="drop-shadow-images-xs lg:drop-shadow-images-sm"
-              alt="logo.svg"
-              width={isMiddleScreen ? 80 : 50}
-              height={isMiddleScreen ? 80 : 50}
-            /> */}
             {isMounted ? (
               <Image
                 src={
@@ -235,11 +229,7 @@ const Header = ({
             ></div>
           </a>
         </h1>
-        <MenuBtn
-          handleToggleMenu={handleToggleMenu}
-          isShowMenu={isShowMenu}
-          showMenu={showMenu}
-        />
+        <MenuBtn handleToggleMenu={handleToggleMenu} isShowMenu={isShowMenu} />
       </div>
       <ClickAwayListener onClickAway={hideMenuAnimate}>
         <nav

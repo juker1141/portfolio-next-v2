@@ -1,0 +1,68 @@
+.marker {
+  position: relative;
+  text-decoration: none;
+}
+.marker .circle {
+  position: absolute;
+  left: 0;
+  top: -50%;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: none;
+}
+.marker .circle path {
+  transition: stroke-dashoffset 300ms linear;
+  stroke-width: 2;
+  stroke: #ef4444;
+  fill: none;
+  stroke-linecap: round;
+}
+.marker:hover .circle path {
+  stroke-dashoffset: 0;
+}
+
+@keyframes sign {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+#underline {
+  stroke-dasharray: 375;
+  stroke-dashoffset: 375;
+  animation: sign 4s ease;
+  animation-fill-mode: forwards;
+
+  fill: none;
+  stroke: #e83331;
+  stroke-miterlimit: 10;
+  mask: url(/images/main/mask1.png);
+}
+
+.pen-stroke {
+  position: relative;
+  display: inline;
+}
+
+.pen-stroke svg {
+  position: absolute;
+  top: 1.2em;
+  left: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+.pen-stroke path {
+  fill: none;
+  stroke: #ff2727;
+
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+
+  animation: sign 2s ease;
+  animation-fill-mode: forwards;
+  stroke-width: 5;
+}
