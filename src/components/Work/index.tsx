@@ -106,7 +106,10 @@ const Work = () => {
               technologies or engaging in practical exercises.
               <br />
               For additional information, you can visit
-              <a className="font-bold ml-1" href="https://github.com/juker1141">
+              <a
+                className="font-bold ml-1 underline caret-primary underline-offset-1"
+                href="https://github.com/juker1141"
+              >
                 My Github
               </a>
               .
