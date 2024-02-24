@@ -96,7 +96,7 @@ const Work = () => {
                   alt="bone.svg"
                 />
               )}
-              <div className="absolute top-1/3 xl:top-1/2 left-0 h-[50vh] w-full -z-50 bg-stick-4 bg-center bg-contain bg-no-repeat hidden lg:block" />
+              <div className="absolute top-1/3 2xl:top-0 left-0 h-[50vh] w-full -z-50 bg-stick-4 bg-center bg-contain bg-no-repeat hidden lg:block" />
             </div>
             <h4 className="font-amatic-sc font-bold text-7xl lg:text-8xl text-left mb-6 heading">
               Side Projects

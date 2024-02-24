@@ -159,7 +159,7 @@ const Experience = () => {
                   Despite this focus, I remain actively engaged in maintaining
                   and developing front-end pages, and assisting my colleagues in
                   resolving front-end rendering issues.
-                  {/* 因應公司的發展方向，我逐漸轉向後端領域的發展。我的主要工作內容包括協助在線專案開發新的 API、修復 Bug，以及自主學習 Docker 和 Nginx 來進行測試站部署。我也經常與 MIS 團隊討論，共同研究更有效的專案部署方式。儘管如此，我仍積極參與前端頁面的維護和開發，並協助同事解決前端渲染問題。 */}
+                  {/* 因應公司的發展方向，我逐漸轉向後端領域的發展。我的主要工作內容包括協助在線專案開發新的 API、修復 Bug，以及自主學習 Docker 和 Nginx 來進行測試站部署。我也時常參與 MIS 團隊討論，共同研究更有效率的專案部署方式。儘管如此，我仍積極參與前端頁面的維護和開發，並協助同事解決前端渲染問題。 */}
                 </p>
               </div>
             </div>
