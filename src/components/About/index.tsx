@@ -81,20 +81,22 @@ const About = () => {
               <div className="z-0 rounded-full relative overflow-hidden border-4 border-primary">
                 {isMounted && (
                   <Image
-                    src="/images/main/hero.webp"
+                    src="/images/main/hero.jpg"
                     width={isMiddleScreen ? 400 : 250}
                     height={isMiddleScreen ? 400 : 250}
                     className="rounded-full"
                     alt="Hero"
                   />
                 )}
-                <Image
-                  src="/images/main/about-role.svg"
-                  width={200}
-                  height={200}
-                  className="absolute -bottom-8 -right-36 lg:-right-24 z-5 drop-shadow lg:-rotate-6 transition-all duration-500 ease-out origin-bottom group-hover:-rotate-45 group-hover:-translate-y-8 lg:group-hover:-translate-y-12 group-hover:-translate-x-8"
-                  alt="about-role.svg"
-                />
+                {isMounted && (
+                  <Image
+                    src="/images/main/about-role.svg"
+                    width={isMiddleScreen ? 200 : 150}
+                    height={isMiddleScreen ? 200 : 150}
+                    className="absolute -bottom-8 -right-1/2 md:-right-20 lg:-right-24 z-5 drop-shadow lg:-rotate-6 transition-all duration-500 ease-out origin-bottom group-hover:-rotate-45 group-hover:-translate-y-8 lg:group-hover:-translate-y-12 group-hover:-translate-x-8"
+                    alt="about-role.svg"
+                  />
+                )}
               </div>
             </div>
           </div>
