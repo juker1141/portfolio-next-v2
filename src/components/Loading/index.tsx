@@ -10,8 +10,8 @@ const Loading = ({ isLoading }: { isLoading: boolean }) => {
       <div className="w-screen h-screen flex justify-center items-center relative content backdrop-blur-sm">
         <FillingBottle
           color="#543c1a"
-          width="100px"
-          height="100px"
+          width="50px"
+          height="50px"
           duration="3s"
         />
       </div>

@@ -212,12 +212,22 @@ const Contact = ({
                     className={`px-1 lg:px-2 bg-beige focus:outline-blue-400 ${
                       errors.email && "error"
                     }`}
-                    {...register("email", { required: true })}
+                    {...register("email", {
+                      required: true,
+                      pattern:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    })}
                   />
-                  {errors.email && (
+                  {errors.email?.type === "required" ? (
                     <span className="absolute top-1 left-2 -z-5 lg:z-0 lg:static text-2xl font-bold text-rose-500">
                       Email field is required
                     </span>
+                  ) : (
+                    errors.email?.type === "pattern" && (
+                      <span className="absolute top-1 left-2 -z-5 lg:z-0 lg:static text-2xl font-bold text-rose-500">
+                        Please enter a valid email address format
+                      </span>
+                    )
                   )}
                 </div>
               </div>
