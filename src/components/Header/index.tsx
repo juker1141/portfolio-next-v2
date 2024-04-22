@@ -84,10 +84,7 @@ const Header = ({
         }).to(logoEl, {
           duration: 0.2,
           onComplete: () => {
-            window.open(
-              "https://www.linkedin.com/in/chih-lung-tu-a6807821a/",
-              "_blank"
-            );
+            window.open("https://www.linkedin.com/in/Ryu-Tu", "_blank");
           },
           y: 0,
         });

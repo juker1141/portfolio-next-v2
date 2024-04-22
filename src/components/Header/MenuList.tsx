@@ -65,7 +65,7 @@ const MenuList = ({ hideMenuAnimate, isLargeScreen }: MenuListProps) => {
             <ul className="flex justify-center items-center mb-6 lg:mb-0 px-0 lg:px-2">
               <li className="mr-2">
                 <a
-                  href="https://www.linkedin.com/in/chih-lung-tu-a6807821a/"
+                  href="https://www.linkedin.com/in/Ryu-Tu"
                   target="_blank"
                   rel="noreferrer noopener"
                   className="flex items-center px-3 relative"
