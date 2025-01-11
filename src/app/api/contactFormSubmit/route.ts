@@ -84,7 +84,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
     );
   }
 
-  if (res && res.data?.success && res.data?.score > 0.5) {
+  if (
+    (res && res.data?.success && res.data?.score > 0.5) ||
+    (process.env.RECAPTCHA_TOKEN &&
+      gRecaptchaToken === process.env.RECAPTCHA_TOKEN)
+  ) {
     try {
       // Save data to the database from here
       await sendMailPromise();
