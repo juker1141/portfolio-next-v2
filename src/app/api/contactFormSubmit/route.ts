@@ -84,11 +84,32 @@ export async function POST(request: NextRequest, response: NextResponse) {
     );
   }
 
-  if (
-    (res && res.data?.success && res.data?.score > 0.5) ||
-    (process.env.RECAPTCHA_TOKEN &&
-      gRecaptchaToken === process.env.RECAPTCHA_TOKEN)
-  ) {
+  if (gRecaptchaToken === process.env.TESTING_RECAPTCHA_TOKEN) {
+    try {
+      await sendMailPromise();
+      return new NextResponse(
+        JSON.stringify({
+          success: true,
+          name,
+          email,
+          message,
+          isTesting: true,
+        }),
+        { status: 200 }
+      );
+    } catch (e: any) {
+      return new NextResponse(
+        JSON.stringify({
+          success: false,
+          name,
+          message: "Failed to sending email",
+        }),
+        { status: 400 }
+      );
+    }
+  }
+
+  if (res && res.data?.success && res.data?.score > 0.5) {
     try {
       // Save data to the database from here
       await sendMailPromise();
